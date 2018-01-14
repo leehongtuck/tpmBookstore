@@ -24,6 +24,7 @@ header {
 #searchContainer {
   flex-basis: 40%;
   padding: 10px; 
+  position: relative;
 }
 
 #searchContainer input {
@@ -35,10 +36,22 @@ header {
 }
 
 #searchResults {
+  width: 97.5%;
   position: absolute;
-  top: 0;
-  z-index: 2;
+  top: 65%;
+  z-index: 1;
   background-color: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+}
+
+#searchResults p {
+  padding: 10px;
+}
+
+#searchResults p:hover {
+  background-color: #EEEEEE;
+  cursor: pointer;
+  
 }
 
 #userContainer {
@@ -72,7 +85,6 @@ nav a:hover {
 
 #cartContainer {
   flex-basis: 5%;
-
   cursor: pointer;
 }
 
