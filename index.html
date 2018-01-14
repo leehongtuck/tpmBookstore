@@ -15,7 +15,9 @@
             <img src="img/logo.png" alt="logo">
           </div>
           <form id="searchContainer">
-            <input type="text">
+            <input type="text" onkeyup="performAjax(this.value)">
+            <div id="searchResults">
+            </div>
           </form>
           <div id="userContainer">
             <button class="btn ">Login</button>
@@ -23,7 +25,7 @@
        </div>
        <div id="headerLower" class="flex">
         <nav>
-          <a href="">Action</a>
+          <a href="genre/action">Action</a>
           <a href="">Romance</a>
           <a href="">Comedy</a>
           <a href="">Educational</a>
@@ -42,6 +44,11 @@
             <a href="#">Item 2</a>
             <a href="#">Item 3</a>
             <a href="#">Item 4</a>
+            $_SESSION['cart'] = array();
+            $_SESSION['cart'][i]['book_id'];
+            $_SESSION['cart'][i]['quantity'];
+            $_SESSION['cart'][book_id] = quantity;
+            unset($_SESSION['cart'][3]);
             <button class="btn">Checkout</button>
           </div>
         </div>
@@ -49,6 +56,21 @@
     </header>
              
     <script>
+      function performAjax(search){
+        if(search==""){
+          document.getElementById("searchResults").innerHTML="";
+          return;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+          if (this.status == 200) {
+            document.getElementById("searchResults").innerHTML=this.responseText;
+           }
+        }
+        xhr.open("GET", "processSearch.php/?q="+ search, true);
+        xhr.send();
+      }
+     
       function openCart(){
         document.getElementById('cart').style.right = '0';       
       }
@@ -59,5 +81,3 @@
     </script>
    </body>
 </html>
-
-  

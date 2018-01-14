@@ -1,8 +1,9 @@
 <?php
+session_start();
 define("SERVERNAME", "localhost");
 define("USERNAME", "root");
 define("PASSWORD", "");
-define("DATABASE", "tpmbookstore");
+define("DATABASE", "test");
 // Create connection
 $conn = mysqli_connect(SERVERNAME, USERNAME, PASSWORD, DATABASE);
 
@@ -10,5 +11,5 @@ $conn = mysqli_connect(SERVERNAME, USERNAME, PASSWORD, DATABASE);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected successfully";
+
 ?>

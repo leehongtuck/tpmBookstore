@@ -8,7 +8,7 @@ header {
 #headerUpper, #headerLower {
   height: 50%;
   width: 100%;
-  overflow: hidden;
+ 
   justify-content: space-between;
 }
 
@@ -28,10 +28,17 @@ header {
 
 #searchContainer input {
   height: 70%;
-  background-image: url("search.png");
+  background-image: url("../img/search.png");
   background-position: top right;
   background-size: 3.5%;
   background-repeat: no-repeat;
+}
+
+#searchResults {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  background-color: white;
 }
 
 #userContainer {
