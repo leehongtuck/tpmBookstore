@@ -1,0 +1,137 @@
+  /*========================= 1.0 HEADER =========================== */
+header {
+  height: 120px;
+  background-color: #e6e0e0;
+}
+
+/* 1.1 Upper Header */
+#headerUpper, #headerLower {
+  height: 50%;
+  width: 100%;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+#logoContainer {
+  flex-basis: 10%;
+}
+
+#logoContainer img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#searchContainer {
+  flex-basis: 40%;
+  padding: 10px; 
+}
+
+#searchContainer input {
+  height: 70%;
+  background-image: url("search.png");
+  background-position: top right;
+  background-size: 3.5%;
+  background-repeat: no-repeat;
+}
+
+#userContainer {
+  flex-basis: 10%;
+}
+
+
+/* 1.2 Lower Header */
+#headerLower {
+  border-bottom: 3px solid #2152bd;
+}
+
+nav {
+  flex-basis: 80%;
+  margin-left: 10px;
+}
+
+nav a {
+  display: inline-block;
+  height: 100%;
+  padding: 20px 10px 10px;
+  margin-right: 40px;
+  font-weight: bold;
+  color: #2152bd;
+}
+
+nav a:hover {
+  color: yellow;
+  cursor: pointer;
+}
+
+#cartContainer {
+  flex-basis: 5%;
+
+  cursor: pointer;
+}
+
+#cartContainer:hover {
+  background-color: aliceblue;
+}
+
+#cartContainer img {
+  display: block;
+  max-height: 75%;
+  max-width: 90%;
+  margin: 10px auto;
+}
+
+/* 1.3 Cart */
+#cart{
+	height: 100%;
+	width: 250px;
+	position: fixed;
+	z-index: 1;
+	top:0;
+	right: -250px;
+	background-color: #111;
+	opacity: 0.9;
+	overflow-x: hidden;
+	padding-top: 20px;
+	transition: 0.5s;
+	
+}
+
+#cartHeader{
+	height: 10%;
+}
+
+#cartTitle{
+  display: inline-block;
+  margin: 10px auto;
+  width: 70%;
+  padding: 0 20px;
+}
+
+#cartTitle h2{
+  font-size: 1.5em;
+  color: white;
+}
+
+.btnClose {
+	float: right;
+	color: white;
+	padding: 0px 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#cartContent{
+	height: 80%;
+}
+
+#cartContent a{
+	padding: 10px 10px 10px 30px;
+	text-decoration: none;
+	font-size: 22px;
+	color: #ccc;
+	display: block;
+}
+
+#cartContent a:hover{
+	color:#fff;
+}

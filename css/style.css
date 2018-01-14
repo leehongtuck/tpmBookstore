@@ -1,0 +1,150 @@
+/*======================1.0 GENERAL STYLINGS================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Open Sans',arial, sans-serif;
+  font-size: 100%;
+  list-style-type: none;
+}
+
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+}
+/*======================2.0 INPUT STYLINGS=================== */
+/*2.1 Container and input*/
+.inputGroup {
+  position:relative;
+  margin-bottom:45px;
+}
+input {
+  font-size:0.8em;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100%;
+  border: none;
+  border-bottom:1px solid #757575;
+}
+input:focus {
+  outline:none;
+}
+
+/*2.2 Input Label */
+label {
+  color:#999;
+  font-size:1.2em;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+/* active state */
+input:focus ~ label, input:valid ~ label {
+  top:-20px;
+  font-size:0.9em;
+  color:#5264AE;
+}
+
+/*2.3 Input Highlighter */
+.inputHighlight {
+  position:absolute;
+  height:60%;
+  width:100%;
+  top:25%;
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+/* active state */
+input:focus ~ .inputHighlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.5s ease;
+}
+/* Highlighter Animations */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background:#5264AE;
+ }
+  to {
+    width:0;
+    background:transparent;
+ }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background:#5264AE;
+ }
+  to {
+    width:0;
+    background:transparent;
+ }
+}
+@keyframes inputHighlighter {
+  from {
+    background:#5264AE;
+ }
+  to {
+    width:0;
+    background:transparent;
+ }
+}
+
+/* 2.4 Bottom Bars */
+.inputBar {
+  position:relative;
+  display:block;
+  width:100%;
+}
+.inputBar:before, .inputBar:after {
+  content:'';
+  height:2px;
+  width:0;
+  bottom:1px;
+  position:absolute;
+  background:#5264AE;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+.inputBar:before {
+  left:50%;
+}
+.inputBar:after {
+  right:50%;
+}
+/* active state */
+input:focus ~ .inputBar:before, input:focus ~ .inputBar:after {
+  width:50%;
+}
+
+/*========================== 3.0 BUTTONS ========================= */
+.btn {
+
+  width: 70px;
+  height: 30px;
+  display: block;
+  margin: 10px auto;
+  padding: 0;
+  overflow: hidden;
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  background-color: #2152bd;
+  color: #ecf0f1;
+  }
+  
+  .btn:hover{
+  background-color: #4c77d4;
+  cursor: pointer;
+  }
