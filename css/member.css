@@ -161,3 +161,8 @@ nav a:hover {
 #cartContent a:hover{
 	color:#fff;
 }
+
+/*======================= x.0 Register ==============================*/
+.registerContainer {
+  padding: 20px;
+}
