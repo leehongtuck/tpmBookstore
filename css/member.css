@@ -54,6 +54,13 @@ header {
   
 }
 
+#searchResults p a {
+  color: #111;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 #userContainer {
   flex-basis: 10%;
 }
