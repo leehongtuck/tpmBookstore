@@ -27,50 +27,53 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     mysqli_close($conn); 
 }
 ?>
-
-    <form class="registerContainer" method="post">
-        <div class="inputGroup">
-            <input name="memName" type="text" required>
-            <span class="inputHighlight"></span>
-            <span class="inputBar"></span>
-            <label for="name">Name</label>	
-        </div>
-        <div class="inputGroup">
-            <input name="email" type="email" required>
-            <span class="inputHighlight"></span>
-            <span class="inputBar"></span>
-            <label>Email</label>	
-            
-        </div>
-        <div class="inputGroup">
-            <input name="password" type="password" required>
-            <span class="inputHighlight"></span>
-            <span class="inputBar"></span>
-            <label>Password</label>	
-        </div>
-        <div class="inputGroup">
-            <input name="memAddress" type="text" required>
-            <span class="inputHighlight"></span>
-            <span class="inputBar"></span>
-            <label>Address</label>
-        </div>
-        <div class="inputGroup">
-            <input name="memPhone" type="text" required>
-            <span class="inputHighlight"></span>
-            <span class="inputBar"></span>
-            <label>Phone Number</label>
-        </div>			
-        <div class="inputGroup">
-            <input name="memCc" type="text" required>
-            <span class="inputHighlight"></span>
-            <span class="inputBar"></span>
-            <label>Credit Card Number</label>
-            </div>
-        </div>
-        <div class="input">
-            <input class="btn" type="submit" value="Register">
-        </div>
-    </form>
+	<section id="registerContainer">
+		<div id="registerHeader">
+			<h1>Registration</h1>
+		</div>
+		<form class="registerContainer" method="post">
+			<div class="inputGroup">
+				<input name="memName" type="text" required>
+				<span class="inputHighlight"></span>
+				<span class="inputBar"></span>
+				<label for="name">Name</label>	
+			</div>
+			<div class="inputGroup">
+				<input name="email" type="text" required>
+				<span class="inputHighlight"></span>
+				<span class="inputBar"></span>
+				<label>Email</label>	
+			</div>
+			<div class="inputGroup">
+				<input name="password" type="password" required>
+				<span class="inputHighlight"></span>
+				<span class="inputBar"></span>
+				<label>Password</label>	
+			</div>
+			<div class="inputGroup">
+				<input name="memAddress" type="text" required>
+				<span class="inputHighlight"></span>
+				<span class="inputBar"></span>
+				<label>Address</label>
+			</div>
+			<div class="inputGroup">
+				<input name="memPhone" type="text" required>
+				<span class="inputHighlight"></span>
+				<span class="inputBar"></span>
+				<label>Phone Number</label>
+			</div>			
+			<div class="inputGroup">
+				<input name="memCc" type="text" required>
+				<span class="inputHighlight"></span>
+				<span class="inputBar"></span>
+				<label>Credit Card Number</label>
+				</div>
+			</div>
+			<div class="input">
+				<input class="btn" id="registerBtn" type="submit" value="Register">
+			</div>
+		</form>
+	</section>
 
 </body>
 
