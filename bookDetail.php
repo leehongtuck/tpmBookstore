@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <?php
+ <!-- <?php
  /*Add To Cart */
  include("conn.php");
  session_start();  
@@ -61,7 +61,7 @@
  
  
  ?>
- 
+ -->
 <html lang="en">
 	<head>
 	<meta content="en-us" http-equiv="Content-Language">
