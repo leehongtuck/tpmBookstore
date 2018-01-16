@@ -47,7 +47,13 @@ require_once "inc/conn.php";
             <div class="btnClose" onClick="closeCart()">&times;</div>
           </div>
           <div id="cartContent">
-            <a href="#">Item 1</a>
+            <div>
+              <a href="#">Item 1</a>
+              <span>
+                <i class="fas fa-minus-circle"></i>
+                <i class="fas fa-plus-circle"></i>
+              </span>
+            </div>
             <a href="#">Item 2</a>
             <a href="#">Item 3</a>
             <a href="#">Item 4</a>
