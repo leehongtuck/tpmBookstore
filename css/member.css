@@ -163,6 +163,28 @@ nav a:hover {
 }
 
 /*======================= x.0 Register ==============================*/
-.registerContainer {
-  padding: 20px;
+#registerContainer{
+  padding: 10px 20px;
+}
+
+#registerHeader{
+	padding: 20px;
+	border-bottom: 2px solid black;
+	text-align: center;
+}
+
+#registerHeader h1{
+	font-size: 1.5em;
+}
+
+#registerContainer form{
+	padding: 50px 20px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+#registerBtn{
+	width: 100px;
+	height: 45px;
+	font-size: 1.2em;
 }
