@@ -11,19 +11,18 @@
       $sql = "SELECT memberId FROM member WHERE memberEmail = '$myUsername' and memberPw = '$password'";
       $query = mysqli_query($con,$sql);
       $result = mysqli_fetch_array($query);
-      $active = $result['memberEmail'];
+
       $count = mysqli_num_rows($result);
-      
       // If result matched $myusername and $mypassword, table row must be 1 row
-		
+
       if($count == 1) {
-        $_SESSION['loginUser'] = $myUsername;
+          $userId = $result[0];
+        $_SESSION['loginUser'] = $userId;
         echo '<script>alert("Login successful")</script>';
         echo'<script>window.location="index.html";</script>';
       }
 	  else {
 		echo '<script>alert("Your Email Address or Password is incorrect")</script>';
-        echo'<script>window.location="login.html";</script>';
 	  }
    }
 ?>

@@ -8,6 +8,7 @@ require_once "inc/conn.php";
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title><?="TPM BOOKSTORE | " . $title?></title>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+       <link href=""
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/member.css">
    </head>
@@ -45,6 +46,15 @@ require_once "inc/conn.php";
             <div class="btnClose" onClick="closeCart()">&times;</div>
           </div>
           <div id="cartContent">
+              <?php
+              foreach ($_SESSION['cart'] as $bookId => $quantity) {
+                  $sql = "SELECT bookName, bookPrice FROM book WHERE bookId = $bookId ";
+                  $query = mysqli_query($conn, $sql);
+                  $result = mysqli_fetch_assoc($query);
+
+                  echo "<a href=\"\">$result[0].$result[1]</a>";
+              }
+              ?>
             <a href="#">Item 1</a>
             <a href="#">Item 2</a>
             <a href="#">Item 3</a>
