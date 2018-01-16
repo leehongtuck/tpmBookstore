@@ -29,12 +29,15 @@ header {
 
 #searchContainer input {
   height: 70%;
-  background-image: url("../img/search.png");
-  background-position: top right;
-  background-size: 3.5%;
-  background-repeat: no-repeat;
+  text-indent: 30px;
 }
 
+#searchContainer i{
+  position: absolute;
+  top: 13px;
+  left: 15px;
+  font-size: 1.25em;
+}
 #searchResults {
   width: 97.5%;
   position: absolute;
@@ -91,20 +94,26 @@ nav a:hover {
 }
 
 #cartContainer {
-  flex-basis: 5%;
+  flex-basis: 130px;
   cursor: pointer;
+  padding: 10px;
+  text-align: center;
+  color: #2152bd;
 }
 
 #cartContainer:hover {
   background-color: aliceblue;
 }
 
-#cartContainer img {
-  display: block;
-  max-height: 75%;
-  max-width: 90%;
-  margin: 10px auto;
+#cartContainer span{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-left: 10px;
 }
+#cartContainer i{
+  font-size: 2.0em;
+}
+
 
 /* 1.3 Cart */
 #cart{

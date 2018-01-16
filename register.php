@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		<div id="registerHeader">
 			<h1>Registration</h1>
 		</div>
-		<form class="registerContainer" method="post">
+		<form>
 			<div class="inputGroup">
 				<input name="memName" type="text" required>
 				<span class="inputHighlight"></span>

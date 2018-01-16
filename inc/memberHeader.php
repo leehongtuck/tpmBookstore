@@ -8,6 +8,7 @@ require_once "inc/conn.php";
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title><?="TPM BOOKSTORE | " . $title?></title>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/member.css">
    </head>
@@ -18,6 +19,7 @@ require_once "inc/conn.php";
             <a href="index.php"><img src="img/logo.png" alt="logo"></a>
           </div>
           <form id="searchContainer">
+            <i class="fas fa-search"></i>
             <input type="text" onkeyup="performAjax(this.value)">
             <div id="searchResults">
             </div>
@@ -32,12 +34,12 @@ require_once "inc/conn.php";
             $sql = "SELECT genreId, genre FROM genre";
             $query = mysqli_query($conn, $sql);
             while($result = mysqli_fetch_array($query)){
-                echo "<a href=\"genre.php/?". $result[0]."\">". $result[1] ."</a>";
+                echo "<a href=\"genre.php/?id=". $result[0]."\">". $result[1] ."</a>";
             }
             ?>
         </nav>
         <div id="cartContainer" onclick="openCart()">
-          <img src="img/cart.png" alt="cart">
+          <i class="fas fa-shopping-cart"></i><span>Cart</span>
         </div>
         <div id="cart">
           <div id="cartHeader">
@@ -45,16 +47,6 @@ require_once "inc/conn.php";
             <div class="btnClose" onClick="closeCart()">&times;</div>
           </div>
           <div id="cartContent">
-              <?php
-              $_SESSION['cart']['B001']= 3;
-              foreach ($_SESSION['cart'] as $bookId => $quantity) {
-                  $sql = "SELECT bookName, bookPrice FROM book WHERE bookId = $bookId ";
-                  $query = mysqli_query($conn, $sql);
-                  $result = mysqli_fetch_assoc($query);
-
-                  echo "<a href=\"\">$result[0].$result[1]</a>";
-              }
-              ?>
             <a href="#">Item 1</a>
             <a href="#">Item 2</a>
             <a href="#">Item 3</a>
