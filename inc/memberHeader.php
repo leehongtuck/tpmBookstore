@@ -25,7 +25,7 @@ require_once "inc/conn.php";
             </div>
           </form>
           <div id="userContainer">
-            <button class="btn ">Login</button>
+            <button class="btn "><span>Login</span><i class="fas fa-sign-in-alt"></i></button>
           </div>
        </div>
        <div id="headerLower" class="flex">

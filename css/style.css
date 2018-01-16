@@ -130,8 +130,8 @@ input:focus ~ .inputBar:before, input:focus ~ .inputBar:after {
 /*========================== 3.0 BUTTONS ========================= */
 .btn {
 
-  width: 70px;
-  height: 30px;
+  width: 100px;
+  height: 40px;
   display: block;
   margin: 10px auto;
   padding: 0;

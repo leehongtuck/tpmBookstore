@@ -68,6 +68,9 @@ header {
   flex-basis: 10%;
 }
 
+#userContainer span{
+  margin-right: 10px;
+}
 
 /* 1.2 Lower Header */
 #headerLower {
