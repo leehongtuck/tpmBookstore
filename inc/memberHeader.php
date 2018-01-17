@@ -47,16 +47,45 @@ require_once "inc/conn.php";
             <div class="btnClose" onClick="closeCart()">&times;</div>
           </div>
           <div id="cartContent">
-            <div>
-              <a href="#">Item 1</a>
-              <span>
+            <div class="cartItem">
+              <span class="cartItemDesc">
+                <img src="img/b001.jpg" alt="book">
+                <a href="#">Item 1</a>
+              </span>
+              <span class="cartItemPlus">
                 <i class="fas fa-minus-circle"></i>
+              </span> 
+              <span class="cartItemQuantity">
+                5
+              </span>
+              <span class="cartItemMinus">
                 <i class="fas fa-plus-circle"></i>
               </span>
             </div>
-            <a href="#">Item 2</a>
-            <a href="#">Item 3</a>
-            <a href="#">Item 4</a>
+            <div class="cartItem">
+              <a href="#">Item 2</a>
+              <span class="plus">
+                <i class="fas fa-minus-circle"></i>
+              </span> 
+              <span class="quantity">
+                5
+              </span>
+              <span class="minus">
+                <i class="fas fa-plus-circle"></i>
+              </span>
+            </div>
+            <div class="cartItem">
+              <a href="#">Item 3</a>
+              <span class="plus">
+                <i class="fas fa-minus-circle"></i>
+              </span> 
+              <span class="quantity">
+                5
+              </span>
+              <span class="minus">
+                <i class="fas fa-plus-circle"></i>
+              </span>
+            </div>
             <button class="btn">Checkout</button>
           </div>
         </div>
@@ -84,7 +113,7 @@ require_once "inc/conn.php";
       }
       
       function closeCart(){
-        document.getElementById('cart').style.right= '-250px'; 
+        document.getElementById('cart').style.right= '-400px'; 
       }
     </script>
 
