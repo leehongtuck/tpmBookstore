@@ -38,7 +38,7 @@ header {
   left: 15px;
   font-size: 1.25em;
 }
-#searchResults {
+#searchResults{
   width: 97.5%;
   position: absolute;
   top: 65%;
@@ -47,17 +47,17 @@ header {
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 }
 
-#searchResults p {
+#searchResults p{
   padding: 10px;
 }
 
-#searchResults p:hover {
+#searchResults p:hover{
   background-color: #EEEEEE;
   cursor: pointer;
   
 }
 
-#searchResults p a {
+#searchResults p a{
   color: #111;
   display: block;
   width: 100%;
@@ -121,12 +121,12 @@ nav a:hover {
 /* 1.3 Cart */
 #cart{
 	height: 100%;
-	width: 250px;
+	width: 400px;
 	position: fixed;
 	z-index: 1;
 	top:0;
-	right: -250px;
-	background-color: #111;
+	right: -400px;
+	background-color: #131339;
 	opacity: 0.9;
 	overflow-x: hidden;
 	padding-top: 20px;
@@ -162,16 +162,26 @@ nav a:hover {
 	height: 80%;
 }
 
-#cartContent a{
+#cartContent .cartItem{
 	padding: 10px 10px 10px 30px;
-	text-decoration: none;
-	font-size: 22px;
+	font-size: 1.5em;
 	color: #ccc;
-	display: block;
 }
 
-#cartContent a:hover{
-	color:#fff;
+.cartItemDesc{
+  
+}
+
+.cartItem span{
+  margin-left: 10px;
+}
+
+.cartItemPlus, .cartItemMinus{
+  cursor: pointer;
+}
+
+.cartItemPlus:hover, .cartItemMinus:hover{
+  color: #ffffff;
 }
 
 /*======================= x.0 Register ==============================*/
