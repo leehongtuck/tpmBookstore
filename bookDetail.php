@@ -1,6 +1,6 @@
 <!DOCTYPE html>
- <!-- <?php
- /*Add To Cart */
+ <?php
+
  include("conn.php");
  session_start();  
  
@@ -58,10 +58,46 @@
            }  
       }  
  }  
- 
- 
+
+//member feedback//
+if($_POST["giveFeedback"] ==True){
+    //SETTING THE FEEDBACKID VARIABLE
+    $sql="SELECT feedbackId FROM feedback ORDER BY feedbackId DESC LIMIT 1 ";
+    $query=mysqli_query($conn, $sql);
+    $feedbackId;
+    if($result=mysqli_fetch_array($query)){
+        $feedbackId=(int)substr($result[0], 1, 3)+1;
+        $feedbackId='F'.str_pad("00", 3, $feedbackId);
+    }else{
+        $feedbackId='F001'; 
+    }
+    //INSERT RECORD INTO DATABASE
+    $sql="INSERT INTO feedback (feedbackId,bookRating,bookComment,memberId,bookId)
+    VALUES
+    ('$feedbackId','$_POST[rating]','$_POST[comment]','$userId, '$id')";
+	if (mysqli_query($conn,$sql)){ 
+		$lastId = mysqli_insert_id($con);
+		$lastId = mysqli_real_escape_string($con,$lastId);
+		 echo "Thank you for rating."; 
+        }
+		else{
+         die('Error: ' . mysqli_error($conn));   
+		 mysqli_close($conn);
+		}
+//member rating feedback//
+if($_POST["rateComment"] == True {
+	
+	$sql="INSERT INTO feedbackRating (memberId, feedbackId,feedbackRating)
+	VALUES
+	('$userId','$lastId','$_POST[feedRating]')";
+	
+	if 
+	(!mysqli_query($conn,$sql))
+	 { die('Error: ' . mysqli_error($conn)); }
+	mysqli_close($conn);
+	}
+}
  ?>
- -->
 <html lang="en">
 	<head>
 	<meta content="en-us" http-equiv="Content-Language">
@@ -184,8 +220,8 @@
 							<label class = "full" for="star1" title="Terrible - 1 stars"></label>
 						</fieldset>
 						<div id='feedback'></div>
-						<input type="text" name="comment" value="optional">
-						<input type="submit" value="Rate">
+						<input type="text" name="comment" placeholder="Optional">
+						<input type="submit" name="giveFeedback" value="Rate">
 					</form>
 				</div>
 				<div> <!-- showing book feedback -->
@@ -219,38 +255,39 @@
 									<label class = "full" for="star1" title="Terrible - 1 stars"></label>
 								</fieldset>';
 							switch ($starRating){
-								case 1
+								case 1:
 								echo '<script>var x=document.getElementById("star1m"); x.checked=true;</script>'; break;
-								case 2
+								case 2:
 								echo '<script>var x=document.getElementById("star2m"); x.checked=true;</script>'; break;
-								case 3
+								case 3:
 								echo '<script>var x=document.getElementById("star3m"); x.checked=true;</script>'; break;
-								case 4
+								case 4:
 								echo '<script>var x=document.getElementById("star4m"); x.checked=true;</script>'; break;
-								case 5
+								case 5:
 								echo '<script>var x=document.getElementById("star5m"); x.checked=true;</script>'; break;
-								case 6
+								case 6:
 								echo '<script>var x=document.getElementById("star6m"); x.checked=true;</script>'; break;
-								case 7
+								case 7:
 								echo '<script>var x=document.getElementById("star7m"); x.checked=true;</script>'; break;
-								case 8
+								case 8:
 								echo '<script>var x=document.getElementById("star8m"); x.checked=true;</script>'; break;
-								case 9
+								case 9:
 								echo '<script>var x=document.getElementById("star9m"); x.checked=true;</script>'; break;
-								case 10
+								case 10:
 								echo '<script>var x=document.getElementById("star10m"); x.checked=true;</script>'; break;
 							}
-							echo "<p>" $row['bookComment']; "</p>";
-							echo "<form>"
+							echo "<p>";
+							echo $row['bookComment'];
+							echo "</p>";
+							echo "<form>";
 							echo "<label>Rate this feedback: </label>";
-							echo "<input type='radio' name='feedbackRating' value='useless'>Useless<br>";
-							echo "<input type='radio' name='feedbackRating' value='useful'>Useful<br>";
-							echo "<input type='radio' name='feedbackRating' value='veryUseful'>Very Useful<br>";
-							echo "<input type='submit' value='Rate'>";
+							echo "<input type='radio' name='feedbackRating' value='1'>Useless<br>";
+							echo "<input type='radio' name='feedbackRating' value='2'>Useful<br>";
+							echo "<input type='radio' name='feedbackRating' value='3'>Very Useful<br>";
+							echo "<input type='submit' name='rateComment' value='Rate'>";
 							echo "</form>";
 							echo "</div>";
 							
-
 						}
 						mysqli_close($conn); //to close the database connection						
 					?>
