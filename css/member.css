@@ -127,7 +127,6 @@ nav a:hover {
 	top:0;
 	right: -400px;
 	background-color: #131339;
-	opacity: 0.9;
 	overflow-x: hidden;
 	padding-top: 20px;
 	transition: 0.5s;
@@ -164,13 +163,25 @@ nav a:hover {
 
 #cartContent .cartItem{
 	padding: 10px 10px 10px 30px;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	color: #ccc;
 }
 
 .cartItemDesc{
-  
+  flex-basis: 40%;
 }
+
+.cartItemNum{
+  flex-basis: 30%;
+}
+
+.cartItemPrice{
+  flex-basis: 30%;
+}
+.cartItem a{
+  color: #ccc;
+}
+
 
 .cartItem span{
   margin-left: 10px;
@@ -182,6 +193,12 @@ nav a:hover {
 
 .cartItemPlus:hover, .cartItemMinus:hover{
   color: #ffffff;
+}
+
+#cart button.btn{
+  position: absolute;
+  bottom: 20px;
+  left: 180px;
 }
 
 /*======================= x.0 Register ==============================*/
