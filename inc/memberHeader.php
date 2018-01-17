@@ -32,9 +32,9 @@ require_once "inc/conn.php";
         <nav>
             <?php
             $sql = "SELECT genreId, genre FROM genre";
-            $query = mysqli_query($conn, $sql);
-            while($result = mysqli_fetch_array($query)){
-                echo "<a href=\"genre.php/?id=". $result[0]."\">". $result[1] ."</a>";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_array($result)){
+                echo "<a href=\"genre.php/?id=". $row[0]."\">". $row[1] ."</a>";
             }
             ?>
         </nav>
@@ -47,25 +47,39 @@ require_once "inc/conn.php";
             <div class="btnClose" onClick="closeCart()">&times;</div>
           </div>
           <div id="cartContent">
-            <div class="cartItem flex">
-              <div class="cartItemDesc">
-                <a href="#">The Riddle In Stone Trilogy</a>
-              </div>
-              <div class="cartItemNum">
-                <span class="cartItemMinus">
-                  <i class="fas fa-minus-circle"></i>
-                </span> 
-                <span class="cartItemQuantity">
-                  5
-                </span>
-                <span class="cartItemPlus">
-                  <i class="fas fa-plus-circle"></i>
-                </span> 
-              </div>
-              <div class="cartItemPrice">
-                RM 555.00
-              </div>
-            </div>
+            <?php
+            $_SESSION['cart']=array(
+              'b001' => '3',
+              'b002' => '5'
+            );
+              foreach ($_SESSION['cart'] as $bookId => $quantity) {
+                $sql = "SELECT bookTitle, bookPrice FROM book WHERE bookId = '$bookId' ";
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_array($result)):?>
+                <div class="cartItem flex">
+                  <div class="cartItemDesc">
+                    <a href="#"><?=$row[0];?></a>
+                  </div>
+                  <div class="cartItemNum">
+                    <span class="cartItemMinus">
+                      <i class="fas fa-minus-circle"></i>
+                    </span> 
+                    <span class="cartItemQuantity">
+                      <?=$quantity;?>
+                    </span>
+                    <span class="cartItemPlus">
+                      <i class="fas fa-plus-circle"></i>
+                    </span> 
+                  </div>
+                  <div class="cartItemPrice">
+                    RM<?=$row[1];?>.00
+                  </div>
+                </div>
+              <?php
+              endwhile;
+              }
+            ?>
+            
             <button class="btn">Checkout</button>
           </div>
         </div>
