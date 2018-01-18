@@ -48,7 +48,8 @@ require_once "inc/conn.php";
           </div>
           <div id="cartContent">
             <?php
-            $_SESSION['cart']=array(
+			
+            if (!isset($_SESSION['cart'] =array(
               'b001' => '3',
               'b002' => '5'
             );
@@ -58,16 +59,14 @@ require_once "inc/conn.php";
                 while($row = mysqli_fetch_array($result)):?>
                 <div class="cartItem flex">
                   <div class="cartItemDesc">
-                    <a href="#"><?=$row[0];?></a>
+                    <a href="book.php/?id=<?=$bookId?>"><?=$row[0];?></a>
                   </div>
                   <div class="cartItemNum">
-                    <span class="cartItemMinus">
+                    <span class="cartItemMinus" onclick="changeQuantity(-1, document.getElementById('<?=$bookId?>Quantity'))">
                       <i class="fas fa-minus-circle"></i>
                     </span> 
-                    <span class="cartItemQuantity">
-                      <?=$quantity;?>
-                    </span>
-                    <span class="cartItemPlus">
+                    <span  class="cartItemQuantity" id="<?=$bookId?>Quantity"><?=$quantity;?></span>
+                    <span class="cartItemPlus" onclick="changeQuantity(1, document.getElementById('<?=$bookId?>Quantity'))">
                       <i class="fas fa-plus-circle"></i>
                     </span> 
                   </div>
@@ -109,5 +108,13 @@ require_once "inc/conn.php";
       function closeCart(){
         document.getElementById('cart').style.right= '-400px'; 
       }
+	  
+	  function changeQuantity(change, quantity) {
+		var qty = parseInt(quantity.innerHTML);
+		if ((change==1 && qty < 10) ||  (change==-1 && qty > 1)){
+			quantity.innerHTML = qty + change;
+		}
+		
+	  }
     </script>
 
