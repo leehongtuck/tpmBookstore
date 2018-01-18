@@ -1,8 +1,7 @@
 <!DOCTYPE html>
  <?php
 
- include("conn.php");
- session_start();  
+require_once "inc/conn.php";
  
  if(isset($_POST["addToCart"]))  
  {  
@@ -14,8 +13,8 @@
                 $count = count($_SESSION["shoppingCart"]);  
                 $item_array = array(  
                      'bookId'               =>     $_GET["id"],
-                     'bookTitle'               =>     $_POST["hidden_name"],  
-                     'bookPrice'          =>     $_POST["hidden_price"],  
+                     'bookTitle'               =>     $_POST["hiddenName"],  
+                     'bookPrice'          =>     $_POST["hiddenPrice"],  
                      'bookQuantity'          =>     $_POST["quantity"]  
                 );  
                 $_SESSION["shoppingCart"][$count] = $item_array;  
@@ -32,8 +31,8 @@
       {  
            $item_array = array(  
                 'bookId'               =>     $_GET["id"],  
-                'bookTitle'               =>     $_POST["hidden_name"],  
-                'bookPrice'          =>     $_POST["hidden_price"],  
+                'bookTitle'               =>     $_POST["hiddenName"],  
+                'bookPrice'          =>     $_POST["hiddenPrice"],  
                 'bookQuantity'          =>     $_POST["quantity"]  
            );  
            $_SESSION["shoppingCart"][0] = $item_array; 
@@ -59,44 +58,8 @@
       }  
  }  
 
-//member feedback//
-if($_POST["giveFeedback"] ==True){
-    //SETTING THE FEEDBACKID VARIABLE
-    $sql="SELECT feedbackId FROM feedback ORDER BY feedbackId DESC LIMIT 1 ";
-    $query=mysqli_query($conn, $sql);
-    $feedbackId;
-    if($result=mysqli_fetch_array($query)){
-        $feedbackId=(int)substr($result[0], 1, 3)+1;
-        $feedbackId='F'.str_pad("00", 3, $feedbackId);
-    }else{
-        $feedbackId='F001'; 
-    }
-    //INSERT RECORD INTO DATABASE
-    $sql="INSERT INTO feedback (feedbackId,bookRating,bookComment,memberId,bookId)
-    VALUES
-    ('$feedbackId','$_POST[rating]','$_POST[comment]','$userId, '$id')";
-	if (mysqli_query($conn,$sql)){ 
-		$lastId = mysqli_insert_id($con);
-		$lastId = mysqli_real_escape_string($con,$lastId);
-		 echo "Thank you for rating."; 
-        }
-		else{
-         die('Error: ' . mysqli_error($conn));   
-		 mysqli_close($conn);
-		}
-//member rating feedback//
-if($_POST["rateComment"] == True {
-	
-	$sql="INSERT INTO feedbackRating (memberId, feedbackId,feedbackRating)
-	VALUES
-	('$userId','$lastId','$_POST[feedRating]')";
-	
-	if 
-	(!mysqli_query($conn,$sql))
-	 { die('Error: ' . mysqli_error($conn)); }
-	mysqli_close($conn);
-	}
-}
+
+
  ?>
 <html lang="en">
 	<head>
@@ -136,7 +99,35 @@ if($_POST["rateComment"] == True {
         .rating > input:checked + label:hover, 
         .rating > input:checked ~ label:hover,
         .rating > label:hover ~ input:checked ~ label, 
-        .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }     
+        .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+		.rating1 { 
+			border: none;
+			float: left;
+        }
+		
+        .rating1 > input { display: none; } 
+        .rating1 > label:before { 
+            margin: 5px;
+            font-size: 1.25em;
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f005";
+        }
+
+        .rating1 > label { 
+            color: #ddd; 
+            float: right; 
+        }
+
+        .rating1 > input:checked ~ label, 
+        .rating1:not(:checked) > label:hover,  
+        .rating1:not(:checked) > label:hover ~ label { color: #FFD700;  }
+
+        .rating1 > input:checked + label:hover, 
+        .rating1 > input:checked ~ label:hover,
+        .rating1 > label:hover ~ input:checked ~ label, 
+        .rating1 > input:checked ~ label:hover ~ label { color: #FFED85;  }    		
     </style>
 	</head>
 
@@ -145,8 +136,7 @@ if($_POST["rateComment"] == True {
 			<?php	
 				$id = $_GET['id'];
 				$query = "SELECT book.*, genre.genre FROM book INNER JOIN genre ON book.genreId = genre.genreId WHERE book.bookId='".$id."'"; 
-				$imageId= $row["bookId"];
-				$result = mysqli_query($con, $query);  
+				$result = mysqli_query($conn, $query);  
 				if(mysqli_num_rows($result) > 0)  
 				{  
 					while($row = mysqli_fetch_array($result))  
@@ -154,29 +144,30 @@ if($_POST["rateComment"] == True {
 			?>  
 			<div>
 				<?php
+					$imageId=$row["bookId"];
 					$files = glob("img/*.*");
-					echo '<img src="'.$imageId.'" />'."<br /><br />";
+					echo '<img src="img/'.$imageId.'.jpg" />'."<br/><br/>";
 				?>
 			</div>
 			<div>
 				<h1><?php echo $row["bookTitle"]; ?></h1>
-				<p>by<<?php echo $row["bookAuthor"]; ?></p>
+				<p>by<?php echo $row["bookAuthor"]; ?></p>
 				<p>Publisher:<?php echo $row["bookPublisher"]; ?></p>
-				<p>Publish Date:<<?php echo $row["bookPublishDate"]; ?></p>
+				<p>Publish Date:<?php echo $row["bookPublishDate"]; ?></p>
 				<p><?php echo $row["genre"]; ?></p>
 				<p><?php echo $row["bookDescription"]; ?></p>
 				<p><?php echo $row["bookPrice"]; ?></p>
 				<form action="addtocart.php?action=add&id=<?php echo $row["bookId"]; ?>" method="post">
 					<label id="quantity">Quantity:</label><input type="number" name="quantity" min="1"><p>available quantity(<?php echo $row["bookQuantity"]; ?>left)</p>
-					<input type="hidden" name="hidden_name" value="<?php echo $row["bookTitle"]; ?>" />  
-					<input type="hidden" name="hidden_price" value="<?php echo $row["bookPrice"]; ?>" />
+					<input type="hidden" name="hiddenName" value="<?php echo $row["bookTitle"]; ?>" />  
+					<input type="hidden" name="hiddenPrice" value="<?php echo $row["bookPrice"]; ?>" />
 					<input name="addToCart" type="submit" value="Add to Cart">
 				</form>
 			</div>
 			<div>
-				<h1>Feedback</h1>
+				<p>Feedback</p>
 				<div> <!-- for member to give feedback -->
-					<form>
+					<form action="insertFeedback.php" method="post">
 						<script>
 							$(document).ready(function () {
 								$("#starRating .stars").click(function () {
@@ -192,7 +183,7 @@ if($_POST["rateComment"] == True {
 							<input class="stars" type="radio" id="star10" name="rating" value="10" />
 							<label class = "full" for="star10" title="Masterpiece - 10 stars"></label>
 							
-							<input class="stars" type="radio" id="star9" name="rating" value="9" />
+							<input class="stars" type="radio" id="star9" name="rating" value="9"  />
 							<label class = "full" for="star9" title="9 stars"></label>
 						
 							<input class="stars" type="radio" id="star8" name="rating" value="8" />
@@ -220,67 +211,262 @@ if($_POST["rateComment"] == True {
 							<label class = "full" for="star1" title="Terrible - 1 stars"></label>
 						</fieldset>
 						<div id='feedback'></div>
+						<input type="hidden" name="hiddenBookId" value="<?php echo $row["bookId"];?>" />
 						<input type="text" name="comment" placeholder="Optional">
 						<input type="submit" name="giveFeedback" value="Rate">
 					</form>
 				</div>
 				<div> <!-- showing book feedback -->
+				<p>User Feedback</p>
 					<?php
-						$query = "SELECT member.*,feedbackRating.*,feedback.*,book.* FROM member INNER JOIN feedbackRating ON member.memberId = feedbackRating.memberId INNER JOIN feedback ON feedbackRating.feedbackId = feedback.feedbackId INNER JOIN book ON feedback.bookId = book.bookId WHERE book.bookId='".$id."'" ;
-						$result = mysqli_query($conn, $query); 
-						$starRating= $row['bookRating'];
-						while($row=mysqli_fetch_array($result))
-						{
+						$query1 = "SELECT member.*,feedback.*,book.* FROM member INNER JOIN feedback ON member.memberId = feedback.memberId INNER JOIN book ON feedback.bookId = book.bookId WHERE book.bookId='".$id."'" ;
+						$result1 = mysqli_query($conn, $query1);
+						if(mysqli_num_rows($result1) > 0)  
+						{		  
+						while($row=mysqli_fetch_array($result1))
+						{	
+							$starRating= $row['bookRating'];
 							echo "<div>";
-							echo'<fieldset id="starRating" class="rating">
-									<input class="stars" type="radio" id="star10m" name="rating" value="10" />
-									<label class = "full" for="star10" title="Masterpiece - 10 stars"></label>
-									<input class="stars" type="radio" id="star9m" name="rating" value="9" />
-									<label class = "full" for="star9" title="9 stars"></label>
-									<input class="stars" type="radio" id="star8m" name="rating" value="8" />
-									<label class = "full" for="star8" title="8 stars"></label>
-									<input class="stars" type="radio" id="star7m" name="rating" value="7" />
-									<label class = "full" for="star7" title="7 stars"></label>
-									<input class="stars" type="radio" id="star6m" name="rating" value="6" />
-									<label class = "full" for="star6" title="6 stars"></label>
-									<input class="stars" type="radio" id="star5m" name="rating" value="5" />
-									<label class = "full" for="star5" title="5 stars"></label>   
-									<input class="stars" type="radio" id="star4m" name="rating" value="4" />
-									<label class = "full" for="star4" title="4 star"></label>
-									<input class="stars" type="radio" id="star3m" name="rating" value="3" />
-									<label class = "full" for="star3" title="3 stars"></label>		
-									<input class="stars" type="radio" id="star2m" name="rating" value="2" />
-									<label class = "full" for="star2" title="2 stars"></label>
-									<input class="stars" type="radio" id="star1m" name="rating" value="1" />
-									<label class = "full" for="star1" title="Terrible - 1 stars"></label>
-								</fieldset>';
+							echo "<p>".$row['memberName']."</p>";
+							echo $starRating;
 							switch ($starRating){
 								case 1:
-								echo '<script>var x=document.getElementById("star1m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" checked="checked" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;
 								case 2:
-								echo '<script>var x=document.getElementById("star2m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" checked="checked" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;
 								case 3:
-								echo '<script>var x=document.getElementById("star3m"); x.checked=true;</script>'; break;
-								case 4:
-								echo '<script>var x=document.getElementById("star4m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" checked="checked" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;
+								case 4:			
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" checked="checked" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;
 								case 5:
-								echo '<script>var x=document.getElementById("star5m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" checked="checked" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;								
 								case 6:
-								echo '<script>var x=document.getElementById("star6m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" checked="checked" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;								
 								case 7:
-								echo '<script>var x=document.getElementById("star7m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" checked="checked" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;								
 								case 8:
-								echo '<script>var x=document.getElementById("star8m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" checked="checked" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;								
 								case 9:
-								echo '<script>var x=document.getElementById("star9m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" checked="checked" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;								
 								case 10:
-								echo '<script>var x=document.getElementById("star10m"); x.checked=true;</script>'; break;
+										echo'<fieldset id="starRating" class="rating">
+												<input class="stars" type="radio" id="star10" name="rating" value="10" checked="checked" />
+												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
+												<input class="stars" type="radio" id="star9" name="rating" value="9" />
+												<label class = "full" for="star9m" title="9 stars"></label>
+												<input class="stars" type="radio" id="star8" name="rating" value="8" />
+												<label class = "full" for="star8m" title="8 stars"></label>
+												<input class="stars" type="radio" id="star7" name="rating" value="7" />
+												<label class = "full" for="star7m" title="7 stars"></label>
+												<input class="stars" type="radio" id="star6" name="rating" value="6" />
+												<label class = "full" for="star6m" title="6 stars"></label>
+												<input class="stars" type="radio" id="star5" name="rating" value="5" />
+												<label class = "full" for="star5m" title="5 stars"></label>   
+												<input class="stars" type="radio" id="star4" name="rating" value="4" />
+												<label class = "full" for="star4m" title="4 star"></label>
+												<input class="stars" type="radio" id="star3" name="rating" value="3" />
+												<label class = "full" for="star3m" title="3 stars"></label>		
+												<input class="stars" type="radio" id="star2" name="rating" value="2" />
+												<label class = "full" for="star2m" title="2 stars"></label>
+												<input class="stars" type="radio" id="star1" name="rating" value="1" />
+												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
+											</fieldset>'; break;
 							}
 							echo "<p>";
 							echo $row['bookComment'];
 							echo "</p>";
-							echo "<form>";
+							echo "<form method='post' action='insertRating.php'>";
 							echo "<label>Rate this feedback: </label>";
+							echo "<input type='hidden' name='hiddenFeedbackId' value='".$row['feedbackId']."'/>";
 							echo "<input type='radio' name='feedbackRating' value='1'>Useless<br>";
 							echo "<input type='radio' name='feedbackRating' value='2'>Useful<br>";
 							echo "<input type='radio' name='feedbackRating' value='3'>Very Useful<br>";
@@ -288,6 +474,8 @@ if($_POST["rateComment"] == True {
 							echo "</form>";
 							echo "</div>";
 							
+						}
+					
 						}
 						mysqli_close($conn); //to close the database connection						
 					?>

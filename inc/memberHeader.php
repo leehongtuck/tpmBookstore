@@ -20,7 +20,7 @@ require_once "inc/conn.php";
           </div>
           <form id="searchContainer">
             <i class="fas fa-search"></i>
-            <input type="text" onkeyup="performAjax(this.value)">
+            <input type="text" onkeyup="ajaxSearch(this.value)">
             <div id="searchResults">
             </div>
           </form>
@@ -49,7 +49,7 @@ require_once "inc/conn.php";
           <div id="cartContent">
             <?php
 			
-            if (!isset($_SESSION['cart'] =array(
+            $_SESSION['cart'] =array(
               'b001' => '3',
               'b002' => '5'
             );
@@ -62,17 +62,19 @@ require_once "inc/conn.php";
                     <a href="book.php/?id=<?=$bookId?>"><?=$row[0];?></a>
                   </div>
                   <div class="cartItemNum">
-                    <span class="cartItemMinus" onclick="changeQuantity(-1, document.getElementById('<?=$bookId?>Quantity'))">
+                    <span class="cartItemMinus" onclick="changeQuantity(-1, 
+                    document.getElementById('<?=$bookId?>Quantity'), '<?=$bookId?>',
+                    document.getElementById('<?=$bookId?>Price') )">
                       <i class="fas fa-minus-circle"></i>
                     </span> 
                     <span  class="cartItemQuantity" id="<?=$bookId?>Quantity"><?=$quantity;?></span>
-                    <span class="cartItemPlus" onclick="changeQuantity(1, document.getElementById('<?=$bookId?>Quantity'))">
+                    <span class="cartItemPlus" onclick="changeQuantity(1, 
+                    document.getElementById('<?=$bookId?>Quantity'), '<?=$bookId?>',
+                    document.getElementById('<?=$bookId?>Price'))">
                       <i class="fas fa-plus-circle"></i>
                     </span> 
                   </div>
-                  <div class="cartItemPrice">
-                    RM<?=$row[1];?>.00
-                  </div>
+                  <div class="cartItemPrice" id="<?=$bookId?>Price">RM<?=$row[1]*$quantity;?></div>
                 </div>
               <?php
               endwhile;
@@ -86,7 +88,7 @@ require_once "inc/conn.php";
     </header>
              
     <script>
-      function performAjax(search){
+      function ajaxSearch(search){
         if(search==""){
           document.getElementById("searchResults").innerHTML="";
           return;
@@ -109,12 +111,27 @@ require_once "inc/conn.php";
         document.getElementById('cart').style.right= '-400px'; 
       }
 	  
-	  function changeQuantity(change, quantity) {
-		var qty = parseInt(quantity.innerHTML);
-		if ((change==1 && qty < 10) ||  (change==-1 && qty > 1)){
-			quantity.innerHTML = qty + change;
-		}
-		
+	  function changeQuantity(change, quantity, bookId, price) {
+      var qty = parseInt(quantity.innerHTML);
+      var prc = parseInt(price.innerHTML.substr(2));
+      if ((change==1 && qty < 10) ||  (change==-1 && qty > 1)){
+        var result = qty + change;
+        var newPrc = prc/qty * result;
+        price.innerHTML = "RM" + newPrc;
+        //parseInt(price.innerHTML)/(qty) * result;
+        quantity.innerHTML = result;
+        
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+          if (this.status == 200) {
+            console.log(this.responseText);
+          }
+        }
+      xhr.open("GET", "processCart.php/?qty="+ result + "&bookId=" + bookId, true);
+      xhr.send();
+        
+      }
+      
 	  }
     </script>
 
