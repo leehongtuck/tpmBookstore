@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <?php
 include("inc/conn.php");
-if($_SERVER['REQUEST_METHOD']== 'POST'){
-	$sql = "UPDATE member SET memberName='$_POST[memName]',memberAddress='$_POST[memAddress]',memberPhone='$_POST[memPhone]',memberCreditCard='$_POST[memCreditCard]' WHERE memberId=$userId;";
-	if (mysqli_query($con,$sql)){
-		echo'<script type="text/javascript">
-			alert("Your profile has been successfully updated.");
-			window.location.replace("myProfile.php"); 					
-			</script>';
-	}
-	else{
-		die('Error: ' . mysqli_error($conn));
-	}
-	mysqli_close($con);
 ?>
 <html lang="en">
 	<head>
@@ -24,13 +12,13 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 		<div>
 			<?php
 				$query = "Select * FROM member where memberEmail='".$_SESSION['loginUser']."'";
-				$result = mysqli_query($con, $query);  
+				$result = mysqli_query($conn, $query);  
 				if(mysqli_num_rows($result) > 0)  
 				{  
 				while($row = mysqli_fetch_array($result))  
 				{
 			?>
-			<form>
+			<form method="POST" action="updateProfile.php">
 				<div class="profileDetail">
 					<label>Name</label>
 					<input type="text" name="memName" value="<?php echo $row["memberName"];?>" required />
@@ -59,6 +47,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 					<label>Reward Point</label>
 					<input type="text value="<?php echo $row["memberPoint"];?>" disabled="disabled"/>
 				</div>
+				<input type="submit" value="change" />
 			</form>
 			<?php  
 				}  
