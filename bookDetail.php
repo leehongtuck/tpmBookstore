@@ -467,6 +467,7 @@ require_once "inc/conn.php";
 							echo "<form method='post' action='insertRating.php'>";
 							echo "<label>Rate this feedback: </label>";
 							echo "<input type='hidden' name='hiddenFeedbackId' value='".$row['feedbackId']."'/>";
+							echo '<input type="hidden" name="hiddenBookIdRating" value="<?php echo $row["bookId"];?>" />'
 							echo "<input type='radio' name='feedbackRating' value='1'>Useless<br>";
 							echo "<input type='radio' name='feedbackRating' value='2'>Useful<br>";
 							echo "<input type='radio' name='feedbackRating' value='3'>Very Useful<br>";

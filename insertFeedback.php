@@ -1,6 +1,20 @@
 <?php
 include("inc/conn.php");
-
+$sql1="SELECT * FROM feedback WHERE memberId=".$userId."'";
+$result = mysqli_query($conn, $sql1);  
+if(mysqli_num_rows($result) > 0)  
+	{  
+		while($row = mysqli_fetch_array($result))  
+			{
+				$memberCheck=$row["memberId"];
+			}
+if (isset($memberCheck)){
+			 echo '<script type="text/javascript">
+					alert("You have already insert a feedback!");
+					window.location.replace("bookDetail.php?id='.$_POST['hiddenBookId'].'"); 					
+					</script>';
+}
+else{
 if($_POST['giveFeedback']==True){
 	$rating= isset($_POST['rating']);
 	if ($rating == False) {
@@ -37,5 +51,6 @@ if($_POST['giveFeedback']==True){
 			 mysqli_close($conn);
 			}
 	}
+}
 }
 ?>
