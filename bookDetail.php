@@ -158,10 +158,10 @@ require_once "inc/conn.php";
 				<p><?php echo $row["bookDescription"]; ?></p>
 				<p><?php echo $row["bookPrice"]; ?></p>
 				<form action="addtocart.php?action=add&id=<?php echo $row["bookId"]; ?>" method="post">
-					<label id="quantity">Quantity:</label><input type="number" name="quantity" min="1"><p>available quantity(<?php echo $row["bookQuantity"]; ?>left)</p>
+				<label id="quantity">Quantity:</label><input type="number" name="quantity" min="1" /> <p>available quantity(<?php echo $row["bookQuantity"]; ?>left)</p>
 					<input type="hidden" name="hiddenName" value="<?php echo $row["bookTitle"]; ?>" />  
 					<input type="hidden" name="hiddenPrice" value="<?php echo $row["bookPrice"]; ?>" />
-					<input name="addToCart" type="submit" value="Add to Cart">
+					<input name="addToCart" type="submit" value="Add to Cart" <?php if($row["bookQuantity"] < 1) {echo "disabled";} ?>>
 				</form>
 			</div>
 			<div>
@@ -229,245 +229,39 @@ require_once "inc/conn.php";
 							echo "<div>";
 							echo "<p>".$row['memberName']."</p>";
 							echo $starRating;
-							switch ($starRating){
-								case 1:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" checked="checked" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;
-								case 2:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" checked="checked" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;
-								case 3:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" checked="checked" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;
-								case 4:			
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" checked="checked" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;
-								case 5:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" checked="checked" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;								
-								case 6:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" checked="checked" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;								
-								case 7:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" checked="checked" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;								
-								case 8:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" checked="checked" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;								
-								case 9:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" checked="checked" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;								
-								case 10:
-										echo'<fieldset id="starRating" class="rating">
-												<input class="stars" type="radio" id="star10" name="rating" value="10" checked="checked" />
-												<label class = "full" for="star10m" title="Masterpiece - 10 stars"></label>
-												<input class="stars" type="radio" id="star9" name="rating" value="9" />
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
-												<label class = "full" for="star8m" title="8 stars"></label>
-												<input class="stars" type="radio" id="star7" name="rating" value="7" />
-												<label class = "full" for="star7m" title="7 stars"></label>
-												<input class="stars" type="radio" id="star6" name="rating" value="6" />
-												<label class = "full" for="star6m" title="6 stars"></label>
-												<input class="stars" type="radio" id="star5" name="rating" value="5" />
-												<label class = "full" for="star5m" title="5 stars"></label>   
-												<input class="stars" type="radio" id="star4" name="rating" value="4" />
-												<label class = "full" for="star4m" title="4 star"></label>
-												<input class="stars" type="radio" id="star3" name="rating" value="3" />
-												<label class = "full" for="star3m" title="3 stars"></label>		
-												<input class="stars" type="radio" id="star2" name="rating" value="2" />
-												<label class = "full" for="star2m" title="2 stars"></label>
-												<input class="stars" type="radio" id="star1" name="rating" value="1" />
-												<label class = "full" for="star1m" title="Terrible - 1 stars"></label>
-											</fieldset>'; break;
-							}
+						?>
+						<fieldset id='starRating' class="rating">
+							<input class="stars" type="radio" id="star10" name="rating" value="10" <?php if($starRating == 10) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star10" title="Masterpiece - 10 stars"></label>
+							<input class="stars" type="radio" id="star9" name="rating" value="9" <?php if($starRating == 9) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star9" title="9 stars"></label>
+							<input class="stars" type="radio" id="star8" name="rating" value="8" <?php if($starRating == 8) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star8" title="8 stars"></label>
+							<input class="stars" type="radio" id="star7" name="rating" value="7" <?php if($starRating == 7) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star7" title="7 stars"></label>
+							<input class="stars" type="radio" id="star6" name="rating" value="6" <?php if($starRating == 6) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star6" title="6 stars"></label>
+							<input class="stars" type="radio" id="star5" name="rating" value="5" <?php if($starRating == 5) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star5" title="5 stars"></label>	   
+							<input class="stars" type="radio" id="star4" name="rating" value="4" <?php if($starRating == 4) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star4" title="4 star"></label>
+							<input class="stars" type="radio" id="star3" name="rating" value="3" <?php if($starRating == 3) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star3" title="3 stars"></label>	
+							<input class="stars" type="radio" id="star2" name="rating" value="2" <?php if($starRating == 2) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star2" title="2 stars"></label>
+							<input class="stars" type="radio" id="star1" name="rating" value="1" <?php if($starRating == 1) {echo 'checked="checked"';} ?> />
+							<label class = "full" for="star1" title="Terrible - 1 stars"></label>
+						</fieldset>
+						
+						<?php
 							echo "<p>";
 							echo $row['bookComment'];
 							echo "</p>";
 							echo "<form method='post' action='insertRating.php'>";
 							echo "<label>Rate this feedback: </label>";
+							echo "<input type='hidden' name='hiddenMemberId' value='".$row['memberId']."' />";
 							echo "<input type='hidden' name='hiddenFeedbackId' value='".$row['feedbackId']."'/>";
-							echo '<input type="hidden" name="hiddenBookIdRating" value="<?php echo $row["bookId"];?>" />'
+							echo "<input type='hidden' name='hiddenBookIdRating' value='".$row['bookId']."'/>";
 							echo "<input type='radio' name='feedbackRating' value='1'>Useless<br>";
 							echo "<input type='radio' name='feedbackRating' value='2'>Useful<br>";
 							echo "<input type='radio' name='feedbackRating' value='3'>Very Useful<br>";

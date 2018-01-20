@@ -1,20 +1,35 @@
 <?php
 include("inc/conn.php");
-$sql1="SELECT * FROM feedbackRating WHERE memberId=".$userId."'";
-$result = mysqli_query($conn, $sql1);  
+/* Check If Member Is Rating Their Own Comment */
+$sql="SELECT * FROM feedback WHERE memberId='$userId'";
+$result = mysqli_query($conn, $sql);  
 if(mysqli_num_rows($result) > 0)  
 	{  
 		while($row = mysqli_fetch_array($result))  
 			{
-				$memberCheck=$row["memberId"];
-			}
-if (isset($memberCheck)){
+				$memCheck=$row['memberId'];
+	}
+	}
+
+if($memCheck == $_POST['hiddenMemberId']){
 			 echo '<script type="text/javascript">
-					alert("You have already rate this feedback!");
-					window.location.replace("bookDetail.php?id='.$_POST['hiddenBookIdRating'].'"); 					
+					alert("You cannot rate on your own comment!");
+					window.location.replace("bookDetail.php?id='.$_POST['hiddenBookIdRating'].'");
 					</script>';
 }
 else{
+	/* Check If User Have Already Rated The Comment */
+$sql1="SELECT * FROM feedbackRating";
+$result1 = mysqli_query($conn, $sql1);  
+if(mysqli_num_rows($result1)>0)  
+	{  
+			 echo '<script type="text/javascript">
+					alert("You have already rated this feedback!");
+					window.location.replace("bookDetail.php?id='.$_POST['hiddenBookIdRating'].'"); 					
+					</script>';	
+	}
+else{
+	 /* Insert Rating */
 if($_POST['rateComment']==True){
 		
 		$sql="INSERT INTO feedbackRating (memberId, feedbackId,feedbackRating)
@@ -24,7 +39,7 @@ if($_POST['rateComment']==True){
 		if (mysqli_query($conn,$sql)){ 
 			 echo '<script type="text/javascript">
 					alert("Thank You For Rating!!");
-					window.location.replace("bookDetail.php?id='.$_POST['hiddenBookId'].'"); 					
+					window.location.replace("bookDetail.php?id='.$_POST['hiddenBookIdRating'].'"); 					
 					</script>';
 			}
 			else{
@@ -32,4 +47,8 @@ if($_POST['rateComment']==True){
 			 mysqli_close($conn);
 			}
 	}
+}
+}
+		
+	
 ?>
