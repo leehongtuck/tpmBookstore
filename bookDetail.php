@@ -90,18 +90,6 @@ require_once "inc/conn.php";
 				?>
 			</div>
 			<div>
-<<<<<<< HEAD
-				<h1><?=$row["bookTitle"]; ?></h1>
-				<p>by<?=$row["bookAuthor"]; ?></p>
-				<p>Publisher:<?=$row["bookPublisher"]; ?></p>
-				<p>Publish Date:<?=$row["bookPublishDate"]; ?></p>
-				<p><?=$row["genre"]; ?></p>
-				<p><?=$row["bookDescription"]; ?></p>
-				<p><?=$row["bookPrice"]; ?></p>
-				<form>
-					<label>Quantity:</label><input type="number" name="quantity" min="1" max="10"  id="quantity" required><p>available quantity(<?=$row["bookQuantity"]; ?>left)</p>
-
-=======
 				<h1><?php echo $row["bookTitle"]; ?></h1>
 				<p>by<?php echo $row["bookAuthor"]; ?></p>
 				<p>Publisher:<?php echo $row["bookPublisher"]; ?></p>
@@ -114,7 +102,6 @@ require_once "inc/conn.php";
 					<input type="hidden" name="hiddenName" value="<?php echo $row["bookTitle"]; ?>" />  
 					<input type="hidden" name="hiddenPrice" value="<?php echo $row["bookPrice"]; ?>" />
 					<input name="addToCart" type="submit" value="Add to Cart" <?php if($row["bookQuantity"] < 1) {echo "disabled";} ?>>
->>>>>>> d067ed81835eeb82592e4d8c995a48b46671784f
 				</form>
 				<button class="btn" onclick="addToCart('<?=$row['bookId']?>',document.getElementById('quantity').value)">Add To Cart</button>
 			</div>
@@ -183,8 +170,6 @@ require_once "inc/conn.php";
 							echo "<div>";
 							echo "<p>".$row['memberName']."</p>";
 							echo $starRating;
-												<label class = "full" for="star9m" title="9 stars"></label>
-												<input class="stars" type="radio" id="star8" name="rating" value="8" />
 						?>
 						<fieldset id='starRating' class="rating">
 							<input class="stars" type="radio" id="star10" name="rating" value="10" <?php if($starRating == 10) {echo 'checked="checked"';} ?> />
@@ -217,11 +202,7 @@ require_once "inc/conn.php";
 							echo "<label>Rate this feedback: </label>";
 							echo "<input type='hidden' name='hiddenMemberId' value='".$row['memberId']."' />";
 							echo "<input type='hidden' name='hiddenFeedbackId' value='".$row['feedbackId']."'/>";
-<<<<<<< HEAD
-							echo '<input type="hidden" name="hiddenBookIdRating" value="<?=$row["bookId"];?>" />';
-=======
 							echo "<input type='hidden' name='hiddenBookIdRating' value='".$row['bookId']."'/>";
->>>>>>> d067ed81835eeb82592e4d8c995a48b46671784f
 							echo "<input type='radio' name='feedbackRating' value='1'>Useless<br>";
 							echo "<input type='radio' name='feedbackRating' value='2'>Useful<br>";
 							echo "<input type='radio' name='feedbackRating' value='3'>Very Useful<br>";
