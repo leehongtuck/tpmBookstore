@@ -25,7 +25,15 @@ require_once "inc/conn.php";
             </div>
           </form>
           <div id="userContainer">
-            <button class="btn "><span>Login</span><i class="fas fa-sign-in-alt"></i></button>
+            <?php if(isset($_SESSION['userId'])):?>
+              <button class="btn "><span>Logout</span><i class="fas fa-sign-in-alt"></i></button>
+            <?php else:?>
+              <button class="btn"><span>Login</span><i class="fas fa-sign-in-alt"></i></button>
+              <ul>
+                <li>Test 1</li>
+                <li>Test 2</li>
+              </ul>
+            <?php endif;?>          
           </div>
        </div>
        <div id="headerLower" class="flex">
@@ -38,8 +46,8 @@ require_once "inc/conn.php";
             }
             ?>
         </nav>
-        <div id="cartContainer" onclick="openCart()">
-          <i class="fas fa-shopping-cart"></i><span>Cart</span>
+        <div id="cartContainer" onclick="location.href='cart.php'">
+          <i class="fas fa-shopping-cart"></i><span>Cart</span></a>
         </div>
        </div>
     </header>
@@ -61,12 +69,7 @@ require_once "inc/conn.php";
       }
   
     </script>
-<?php   
-   $_SESSION['cart'] =array(
-        'b001' => '3',
-        'b002' => '5'
-    );
-?>
+
 
   
 

@@ -1,45 +1,43 @@
-<!DOCTYPE html>
 <?php
 $title="Change Password";
-include('');
-session_start();
+require_once "inc/memberHeader.php";
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	$query = "SELECT * from member WHERE memberEmail='" . $_SESSION['userId'] . "'";
-	$result = mysqli_query($conn, $query);  
-	if(mysqli_num_rows($result) > 0)  
-	{  
-	  while($row = mysqli_fetch_array($result))  
-		{
-	
-	$password1 = mysqli_real_escape_string($conn, $_POST['newPassword']);
-	$password1h=md5($password1);
-	$password2 = mysqli_real_escape_string($conn, $_POST['confirmPassword']);
-	$email = mysqli_real_escape_string($conn, $_SESSION['userId']);
+	$result = mysqli_query($conn, $query); 
+	$row = mysqli_fetch_array($result);
+	if(mysqli_num_rows($result) == 1){ 
+		$oldPw = $_POST["currentPassword"];
 
-	if (($password1 == $password2) && md5(($_POST["currentPassword"]) == $row["memberPw"]))
-	{
-		(mysqli_query($connn, "UPDATE member SET memberPw='$password1h' WHERE memberEmail='$email'"));
-		  echo 'You Have Successfully Changed Your Password.';
-		  header ("Location:myProfile.php"); 
-		
+		if(password_verify($oldPw, $row["memberPw"])):
+			$newPw = mysqli_real_escape_string($conn, $_POST['newPassword']);
+			$cfmNewPw = mysqli_real_escape_string($conn, $_POST['confirmPassword']);
+			if ($newPw == $cfmNewPw):
+				$newPw = password_hash($newPw, PASSWORD_DEFAULT);
+				$query = "UPDATE member SET memberPw='$password1h' WHERE memberId='$_SESSION[userId]'";
+				if(mysqli_query($conn, $query)):
+					mysqli_close($conn);?>
+					<script>
+						alert("Password changed. Please log in with your new password.");
+						window.location.replace("login.php");
+					</script>
+				<?php
+				endif;
+			else:?>
+				<script>
+					alert("The new passwords do not match. Please Try Again.");
+				</script>
+			<?php
+			endif;
+		else:?>
+			<script>
+				alert("Your current password is incorrect.");
+			</script>
+		<?php
+		endif;
 	}
-	else 	
-	{
-		echo 'Your Password Do Not Match.';
-		}
-
-	}
-	}
-	mysqli_close($connn);
+	mysqli_close($conn);			
 }
 ?>
-<html lang="en">
-	<head>
-	<meta charset="utf-8">
-	<title>Change Password</title>
-	</head>
-
-	<body>
 		<div>
 			<h1 class="title">Change Password</h1>
 			<form method="post">
@@ -48,20 +46,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					<span class="inputHighlight"></span>
 					<span class="inputBar"></span>
 					<label for="oldPw">Old Password</label>
+				</div>
 				<div class="inputGroup">
 					<input name="newPassword" type="password" required>
 					<span class="inputHighlight"></span>
 					<span class="inputBar"></span>
 					<label for="newPw">New Password</label>
+				</div>
 				<div class="inputGroup">
 					<input name="confirmPassword" type="password" required>
 					<span class="inputHighlight"></span>
 					<span class="inputBar"></span>
-					<label for="retypePw">Retype New Password</label>			
-				<div class="input">
+					<label for="retypePw">Retype New Password</label>
+				</div>			
 					<input class="btn" type="submit" value="Change Password">
-					<button onclick="location.href='myProfile.php'" type="button">Back</button>
-				</div>
+					<button class="btn" onclick="location.href='myProfile.php'" type="button">Back</button>
 			</form>
 		</div>
 	</body>

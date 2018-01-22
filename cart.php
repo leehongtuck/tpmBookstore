@@ -9,32 +9,34 @@ require_once "inc/memberHeader.php";
     
     <div id="cartContent">
         <?php
-        foreach ($_SESSION['cart'] as $bookId => $quantity) {
-        $sql = "SELECT bookTitle, bookPrice FROM book WHERE bookId = '$bookId' ";
-        $result = mysqli_query($conn, $sql);
-        while($row = mysqli_fetch_array($result)):?>
-        <div class="cartItem flex">
-            <div class="cartItemDesc">
-                <a href="book.php/?id=<?=$bookId?>"><?=$row[0];?></a>
+        if(isset($_SESSION['cart'])):
+            foreach ($_SESSION['cart'] as $bookId => $quantity) {
+            $sql = "SELECT bookTitle, bookPrice FROM book WHERE bookId = '$bookId' ";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_array($result)):?>
+            <div class="cartItem flex">
+                <div class="cartItemDesc">
+                    <a href="book.php/?id=<?=$bookId?>"><?=$row[0];?></a>
+                </div>
+                <div class="cartItemNum">
+                    <span class="cartItemMinus" onclick="changeQuantity(-1, 
+                    document.getElementById('<?=$bookId?>Quantity'), '<?=$bookId?>',
+                    document.getElementById('<?=$bookId?>Price') )">
+                        <i class="fas fa-minus-circle"></i>
+                    </span> 
+                    <span  class="cartItemQuantity" id="<?=$bookId?>Quantity"><?=$quantity;?></span>
+                    <span class="cartItemPlus" onclick="changeQuantity(1, 
+                    document.getElementById('<?=$bookId?>Quantity'), '<?=$bookId?>',
+                    document.getElementById('<?=$bookId?>Price'))">
+                        <i class="fas fa-plus-circle"></i>
+                    </span> 
+                </div>
+                <div class="cartItemPrice" id="<?=$bookId?>Price">RM<?=$row[1]*$quantity;?></div>
             </div>
-            <div class="cartItemNum">
-                <span class="cartItemMinus" onclick="changeQuantity(-1, 
-                document.getElementById('<?=$bookId?>Quantity'), '<?=$bookId?>',
-                document.getElementById('<?=$bookId?>Price') )">
-                    <i class="fas fa-minus-circle"></i>
-                </span> 
-                <span  class="cartItemQuantity" id="<?=$bookId?>Quantity"><?=$quantity;?></span>
-                <span class="cartItemPlus" onclick="changeQuantity(1, 
-                document.getElementById('<?=$bookId?>Quantity'), '<?=$bookId?>',
-                document.getElementById('<?=$bookId?>Price'))">
-                    <i class="fas fa-plus-circle"></i>
-                </span> 
-            </div>
-            <div class="cartItemPrice" id="<?=$bookId?>Price">RM<?=$row[1]*$quantity;?></div>
-        </div>
-        <?php
-        endwhile;
-        }
+            <?php
+            endwhile;
+            }
+        endif;
         ?>
         <button class="btn">Checkout</button>
     </div>

@@ -1,6 +1,7 @@
 <?php
-$bookId=$_GET['bookId'];
-$quantity=$_GET['qty'];
+
+$bookId='b003';
+$quantity=5;
 
 if(isset($_SESSION['cart'])){
     $_SESSION['cart']["$bookId"] = $quantity;
@@ -10,6 +11,9 @@ else{
         "$bookId" => "$quantity"
     );
 }
-
+/* $_SESSION['cart'] =array(
+        'b001' => '3',
+        'b002' => '5'
+    );*/
 echo "Success!";
 ?>

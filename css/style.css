@@ -22,7 +22,7 @@
   position:relative;
   margin-bottom:45px;
 }
-input {
+.inputGroup input {
   font-size:0.8em;
   padding:10px 10px 10px 5px;
   display:block;
@@ -30,7 +30,7 @@ input {
   border: none;
   border-bottom:1px solid #757575;
 }
-input:focus {
+.inputGroup input:focus {
   outline:none;
 }
 
@@ -65,7 +65,7 @@ input:focus ~ label, input:valid ~ label {
   opacity:0.5;
 }
 /* active state */
-input:focus ~ .inputHighlight {
+.inputGroup input:focus ~ .inputHighlight {
   -webkit-animation:inputHighlighter 0.3s ease;
   -moz-animation:inputHighlighter 0.3s ease;
   animation:inputHighlighter 0.5s ease;
