@@ -4,21 +4,21 @@ $title="Change Password";
 include('');
 session_start();
 if($_SERVER['REQUEST_METHOD']=='POST'){
-	$query = "SELECT * from member WHERE memberEmail='" . $_SESSION['loginUser'] . "'";
-	$result = mysqli_query($con, $query);  
+	$query = "SELECT * from member WHERE memberEmail='" . $_SESSION['userId'] . "'";
+	$result = mysqli_query($conn, $query);  
 	if(mysqli_num_rows($result) > 0)  
 	{  
 	  while($row = mysqli_fetch_array($result))  
 		{
 	
-	$password1 = mysqli_real_escape_string($con, $_POST['newPassword']);
+	$password1 = mysqli_real_escape_string($conn, $_POST['newPassword']);
 	$password1h=md5($password1);
-	$password2 = mysqli_real_escape_string($con, $_POST['confirmPassword']);
-	$email = mysqli_real_escape_string($con, $_SESSION['loginUser']);
+	$password2 = mysqli_real_escape_string($conn, $_POST['confirmPassword']);
+	$email = mysqli_real_escape_string($conn, $_SESSION['userId']);
 
 	if (($password1 == $password2) && md5(($_POST["currentPassword"]) == $row["memberPw"]))
 	{
-		(mysqli_query($con, "UPDATE member SET memberPw='$password1h' WHERE memberEmail='$email'"));
+		(mysqli_query($connn, "UPDATE member SET memberPw='$password1h' WHERE memberEmail='$email'"));
 		  echo 'You Have Successfully Changed Your Password.';
 		  header ("Location:myProfile.php"); 
 		
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 	}
 	}
-	mysqli_close($con);
+	mysqli_close($connn);
 }
 ?>
 <html lang="en">

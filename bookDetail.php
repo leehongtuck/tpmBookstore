@@ -146,7 +146,7 @@ require_once "inc/conn.php";
 				<?php
 					$imageId=$row["bookId"];
 					$files = glob("img/*.*");
-					echo '<img src="img/'.$imageId.'.jpg" />'."<br/><br/>";
+					echo '<img src="../img/'.$imageId.'.jpg" />'."<br/><br/>";
 				?>
 			</div>
 			<div>
