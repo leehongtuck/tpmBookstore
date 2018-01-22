@@ -1,22 +1,17 @@
 <?php
 include("inc/conn.php");
+/* Limit User To Give Feedback Only Once */
 $sql1="SELECT * FROM feedback";
 $result1 = mysqli_query($conn, $sql1);  
-if(mysqli_num_rows($result1) > 0)  
+if(mysqli_num_rows($result1) > 1)  
 	{  
-
-		while($row1 = mysqli_fetch_array($result1))  
-			{
-				$memberCheck=$row1["memberId"];
-			
-if (isset($memberCheck)){
-			 echo '<script type="text/javascript">
+					echo '<script type="text/javascript">
 					alert("You have already insert a feedback!");
 					window.location.replace("bookDetail.php?id='.$_POST['hiddenBookId'].'"); 					
 					</script>';
-}
+	}
 else{
-		echo "what";
+		/* Check If User Have Selected A Rating Star */
 		$rating= isset($_POST['rating']);
 		if ($rating == False) {
 			echo '<script type="text/javascript">
@@ -54,6 +49,6 @@ else{
 				}
 	}
 }
-}
-	}
+			
+	
 ?>

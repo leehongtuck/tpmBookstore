@@ -41,6 +41,7 @@ require_once "inc/conn.php";
         <div id="cartContainer" onclick="openCart()">
           <i class="fas fa-shopping-cart"></i><span>Cart</span>
         </div>
+<<<<<<< HEAD
         <div id="cart">
           <div id="cartHeader">
             <div id="cartTitle"><h2>Cart</h2></div>
@@ -81,6 +82,9 @@ require_once "inc/conn.php";
             <button class="btn">Checkout</button>
           </div>
         </div>
+=======
+
+>>>>>>> d067ed81835eeb82592e4d8c995a48b46671784f
        </div>
     </header>
              
@@ -99,6 +103,7 @@ require_once "inc/conn.php";
         xhr.open("GET", "processSearch.php/?q="+ search, true);
         xhr.send();
       }
+<<<<<<< HEAD
      
       function openCart(){
         document.getElementById('cart').style.right = '0';       
@@ -129,7 +134,16 @@ require_once "inc/conn.php";
       }
       
 	  }
+=======
+  
+>>>>>>> d067ed81835eeb82592e4d8c995a48b46671784f
     </script>
+<?php   
+   $_SESSION['cart'] =array(
+        'b001' => '3',
+        'b002' => '5'
+    );
+?>
 
   
 
