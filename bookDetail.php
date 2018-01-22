@@ -2,63 +2,6 @@
  <?php
 
 require_once "inc/conn.php";
- 
- if(isset($_POST["addToCart"]))  
- {  
-      if(isset($_SESSION["shoppingCart"]))  
-      {  
-           $item_array_id = array_column($_SESSION["shoppingCart"], "bookId");  
-           if(!in_array($_GET["id"], $item_array_id))  
-           {  
-                $count = count($_SESSION["shoppingCart"]);  
-                $item_array = array(  
-                     'bookId'               =>     $_GET["id"],
-                     'bookTitle'               =>     $_POST["hiddenName"],  
-                     'bookPrice'          =>     $_POST["hiddenPrice"],  
-                     'bookQuantity'          =>     $_POST["quantity"]  
-                );  
-                $_SESSION["shoppingCart"][$count] = $item_array;  
-                
-                 
-           }  
-           else  
-           {
-              echo '<script>alert("Item already added, If you wish to increase the quantity please use the +- button.")</script>';
-
-           }  
-      }  
-      else  
-      {  
-           $item_array = array(  
-                'bookId'               =>     $_GET["id"],  
-                'bookTitle'               =>     $_POST["hiddenName"],  
-                'bookPrice'          =>     $_POST["hiddenPrice"],  
-                'bookQuantity'          =>     $_POST["quantity"]  
-           );  
-           $_SESSION["shoppingCart"][0] = $item_array; 
-      }
-      			 
-  			echo '<script>window.location=""</script>';
- } 
- 
- 
- if(isset($_GET["action"]))  
- {  
-      if($_GET["action"] == "delete")  
-      {  
-           foreach($_SESSION["shoppingCart"] as $keys => $values)  
-           {  
-                if($values["bookId"] == $_GET["id"])  
-                {  
-                     unset($_SESSION["shoppingCart"][$keys]);  
-                     echo '<script>alert("Item Removed")</script>';  
-                     echo '<script>window.location=""</script>';  
-                }  
-           }  
-      }  
- }  
-
-
 
  ?>
 <html lang="en">
@@ -137,32 +80,28 @@ require_once "inc/conn.php";
 				$id = $_GET['id'];
 				$query = "SELECT book.*, genre.genre FROM book INNER JOIN genre ON book.genreId = genre.genreId WHERE book.bookId='".$id."'"; 
 				$result = mysqli_query($conn, $query);  
-				if(mysqli_num_rows($result) > 0)  
-				{  
-					while($row = mysqli_fetch_array($result))  
-				{
+				$row = mysqli_fetch_array($result);  
 			?>  
 			<div>
 				<?php
 					$imageId=$row["bookId"];
 					$files = glob("img/*.*");
-					echo '<img src="img/'.$imageId.'.jpg" />'."<br/><br/>";
+					echo '<img src="../img/'.$imageId.'.jpg" />'."<br/><br/>";
 				?>
 			</div>
 			<div>
-				<h1><?php echo $row["bookTitle"]; ?></h1>
-				<p>by<?php echo $row["bookAuthor"]; ?></p>
-				<p>Publisher:<?php echo $row["bookPublisher"]; ?></p>
-				<p>Publish Date:<?php echo $row["bookPublishDate"]; ?></p>
-				<p><?php echo $row["genre"]; ?></p>
-				<p><?php echo $row["bookDescription"]; ?></p>
-				<p><?php echo $row["bookPrice"]; ?></p>
-				<form action="addtocart.php?action=add&id=<?php echo $row["bookId"]; ?>" method="post">
-					<label id="quantity">Quantity:</label><input type="number" name="quantity" min="1"><p>available quantity(<?php echo $row["bookQuantity"]; ?>left)</p>
-					<input type="hidden" name="hiddenName" value="<?php echo $row["bookTitle"]; ?>" />  
-					<input type="hidden" name="hiddenPrice" value="<?php echo $row["bookPrice"]; ?>" />
-					<input name="addToCart" type="submit" value="Add to Cart">
+				<h1><?=$row["bookTitle"]; ?></h1>
+				<p>by<?=$row["bookAuthor"]; ?></p>
+				<p>Publisher:<?=$row["bookPublisher"]; ?></p>
+				<p>Publish Date:<?=$row["bookPublishDate"]; ?></p>
+				<p><?=$row["genre"]; ?></p>
+				<p><?=$row["bookDescription"]; ?></p>
+				<p><?=$row["bookPrice"]; ?></p>
+				<form>
+					<label>Quantity:</label><input type="number" name="quantity" min="1" max="10"  id="quantity" required><p>available quantity(<?=$row["bookQuantity"]; ?>left)</p>
+
 				</form>
+				<button class="btn" onclick="addToCart('<?=$row['bookId']?>',document.getElementById('quantity').value)">Add To Cart</button>
 			</div>
 			<div>
 				<p>Feedback</p>
@@ -211,7 +150,7 @@ require_once "inc/conn.php";
 							<label class = "full" for="star1" title="Terrible - 1 stars"></label>
 						</fieldset>
 						<div id='feedback'></div>
-						<input type="hidden" name="hiddenBookId" value="<?php echo $row["bookId"];?>" />
+						<input type="hidden" name="hiddenBookId" value="<?=$row["bookId"];?>" />
 						<input type="text" name="comment" placeholder="Optional">
 						<input type="submit" name="giveFeedback" value="Rate">
 					</form>
@@ -467,7 +406,7 @@ require_once "inc/conn.php";
 							echo "<form method='post' action='insertRating.php'>";
 							echo "<label>Rate this feedback: </label>";
 							echo "<input type='hidden' name='hiddenFeedbackId' value='".$row['feedbackId']."'/>";
-							echo '<input type="hidden" name="hiddenBookIdRating" value="<?php echo $row["bookId"];?>" />'
+							echo '<input type="hidden" name="hiddenBookIdRating" value="<?=$row["bookId"];?>" />';
 							echo "<input type='radio' name='feedbackRating' value='1'>Useless<br>";
 							echo "<input type='radio' name='feedbackRating' value='2'>Useful<br>";
 							echo "<input type='radio' name='feedbackRating' value='3'>Very Useful<br>";
@@ -482,12 +421,22 @@ require_once "inc/conn.php";
 					?>
 				</div>
 			
-			</div>
-				<?php  
-							 }  
-						}  
-				?>  
+			</div> 
 		</section>
+		<script>
+			function addToCart(bookId, quantity){
+
+				var xhr = new XMLHttpRequest();
+				xhr.onload = function(){
+					if(this.status==200){
+						console.log(this.responseText);
+					}
+				}
+				xhr.open("GET", "addToCart.php/?id="+ bookId + "&qty=" + quantity, true);
+				xhr.send();
+			}
+		</script>
+	
 	</body>
 
 </html>

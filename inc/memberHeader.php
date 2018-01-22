@@ -48,11 +48,7 @@ require_once "inc/conn.php";
           </div>
           <div id="cartContent">
             <?php
-			
-            $_SESSION['cart'] =array(
-              'b001' => '3',
-              'b002' => '5'
-            );
+            if(isset($_SESSION['cart'])):
               foreach ($_SESSION['cart'] as $bookId => $quantity) {
                 $sql = "SELECT bookTitle, bookPrice FROM book WHERE bookId = '$bookId' ";
                 $result = mysqli_query($conn, $sql);
@@ -77,8 +73,9 @@ require_once "inc/conn.php";
                   <div class="cartItemPrice" id="<?=$bookId?>Price">RM<?=$row[1]*$quantity;?></div>
                 </div>
               <?php
-              endwhile;
+                endwhile;
               }
+            endif;
             ?>
             
             <button class="btn">Checkout</button>
@@ -118,7 +115,6 @@ require_once "inc/conn.php";
         var result = qty + change;
         var newPrc = prc/qty * result;
         price.innerHTML = "RM" + newPrc;
-        //parseInt(price.innerHTML)/(qty) * result;
         quantity.innerHTML = result;
         
         var xhr = new XMLHttpRequest();
@@ -134,4 +130,6 @@ require_once "inc/conn.php";
       
 	  }
     </script>
+
+  
 

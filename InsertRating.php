@@ -32,4 +32,6 @@ if($_POST['rateComment']==True){
 			 mysqli_close($conn);
 			}
 	}
+}
+	}
 ?>
