@@ -32,6 +32,7 @@ require_once "inc/memberHeader.php";
                     </span> 
                 </div>
                 <div class="cartItemPrice" id="<?=$bookId?>Price">RM<?=$row[1]*$quantity;?></div>
+                <div class="cartItemRemove"><i class="far fa-times-circle" onclick="removeCart('<?=$bookId?>')"></i></div>
             </div>
             <?php
             endwhile;
@@ -62,5 +63,18 @@ require_once "inc/memberHeader.php";
         xhr.send();    
       }
 	}
+
+    function removeCart(bookId){
+        var bookId = bookId;
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+          if (this.status == 200) {
+            console.log(this.responseText);
+          }
+        }
+        xhr.open("GET", "removeCart.php/?id="+ bookId, true);
+        xhr.send();  
+        document.location.reload(true);  
+    }
 </script>
         

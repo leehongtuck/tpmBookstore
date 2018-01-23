@@ -177,11 +177,16 @@ nav a:hover {
 }
 
 .cartItemPrice{
-  flex-basis: 30%;
+  flex-basis: 25%;
 }
-.cartItem a{
+.cartItemRemove{
+  flex-basis: 5%;
 }
 
+.cartItemRemove i:hover{
+  cursor: pointer;
+  color: red;
+}
 
 .cartItem .cartItemQuantity{
   text-align: center;
@@ -192,10 +197,6 @@ nav a:hover {
 
 .cartItemPlus, .cartItemMinus{
   cursor: pointer;
-}
-
-#cart button.btn{
-  
 }
 
 

@@ -97,17 +97,14 @@ require_once "inc/conn.php";
 				<p><?php echo $row["genre"]; ?></p>
 				<p><?php echo $row["bookDescription"]; ?></p>
 				<p><?php echo $row["bookPrice"]; ?></p>
-				<form action="addtocart.php?action=add&id=<?php echo $row["bookId"]; ?>" method="post">
-				<label id="quantity">Quantity:</label><input type="number" name="quantity" min="1" /> <p>available quantity(<?php echo $row["bookQuantity"]; ?>left)</p>
-					<input type="hidden" name="hiddenName" value="<?php echo $row["bookTitle"]; ?>" />  
-					<input type="hidden" name="hiddenPrice" value="<?php echo $row["bookPrice"]; ?>" />
-					<input name="addToCart" type="submit" value="Add to Cart" <?php if($row["bookQuantity"] < 1) {echo "disabled";} ?>>
-				</form>
-				<button class="btn" onclick="addToCart('<?=$row['bookId']?>',document.getElementById('quantity').value)">Add To Cart</button>
-			</div>
-			<div>
-				<p>Feedback</p>
-				<div> <!-- for member to give feedback -->
+				<form method="POST" action="../addToCart.php">
+					<label>Quantity:</label>
+					<input type="number" name="quantity" min="1" max="10" required> 
+					<p>Available Quantity(<?php echo $row["bookQuantity"]; ?>left)</p>
+					<input type="hidden" name="hiddenId" value="<?php echo $row["bookId"]; ?>">  
+					<input type="submit"class="btn" value="Add To Cart">
+				</form> 
+				<!-- for member to give feedback -->
 					<form action="insertFeedback.php" method="post">
 						<script>
 							$(document).ready(function () {
@@ -219,19 +216,6 @@ require_once "inc/conn.php";
 			
 			</div> 
 		</section>
-		<script>
-			function addToCart(bookId, quantity){
-
-				var xhr = new XMLHttpRequest();
-				xhr.onload = function(){
-					if(this.status==200){
-						console.log(this.responseText);
-					}
-				}
-				xhr.open("GET", "addToCart.php/?id="+ bookId + "&qty=" + quantity, true);
-				xhr.send();
-			}
-		</script>
 	
 	</body>
 

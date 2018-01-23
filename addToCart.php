@@ -1,19 +1,21 @@
 <?php
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    session_start();
 
-$bookId='b003';
-$quantity=5;
+    $bookId=$_POST['hiddenId'];
+    $quantity=$_POST['quantity'];
 
-if(isset($_SESSION['cart'])){
-    $_SESSION['cart']["$bookId"] = $quantity;
+    if(isset($_SESSION['cart'])){
+        $_SESSION['cart'][$bookId] = $quantity;
+    }
+    else{
+        $_SESSION['cart'] = array(
+            $bookId => $quantity
+        );
+    }
+    echo 
+        "<script>alert('Item Added To Cart');
+        window.location.replace(\"index.php\");
+        </script>";
 }
-else{
-    $_SESSION['cart'] = array(
-        "$bookId" => "$quantity"
-    );
-}
-/* $_SESSION['cart'] =array(
-        'b001' => '3',
-        'b002' => '5'
-    );*/
-echo "Success!";
 ?>

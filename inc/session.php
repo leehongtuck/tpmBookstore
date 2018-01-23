@@ -15,3 +15,5 @@ if(isset($_SESSION['userId'],$_SESSION['userPw'])){
         unset($_SESSION['userId'],$_SESSION['userPw']);
     }
 }
+
+/* set admin session*/

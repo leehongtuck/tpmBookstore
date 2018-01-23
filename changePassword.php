@@ -17,8 +17,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				if(mysqli_query($conn, $query)):
 					mysqli_close($conn);?>
 					<script>
-						alert("Password changed. Please log in with your new password.");
-						window.location.replace("login.php");
+						alert("Password changed.");
+						window.location.replace("index.php");
 					</script>
 				<?php
 				endif;
