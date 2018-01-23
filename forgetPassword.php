@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$r = mysqli_fetch_assoc($result);
 	$to = $r['memberEmail'];
 	$subject = "Your Recovered Password";
-	$message = "Please use this password to login '". $pwrurl ."'  Click the link to convert your password https://hashkiller.co.uk/md5-decrypter.aspx";
+	$message = "Dear user,\n\nIf this e-mail does not apply to you please ignore it. It appears that you have requested a password reset at our website TPMBookstore\n\nTo reset your password, please click the link below. If you cannot click it, please paste it into your web browser's address bar.\n\n" . $pwrurl . "\n\nThanks,\nThe Administration";
 	$headers =  'MIME-Version: 1.0' . "\r\n"; 
 	$headers .= 'From: X <X@gmail.com>' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
