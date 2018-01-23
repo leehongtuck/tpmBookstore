@@ -21,7 +21,7 @@ header {
 }
 
 #searchContainer {
-  flex-basis: 40%;
+  flex-basis: 35%;
   padding: 10px; 
   position: relative;
 }
@@ -65,36 +65,48 @@ header {
 }
 
 #userContainer {
-  flex-basis: 10%;
+  flex-basis: 15%;
   position: relative;
 }
 
 #userContainer .btn{
-  width: 60%;
+  width: 50%;
+  font-size: 1.2em;
 }
-#userContainer span{
+
+#userContainer .iconRight{
   margin-right: 10px;
 }
 
+#userContainer .iconLeft{
+  margin-left: 10px;
+}
+
+#userContainer:hover ul{
+  display: block;
+}
+
 #userContainer ul{
+  display:none;
   position: absolute;
-  width: 60%;
-  height: 100px;
+  width: 70%;
+  height: auto;
   top: 85%;
-  left: 20%;
+  left: 25%;
   background-color: #fff;
   z-index: 1;
   box-shadow: 0.5px 0.5px #888888;
-  padding: 5px;
 }
 
+
 #userContainer ul li{
-  display: block;
-  text-align: center;
+  font-size: 0.95em;
+  padding: 10px;
 }
 
 #userContainer ul li:hover{
   background-color: #888888;
+  cursor: pointer;
 }
 
 /* 1.2 Lower Header */

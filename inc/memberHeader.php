@@ -26,13 +26,16 @@ require_once "inc/conn.php";
           </form>
           <div id="userContainer">
             <?php if(isset($_SESSION['userId'])):?>
-              <button class="btn "><span>Logout</span><i class="fas fa-sign-in-alt"></i></button>
-            <?php else:?>
-              <button class="btn"><span>Login</span><i class="fas fa-sign-in-alt"></i></button>
+            <button class="btn"><i class="fas fa-user"></i><span class="iconLeft">Daniel</span></button>
               <ul>
-                <li>Test 1</li>
-                <li>Test 2</li>
+                <li><i class="fas fa-address-card"></i><span class="iconLeft">Manage Profile</span></li>
+                <li><i class="fas fa-history"></i><span class="iconLeft">Transaction History</span> </li>
+                <li><i class="fas fa-comments"></i><span class="iconLeft">Feedback History</span></li>
+                <li><i class="fas fa-sign-out-alt"></i><span class="iconLeft">Logout</span></li>
               </ul>
+            <?php else:?>
+              <button class="btn"><span class="iconRight">Login</span><i class="fas fa-sign-in-alt"></i></button>
+             
             <?php endif;?>          
           </div>
        </div>
