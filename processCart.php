@@ -1,8 +1,7 @@
 <?php
-$qty = $_REQUEST["qty"];
-$bookId = $_REQUEST["bookId"];
+session_start();
+$qty = $_GET["qty"];
+$bookId = $_GET["bookId"];
 
-$_SESSION['cart']["$bookId"] = $qty;
-echo $_SESSION['cart']["$bookId"];
-echo $bookId;
+$_SESSION['cart'][$bookId] = $qty;
 ?>

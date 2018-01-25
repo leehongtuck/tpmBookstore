@@ -16,7 +16,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if($numRows == 1):
     if(password_verify ($myPassword, $row[1])):
       //session = userid
-      $_SESSION['loginUser'] = $row[0];?>
+      $_SESSION['userId'] = $row[0];
+      $_SESSION['userPw'] = $mypassword;?>
       <script>
         alert("Login successful");
         window.location.replace("index.php");

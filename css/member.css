@@ -8,7 +8,6 @@ header {
 #headerUpper, #headerLower {
   height: 50%;
   width: 100%;
- 
   justify-content: space-between;
 }
 
@@ -22,13 +21,14 @@ header {
 }
 
 #searchContainer {
-  flex-basis: 40%;
+  flex-basis: 35%;
   padding: 10px; 
   position: relative;
 }
 
 #searchContainer input {
   height: 70%;
+  width: 100%;
   text-indent: 30px;
 }
 
@@ -65,11 +65,48 @@ header {
 }
 
 #userContainer {
-  flex-basis: 10%;
+  flex-basis: 15%;
+  position: relative;
 }
 
-#userContainer span{
+#userContainer .btn{
+  width: 50%;
+  font-size: 1.2em;
+}
+
+#userContainer .iconRight{
   margin-right: 10px;
+}
+
+#userContainer .iconLeft{
+  margin-left: 10px;
+}
+
+#userContainer:hover ul{
+  display: block;
+}
+
+#userContainer ul{
+  display:none;
+  position: absolute;
+  width: 70%;
+  height: auto;
+  top: 85%;
+  left: 25%;
+  background-color: #fff;
+  z-index: 1;
+  box-shadow: 0.5px 0.5px #888888;
+}
+
+
+#userContainer ul li{
+  font-size: 0.95em;
+  padding: 10px;
+}
+
+#userContainer ul li:hover{
+  background-color: #888888;
+  cursor: pointer;
 }
 
 /* 1.2 Lower Header */
@@ -117,21 +154,7 @@ nav a:hover {
   font-size: 2.0em;
 }
 
-
-/* 1.3 Cart */
-#cart{
-	height: 100%;
-	width: 400px;
-	position: fixed;
-	z-index: 1;
-	top:0;
-	right: -400px;
-	background-color: #131339;
-	overflow-x: hidden;
-	padding-top: 20px;
-	transition: 0.5s;
-	
-}
+/*======================= x.0 Cart ===================================*/
 
 #cartHeader{
 	height: 10%;
@@ -146,15 +169,6 @@ nav a:hover {
 
 #cartTitle h2{
   font-size: 1.5em;
-  color: white;
-}
-
-.btnClose {
-	float: right;
-	color: white;
-	padding: 0px 10px;
-  font-size: 30px;
-  cursor: pointer;
 }
 
 #cartContent{
@@ -164,42 +178,39 @@ nav a:hover {
 #cartContent .cartItem{
 	padding: 10px 10px 10px 30px;
 	font-size: 1.3em;
-	color: #ccc;
 }
 
 .cartItemDesc{
-  flex-basis: 40%;
+  flex-basis: 50%;
 }
 
 .cartItemNum{
-  flex-basis: 30%;
+  flex-basis: 20%;
 }
 
 .cartItemPrice{
-  flex-basis: 30%;
+  flex-basis: 25%;
 }
-.cartItem a{
-  color: #ccc;
+.cartItemRemove{
+  flex-basis: 5%;
 }
 
+.cartItemRemove i:hover{
+  cursor: pointer;
+  color: red;
+}
 
-.cartItem span{
-  margin-left: 10px;
+.cartItem .cartItemQuantity{
+  text-align: center;
+  display:inline-block;
+  margin: 10px;
+  width: 10%;
 }
 
 .cartItemPlus, .cartItemMinus{
   cursor: pointer;
 }
 
-.cartItemPlus:hover, .cartItemMinus:hover{
-  color: #ffffff;
-}
-
-#cart button.btn{
-  position: absolute;
-  bottom: 20px;
-  left: 180px;
-}
 
 /*======================= x.0 Register ==============================*/
 #registerContainer{
