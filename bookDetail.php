@@ -1,80 +1,78 @@
-<!DOCTYPE html>
- <?php
-
-require_once "inc/conn.php";
-
+<?php
+$title = "Book Detail";
+require_once "inc/session.php";
  ?>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 	<head>
-	<meta content="en-us" http-equiv="Content-Language">
-	<meta charset="utf-8">
-	<title></title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<style>
-        /****** Rating Starts *****/
-         @import url(http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+	<?php require_once "inc/memberHead.php";?>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<style>
+			/****** Rating Starts *****/
+			@import url(http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-        fieldset, label { margin: 0; padding: 0; }
-        
-		.rating { 
-			border: none;
-			float: left;
-        }
-		
-        .rating > input { display: none; } 
-        .rating > label:before { 
-            margin: 5px;
-            font-size: 1.25em;
-            font-family: FontAwesome;
-            display: inline-block;
-            content: "\f005";
-        }
+			fieldset, label { margin: 0; padding: 0; }
+			
+			.rating { 
+				border: none;
+				float: left;
+			}
+			
+			.rating > input { display: none; } 
+			.rating > label:before { 
+				margin: 5px;
+				font-size: 1.25em;
+				font-family: FontAwesome;
+				display: inline-block;
+				content: "\f005";
+			}
 
-        .rating > label { 
-            color: #ddd; 
-            float: right; 
-        }
+			.rating > label { 
+				color: #ddd; 
+				float: right; 
+			}
 
-        .rating > input:checked ~ label, 
-        .rating:not(:checked) > label:hover,  
-        .rating:not(:checked) > label:hover ~ label { color: #FFD700;  }
+			.rating > input:checked ~ label, 
+			.rating:not(:checked) > label:hover,  
+			.rating:not(:checked) > label:hover ~ label { color: #FFD700;  }
 
-        .rating > input:checked + label:hover, 
-        .rating > input:checked ~ label:hover,
-        .rating > label:hover ~ input:checked ~ label, 
-        .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+			.rating > input:checked + label:hover, 
+			.rating > input:checked ~ label:hover,
+			.rating > label:hover ~ input:checked ~ label, 
+			.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
-		.rating1 { 
-			border: none;
-			float: left;
-        }
-		
-        .rating1 > input { display: none; } 
-        .rating1 > label:before { 
-            margin: 5px;
-            font-size: 1.25em;
-            font-family: FontAwesome;
-            display: inline-block;
-            content: "\f005";
-        }
+			.rating1 { 
+				border: none;
+				float: left;
+			}
+			
+			.rating1 > input { display: none; } 
+			.rating1 > label:before { 
+				margin: 5px;
+				font-size: 1.25em;
+				font-family: FontAwesome;
+				display: inline-block;
+				content: "\f005";
+			}
 
-        .rating1 > label { 
-            color: #ddd; 
-            float: right; 
-        }
+			.rating1 > label { 
+				color: #ddd; 
+				float: right; 
+			}
 
-        .rating1 > input:checked ~ label, 
-        .rating1:not(:checked) > label:hover,  
-        .rating1:not(:checked) > label:hover ~ label { color: #FFD700;  }
+			.rating1 > input:checked ~ label, 
+			.rating1:not(:checked) > label:hover,  
+			.rating1:not(:checked) > label:hover ~ label { color: #FFD700;  }
 
-        .rating1 > input:checked + label:hover, 
-        .rating1 > input:checked ~ label:hover,
-        .rating1 > label:hover ~ input:checked ~ label, 
-        .rating1 > input:checked ~ label:hover ~ label { color: #FFED85;  }    		
-    </style>
+			.rating1 > input:checked + label:hover, 
+			.rating1 > input:checked ~ label:hover,
+			.rating1 > label:hover ~ input:checked ~ label, 
+			.rating1 > input:checked ~ label:hover ~ label { color: #FFED85;  }    		
+		</style>
 	</head>
 
 	<body>
+		<?php require_once "inc/memberNav.php";?>
 		<section>
 			<?php	
 				$id = $_GET['id'];
@@ -86,7 +84,7 @@ require_once "inc/conn.php";
 				<?php
 					$imageId=$row["bookId"];
 					$files = glob("img/*.*");
-					echo '<img src="../img/'.$imageId.'.jpg" />'."<br/><br/>";
+					echo '<img src="/tpmBookstore/img/'.$imageId.'.jpg" />'."<br/><br/>";
 				?>
 			</div>
 			<div>
@@ -97,7 +95,7 @@ require_once "inc/conn.php";
 				<p><?php echo $row["genre"]; ?></p>
 				<p><?php echo $row["bookDescription"]; ?></p>
 				<p><?php echo $row["bookPrice"]; ?></p>
-				<form method="POST" action="../addToCart.php">
+				<form method="POST" action="/tpmBookstore/addToCart.php">
 					<label>Quantity:</label>
 					<input type="number" name="quantity" min="1" max="10" required> 
 					<p>Available Quantity(<?php echo $row["bookQuantity"]; ?>left)</p>

@@ -15,11 +15,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   // If result matched $myusername and $mypassword, table row must be 1 row
   if($numRows == 1):
     if(password_verify ($myPassword, $row[1])):
-      //session = userid
-      $_SESSION['userId'] = $row[0];
-      $_SESSION['userPw'] = $mypassword;?>
+      $_SESSION['memberId'] = $row[0];
+      $_SESSION['memberPw'] = $myPassword;?>
       <script>
-        alert("Login successful");
+        alert("Login successful.");
         window.location.replace("index.php");
       </script>
     <?php
