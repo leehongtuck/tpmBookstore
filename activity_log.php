@@ -11,7 +11,7 @@ require_once "inc/memberHeader.php"?>
 <title>Activity log</title>
 </head>
 
-<body>
+<body class="background">
 <div id="activity">
 <form action="" method="post">
 	<table style="width: 100%">
@@ -26,12 +26,7 @@ require_once "inc/memberHeader.php"?>
 			</select>
 			</td>
 			
-			<td>
-			<form id="activitySearchContainer"> 
-                <i class="fas fa-search"></i>
-                <input type="text" id="activitySearch" >
-                <div id="activitySearchResults">
-                </div>
+			
             </form>
             </td>		
        </tr>
@@ -58,5 +53,5 @@ require_once "inc/memberHeader.php"?>
 </html> 
 
 <?php
-include_once("memberHeder.php");
+include_once("inc/memberFooter.php");
 ?>

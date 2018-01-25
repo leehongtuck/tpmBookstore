@@ -15,7 +15,7 @@
 <footer>  
 
 <div id="fLogo">
-<img src="../img/tpmlogo.png" alt="">
+<img src="../img/tpmlogo.png" alt="logo">
 </div> 
 
 <div id="fAdd">

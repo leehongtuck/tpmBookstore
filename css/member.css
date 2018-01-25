@@ -1,7 +1,7 @@
   /*========================= 1.0 HEADER =========================== */
 header {
   height: 120px;
-  background-color: #e6e0e0;
+  background-color: 	rgba(255, 255, 255, 0.5);
 }
 
 /* 1.1 Upper Header */
@@ -290,24 +290,25 @@ position:relative;
 
   /*========================= FOOTER =========================== */  
 Footer{
-  height:50px;
-  background-color: darkseagreen;
+  height:150px;
+  background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
 }  
 #fLogo{
-  height:100px;
-  width:100px;
+  height:auto;
+  width:auto;
   float: left;
-  margin-right:300px;
+  left:300px;
   } 
 
   #fAdd{
     height:100px;
     float:right;
-    font-size: 25px;
+    right:200px;
+    font-size: 20px;
   }
 
 
