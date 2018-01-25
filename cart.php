@@ -16,7 +16,7 @@ require_once "inc/memberHeader.php";
             while($row = mysqli_fetch_array($result)):?>
             <div class="cartItem flex">
                 <div class="cartItemDesc">
-                    <a href="book.php/?id=<?=$bookId?>"><?=$row[0];?></a>
+                    <a href="bookdetail.php/?id=<?=$bookId?>"><?=$row[0];?></a>
                 </div>
                 <div class="cartItemNum">
                     <span class="cartItemMinus" onclick="changeQuantity(-1, 

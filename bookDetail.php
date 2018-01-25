@@ -71,7 +71,7 @@ require_once "inc/session.php";
 		</style>
 	</head>
 
-	<body>
+	<body class="background">
 		<?php require_once "inc/memberNav.php";?>
 		<section>
 			<?php	

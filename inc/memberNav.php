@@ -13,13 +13,14 @@
         <?php if(isset($member)):?>
         <button class="btn"><i class="fas fa-user"></i><span class="iconLeft"><?=$member['name']?></span></button>
             <ul>
-            <li><i class="fas fa-address-card"></i><span class="iconLeft">Manage Profile</span></li>
+            <li><a href="/tpmBookstore/memberProfile.php"><i class="fas fa-address-card"></i><span class="iconLeft">Manage Profile</span></a></li>
             <li><i class="fas fa-history"></i><span class="iconLeft">Transaction History</span> </li>
             <li><i class="fas fa-comments"></i><span class="iconLeft">Feedback History</span></li>
-            <li><a href="/tpmBookstore/logout.php"><i class="fas fa-sign-out-alt"></i><span class="iconLeft">Logout</span></a></li>
+            <li><a href="/tpmBookstore/rewards.php"><i class="fas fa-gift"></i><span class="iconLeft">Claim Rewards</span></a></li>
+            <li><a href="/tpmBookstore/logout.php"><i class="fas fa-sign-out-alt"></i><span class="iconLeft">Logout</span></a></li>        
             </ul>
         <?php else:?>
-            <button class="btn"><span class="iconRight">Login</span><i class="fas fa-sign-in-alt"></i></button>
+            <button class="btn"><a href="/tpmBookstore/login.php"><span class="iconRight">Login</span><i class="fas fa-sign-in-alt"></i></button></a>
             
         <?php endif;?>          
         </div>
@@ -30,7 +31,7 @@
         $sql = "SELECT genreId, genre FROM genre";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_array($result)){
-            echo "<a href=\"genre.php/?id=". $row[0]."\">". $row[1] ."</a>";
+            echo "<a href=\"/tpmBookstore/genre.php/?id=". $row[0]."\">". $row[1] ."</a>";
         }
         ?>
     </nav>

@@ -13,11 +13,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		$sql="SELECT memberId FROM member WHERE memberEmail='$_POST[email]'";
 		$result=mysqli_query($conn,$sql);
 		$numRows=mysqli_num_rows($result);
-		$msg='';
-		if($numRows==1)
-			$msg.= 'Duplicate email';
-
-		else{
+		if($numRows==1):?>
+			<script>
+				alert("This email has been used. Please enter another email.");
+			</script>
+		<?php
+		else:
 			//SETTING THE MEMBERID VARIABLE
 			$sql="SELECT memberId FROM member ORDER BY memberId DESC LIMIT 1 ";
 			$result=mysqli_query($conn, $sql);
@@ -42,7 +43,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				die('Error: ' . mysqli_error($conn)); 
 				mysqli_close($conn); 
 			endif;
-		}
+		endif;
 	endif;
 }
 ?>

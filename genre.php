@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<?php
-include("inc/conn.php");
-?>
-<html lang="en">
-	<head>
-	<meta content="en-us" http-equiv="Content-Language">
-	<meta charset="utf-8">
-	<title></title>
-	</head>
 
-	<body>
+<?php
+$title = "Genre";
+require_once "inc/memberHeader.php";
+?>
+
 		<section>
 
 			<div>
@@ -34,8 +28,8 @@ include("inc/conn.php");
 				<div>
 					<?php
 						$imageId=$row["bookId"];
-						$files = glob("img/*.*");
-						echo '<a href="bookDetail.php?id='.$row['bookId'].'"><img src="img/'.$imageId.'.jpg" /></a>';
+						$files = glob("/tpmBookstore/img/*.*");
+						echo '<a href="/tpmBookstore/bookDetail.php?id='.$row['bookId'].'"><img src="/tpmBookstore/img/'.$imageId.'.jpg" /></a>';
 					?>
 				</div>
 				<div>
@@ -43,7 +37,7 @@ include("inc/conn.php");
 					<p>Author: <?php echo $row["bookAuthor"]; ?></p>
 					<p>Price: <?php echo $row["bookPrice"]; ?></p>
 				</div>
-			</div>
+			</div>s
 			<?php
 				}
 				}

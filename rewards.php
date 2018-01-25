@@ -1,17 +1,8 @@
-<!DOCTYPE html>
  <?php
-require_once "inc/conn.php";
+ $title = "Rewards";
+require_once "inc/memberHeader.php";
  ?>
-<html lang="en">
-	<head>
-	<meta content="en-us" http-equiv="Content-Language">
-	<meta charset="utf-8">
-	<title></title>
-	<style>  		
-    </style>
-	</head>
 
-	<body>
 		<section>
 			<?php	
 				$query = "SELECT * FROM reward"; 
@@ -24,15 +15,15 @@ require_once "inc/conn.php";
 			<div>
 				<?php
 					$imageId=$row["rewardId"];
-					$files = glob("img/*.*");
-					echo '<img src="img/'.$imageId.'.jpg" />'."<br/><br/>";
+					$files = glob("/tpmBookstore/img/*.*");
+					echo '<img src="/tpmBookstore/img/'.$imageId.'.jpg" />'."<br/><br/>";
 				?>
 			</div>
 			<div>
 				<h1><?php echo $row["rewardName"]; ?></h1>
 				<p><?php echo $row["rewardDescription"]; ?></p>
 				<p>Required Point:<?php echo $row["rewardPoint"]; ?></p>
-				<form action="claimReward.php" method="post">
+				<form action="/tpmBookstore/claimReward.php" method="post">
 					<label id="quantity">Quantity:</label><input type="number" name="quantity" min="1" <?php if ($row["rewardQuantity"]==0){ echo "disabled";} ?>><p>available quantity(<?php echo $row["rewardQuantity"]; ?>left)</p>
 					<input type="hidden" name="hiddenId" value="<?php echo $row["rewardId"]; ?>" /> 
 					<input type="hidden" name="hiddenPoint" value="<?php echo $row["rewardPoint"];?>" />

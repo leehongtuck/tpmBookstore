@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<?php
-include("inc/conn.php");
+<?php 
+$title = "Manage Profile";
+require_once "inc/memberHeader.php";
 ?>
-<html lang="en">
-	<head>
-	<meta charset="utf-8">
-	<title>My Profile</title>
-	</head>
-
-	<body>
 		<div>
 			<?php
-				$query = "Select * FROM member where memberEmail='$_SESSION[userId]'";
+				$query = "Select * FROM member where memberEmail='$_SESSION[memberId]'";
 				$result = mysqli_query($conn, $query);  
 				$row = mysqli_fetch_array($result);
 			?>

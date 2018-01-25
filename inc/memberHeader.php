@@ -11,7 +11,7 @@ else $title = "not logged in";*/
  <?php
  require_once "inc/memberNav.php";
  ?>
- <body>
+ <body class="background">
 
   
 

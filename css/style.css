@@ -8,8 +8,15 @@
   font-size: 100%;
   list-style-type: none;
 } 
+
+a {
+  color: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .background{
-  /*background-image: url("../img/background.jpg");*/
+  /*background-image: url("/tpmBookstore/img/background.jpg");*/
   background-color: burlywood;
 }
 
