@@ -46,8 +46,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	endif;
 }
 ?>
-	<section id="registerContainer">
-		<div id="registerHeader">
+	<section id="registerContainer" class="background" >
+		<div id="registerHeader" >
 			<h1>Registration</h1>
 		</div>
 		<form method="post">

@@ -7,6 +7,10 @@
   font-family: 'Open Sans',arial, sans-serif;
   font-size: 100%;
   list-style-type: none;
+} 
+.background{
+  /*background-image: url("../img/background.jpg");*/
+  background-color: burlywood;
 }
 
 .grid {
