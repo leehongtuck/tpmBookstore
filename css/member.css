@@ -226,4 +226,78 @@ nav a:hover {
 	width: 100px;
 	height: 45px;
 	font-size: 1.2em;
+} 
+
+/*==============Activitylog=================*/ 
+
+#filterBtn{
+border-radius: 1.5em;
+background-color: rosybrown; 
+height:40px;
+width:auto;
+font-family: inherit;
 }
+
+#activity{
+  padding: 30px;
+ margin: 30px auto;
+  background-color: salmon;
+  font-family: inherit; 
+  max-height:80%;
+  width:80%;
+  border-radius:0.7em;
+  
+  } 
+
+  #activitySearch{
+    border-radius:2em;
+    background-color: rosybrown;
+    height:40px;
+    width:450px;
+    font-family: inherit; 
+    text-indent:30px;
+  } 
+
+  #activitySearchContainer i{
+    position: absolute;
+    top: 10px;
+    left: 300px;
+    font-size: 1.25em;
+    
+  }  
+  #activity i{
+    position:absolute;
+    top:10px;
+    left: 10px;
+    font-size:1.2em
+  } 
+
+ #activitySearchContainer{
+position:relative;
+
+  } 
+
+  /*========================= FOOTER =========================== */  
+Footer{
+  height:50px;
+  background-color: darkseagreen;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}  
+#fLogo{
+  height:100px;
+  width:100px;
+  float: left;
+  margin-right:300px;
+  } 
+
+  #fAdd{
+    height:100px;
+    float:right;
+    font-size: 25px;
+  }
+
+
+ 
