@@ -16,7 +16,7 @@ require_once "inc/conn.php";
      <header>
        <div id="headerUpper" class="flex">
           <div id="logoContainer">
-            <a href="index.php"><img src="img/logo.png" alt="logo"></a>
+            <a href="index.php"><img src="img/tpmlogo.png" alt="logo"></a>
           </div>
           <form id="searchContainer">
             <i class="fas fa-search"></i>
