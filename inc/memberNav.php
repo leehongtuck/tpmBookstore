@@ -50,10 +50,13 @@
     var xhr = new XMLHttpRequest();
     xhr.onload = function(){
         if (this.status == 200) {
-        document.getElementById("searchResults").innerHTML=this.responseText;
+            if(this.responseText.length == 0) 
+                document.getElementById("searchResults").innerHTML="<p>No Results Found</p>";
+            else
+                document.getElementById("searchResults").innerHTML=this.responseText;
         }
     }
-    xhr.open("GET", "processSearch.php/?q="+ search, true);
+    xhr.open("GET", "/tpmBookstore/processSearch.php/?q="+ search, true);
     xhr.send();
     }
 
