@@ -16,6 +16,11 @@ if(isset($_SESSION['memberId'],$_SESSION['memberPw'])){
     if(password_verify($_SESSION['memberPw'], $dbPassword)){
         $member['id'] = $row['memberId'];
         $member['name'] = $row['memberName'];
+        $member['email'] = $row['memberEmail'];
+        $member['address']= $row['memberAddress'];
+        $member['phone'] = $row['memberPhone'];
+        $member['creditCard'] = $row['memberCreditCard'];
+        $member['point'] = $row['memberPoint'];
     }
     else{
         unset($_SESSION['memberId'],$_SESSION['memberPw']);

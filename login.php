@@ -36,21 +36,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   endif; 
   } 
 ?>
-
-<form method="post">
-			<div class="inputGroup" >
-				<input name="email" type="text" required>
-				<span class="inputHighlight"></span>
-				<span class="inputBar"></span>
-				<label for="name">Email</label>	
-			</div>
-			<div class="inputGroup">
-				<input name="password" type="password" required>
-				<span class="inputHighlight"></span>
-				<span class="inputBar"></span>
-				<label>Password</label>	
-      </div>
-      <div>
-				<input class="btn" id="loginBtn" type="submit" value="Login">
-			</div>
-</form>
+<section id="loginContainer">
+  <div id="loginHeader">
+    <h1>Login</h1>
+  </div>
+  <form method="post">
+        <div class="inputGroup" >
+          <input name="email" type="text" required>
+          <span class="inputHighlight"></span>
+          <span class="inputBar"></span>
+          <label for="name">Email</label>	
+        </div>
+        <div class="inputGroup">
+          <input name="password" type="password" required>
+          <span class="inputHighlight"></span>
+          <span class="inputBar"></span>
+          <label>Password</label>	
+        </div>
+        <div>
+          <input class="btn" id="loginBtn" type="submit" value="Login">
+        </div>
+  </form>
+  <div id="register">
+    <p>Not a member yet? <a href="/tpmBookstore/register.php">Register here</a>.</p>
+  </div>
+</section>

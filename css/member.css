@@ -182,7 +182,7 @@ nav a:hover {
 }
 
 #cartContent{
-	height: 80%;
+	min-height: 600px;
 }
 
 #cartContent .cartItem{
@@ -222,28 +222,41 @@ nav a:hover {
 }
 
 
-/*======================= x.0 Register ==============================*/
-#registerContainer{
+/*======================= x.0 Register, Login ==============================*/
+#register{
+  text-align: center;
+}
+
+#register a{
+  display: inline;
+  text-decoration: underline;
+}
+
+#register a:hover{
+  color: #2152bd;
+}
+
+#registerContainer, #loginContainer{
   padding: 10px 20px;
 }
 
-#registerHeader{
+#registerHeader, #loginHeader{
 	padding: 20px;
 	border-bottom: 2px solid black;
 	text-align: center;
 }
 
-#registerHeader h1{
+#registerHeader h1, #loginHeader h1{
 	font-size: 1.5em;
 }
 
-#registerContainer form{
+#registerContainer form, #loginContainer form{
 	padding: 50px 20px;
 	width: 80%;
 	margin: 0 auto;
 }
 
-#registerBtn{
+#registerBtn, #loginBtn{
 	width: 100px;
 	height: 45px;
 	font-size: 1.2em;
@@ -294,10 +307,99 @@ font-family: inherit;
   } 
 
  #activitySearchContainer{
-position:relative;
-
+  position:relative;
   } 
 
+/*========================== GENRE ============================*/
+#genreHeader{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid #2152bd;
+  background-color: #EEEEEE;
+}
+
+#genreHeader h1{
+  font-size: 1.5em;
+}
+
+#genreContent{
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  padding:30px;
+}
+
+.bookInfo{
+  height: 400px;
+}
+.bookImage{
+  height: 80%;
+}
+
+.bookImage img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/*========================== MEMBER PROFILE ====================*/
+#profileHeader{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+
+#profileHeader h1{
+  font-size: 1.5em;
+}
+
+#profileContents{
+  padding: 30px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.profileDetail{
+  margin-bottom: 30px;
+}
+
+.profileDetail label{
+  display: inline-block;
+  width: 150px;
+}
+
+.profileDetail input{
+  width: 70%;
+  height: 40px;
+  font-size: 1.2em;
+  text-indent: 5px;
+  border-radius: 4px;
+  border: 1px solid gray;
+}
+#profileContents .btn{
+  display: inline-block;
+  width: 300px;
+}
+
+
+/*========================== CHANGE PW =====================*/
+#pwHeader{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+
+#pwHeader h1{
+  font-size: 1.5em;
+}
+
+#pwContents{
+  padding: 50px 160px;
+}
+
+#pwContents .btn{
+  display: inline-block;
+  width: 200px;
+  margin-right: 20px;
+}
   /*========================= FOOTER =========================== */  
 Footer{
   height:150px;

@@ -39,7 +39,10 @@ require_once "inc/memberHeader.php";
             }
         endif;
         ?>
-        <button class="btn">Checkout</button>
+    </div>
+
+    <div id="cartFooter">
+        <button class="btn" onclick="checkout()">Checkout</button>
     </div>
 </div>
 <script>
@@ -75,6 +78,15 @@ require_once "inc/memberHeader.php";
         xhr.open("GET", "removeCart.php/?id="+ bookId, true);
         xhr.send();  
         document.location.reload(true);  
+    }
+
+    function checkout(){
+        var member ="<?php if($member==null) echo "null";?>";
+        if(member=="null"){
+            alert("Please log in before proceeding to checkout.");
+            window.location.replace("/tpmBookstore/login.php");
+        }else
+            window.location.replace("/tpmBookstore/checkout.php");
     }
 </script>
         
