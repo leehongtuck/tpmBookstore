@@ -340,6 +340,38 @@ font-family: inherit;
   max-height: 100%;
 }
 
+/*========================== BOOK ==============================*/
+#bookContent{
+  padding: 30px;
+  grid-template-areas: 
+  "img info info" 
+  "img info info"
+  "rate rate rate"
+  "view view view";
+  
+  grid-gap: 30px 15px;
+}
+
+.bookDetailImage{
+  grid-area: img;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.bookDetail{
+  grid-area: info;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.bookDetailFeedback{
+  grid-area: rate;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.viewBookFeedback{
+  grid-area: view;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
 /*========================== MEMBER PROFILE ====================*/
 #profileHeader{
   padding: 15px;
@@ -400,6 +432,37 @@ font-family: inherit;
   width: 200px;
   margin-right: 20px;
 }
+
+/*========================== REWARDS ====================*/
+#rewardHeader{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+
+#rewardHeader h1{
+  font-size: 1.5em;
+}
+
+#rewardContents{
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  padding:30px;
+}
+
+.rewardInfo{
+  height: 400px;
+}
+.rewardImage{
+  height: 50%;
+}
+
+.rewardImage img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
   /*========================= FOOTER =========================== */  
 Footer{
   height:150px;

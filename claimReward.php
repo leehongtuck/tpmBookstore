@@ -1,5 +1,5 @@
 <?php
-include("inc/conn.php");
+require_once("inc/session.php");
 /*check reward quantity*/
 $sql1="SELECT * FROM reward WHERE rewardId='".$_POST['hiddenId']."'";
 $result1 = mysqli_query($conn, $sql1);  
@@ -10,21 +10,14 @@ if(mysqli_num_rows($result1) > 0)
 				$rewardCheck=$row1["rewardQuantity"];
 
 /*check user point*/
-$sql="SELECT * FROM member WHERE memberId=".$userId."'";
-$result = mysqli_query($conn, $sql);  
-if(mysqli_num_rows($result) > 0)  
-	{  
-		while($row = mysqli_fetch_array($result))  
-			{
-				$memberCheck=$row["memberPoint"];
-				
+
+$memberCheck=$member["point"];				
 $requirePoint= $_POST["hiddenPoint"]*$_POST["quantity"];			
-	
 			
 if ($memberCheck >= $requirePoint && $rewardCheck >= $_POST['quantity']){
 $sql="INSERT INTO memberReward (memberId,rewardId,claimQuantity)
 VALUES
-('$userId','$_POST[hiddenId]','$_POST[quantity]')";
+('$member[id]','$_POST[hiddenId]','$_POST[quantity]')";
 
 		if (mysqli_query($conn,$sql)){ 
 				/*minus user point*/
@@ -60,8 +53,7 @@ else {
 			}
 	}
 	}
-			}
-	}
+
 mysqli_close($conn); 
 ?>
 

@@ -1,17 +1,10 @@
 <?php 
-$title = "Activity_log";
-require_once "inc/memberHeader.php"?> 
+$title = "Activity Log";
+require_once "inc/memberHeader.php";
+if($member == null)
+	header('location:index.php');
+?> 
 
-
-<!DOCTYPE html>
-<html>
-
-<head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>Activity log</title>
-</head>
-
-<body class="background">
 <div id="activity">
 <form action="" method="post">
 	<table style="width: 100%">

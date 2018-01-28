@@ -73,35 +73,35 @@ require_once "inc/session.php";
 
 	<body class="background">
 		<?php require_once "inc/memberNav.php";?>
-		<section>
+		<section id="bookContent" class="grid">
 			<?php	
 				$id = $_GET['id'];
 				$query = "SELECT book.*, genre.genre FROM book INNER JOIN genre ON book.genreId = genre.genreId WHERE book.bookId='".$id."'"; 
 				$result = mysqli_query($conn, $query);  
 				$row = mysqli_fetch_array($result);  
 			?>  
-			<div>
+			<div class="bookDetailImage">
 				<?php
-					$imageId=$row["bookId"];
-					$files = glob("img/*.*");
-					echo '<img src="/tpmBookstore/img/'.$imageId.'.jpg" />'."<br/><br/>";
+					echo '<img src="/tpmBookstore/img/'.$row["bookId"].'.jpg" />'."<br/><br/>";
 				?>
 			</div>
-			<div>
-				<h1><?php echo $row["bookTitle"]; ?></h1>
-				<p>by<?php echo $row["bookAuthor"]; ?></p>
-				<p>Publisher:<?php echo $row["bookPublisher"]; ?></p>
-				<p>Publish Date:<?php echo $row["bookPublishDate"]; ?></p>
-				<p><?php echo $row["genre"]; ?></p>
-				<p><?php echo $row["bookDescription"]; ?></p>
-				<p><?php echo $row["bookPrice"]; ?></p>
+			<div class="bookDetail">
+				<h1><?=$row["bookTitle"]; ?></h1>
+				<p>by <?=$row["bookAuthor"]; ?></p>
+				<p>Publisher:<?=$row["bookPublisher"]; ?></p>
+				<p>Publish Date:<?=$row["bookPublishDate"]; ?></p>
+				<p><?=$row["genre"]; ?></p>
+				<p><?=$row["bookDescription"]; ?></p>
+				<p><?=$row["bookPrice"]; ?></p>
 				<form method="POST" action="/tpmBookstore/addToCart.php">
 					<label>Quantity:</label>
 					<input type="number" name="quantity" min="1" max="10" required> 
-					<p>Available Quantity(<?php echo $row["bookQuantity"]; ?>left)</p>
-					<input type="hidden" name="hiddenId" value="<?php echo $row["bookId"]; ?>">  
+					<p>Available Quantity(<?=$row["bookQuantity"]; ?>left)</p>
+					<input type="hidden" name="hiddenId" value="<?=$row["bookId"]; ?>">  
 					<input type="submit"class="btn" value="Add To Cart">
-				</form> 
+				</form>
+			</div>
+			<div class="bookDetailFeedback">
 				<!-- for member to give feedback -->
 					<form action="insertFeedback.php" method="post">
 						<script>
@@ -152,7 +152,7 @@ require_once "inc/session.php";
 						<input type="submit" name="giveFeedback" value="Rate">
 					</form>
 				</div>
-				<div> <!-- showing book feedback -->
+				<div class="viewBookFeedback"> <!-- showing book feedback -->
 				<p>User Feedback</p>
 					<?php
 						$query1 = "SELECT member.*,feedback.*,book.* FROM member INNER JOIN feedback ON member.memberId = feedback.memberId INNER JOIN book ON feedback.bookId = book.bookId WHERE book.bookId='".$id."'" ;

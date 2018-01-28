@@ -1,6 +1,8 @@
 <?php 
 $title="Registration";
 require_once "inc/memberHeader.php";
+if($member != null)
+	header('location:index.php');
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	if(!($_POST['password']===$_POST['cfmPassword'])):?>

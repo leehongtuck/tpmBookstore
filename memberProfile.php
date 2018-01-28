@@ -1,6 +1,8 @@
 <?php 
 $title = "Manage Profile";
 require_once "inc/memberHeader.php";
+if($member == null)
+	header('location:index.php');
 
 if($_SERVER['REQUEST_METHOD']== 'POST'){
 	$sql = "UPDATE member SET memberName='$_POST[memName]',memberAddress='$_POST[memAddress]',memberPhone='$_POST[memPhone]',memberCreditCard='$_POST[memCreditCard]'

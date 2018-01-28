@@ -1,6 +1,8 @@
 <?php
 $title="Change Password";
 require_once "inc/memberHeader.php";
+if($member == null)
+	header('location:index.php');
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	$query = "SELECT * from member WHERE memberEmail='$member[email]'";
 	$result = mysqli_query($conn, $query); 

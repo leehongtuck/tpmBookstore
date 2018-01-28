@@ -1,7 +1,9 @@
 <?php
 $title="Login";
 require_once "inc/memberHeader.php";
-
+if($member != null)
+  header('location:index.php');
+  
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   // username and password sent from form 
   $myUsername=mysqli_real_escape_string($conn,$_POST['email']);
