@@ -153,13 +153,8 @@ require_once "inc/session.php";
 						<input type="submit" name="giveFeedback" value="Rate">
 					</form>
 				</div>
-<<<<<<< HEAD
 				<div class="viewBookFeedback"> <!-- showing book feedback -->
 				<p>User Feedback</p>
-=======
-				<div> <!-- showing book feedback -->
-				<h1>User Feedback</h1>
->>>>>>> f1e8cc450dde92f598735276705e85b24d67802e
 					<?php
 						$query1 = "SELECT member.*,feedback.*,book.* FROM member INNER JOIN feedback ON member.memberId = feedback.memberId INNER JOIN book ON feedback.bookId = book.bookId WHERE book.bookId='".$id."'" ;
 						$result1 = mysqli_query($conn, $query1);
