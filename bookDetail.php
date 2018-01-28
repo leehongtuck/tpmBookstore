@@ -103,6 +103,7 @@ require_once "inc/session.php";
 					<input type="submit"class="btn" value="Add To Cart">
 				</form> 
 				<!-- for member to give feedback -->
+				<h1>Feedback</h1>
 					<form action="insertFeedback.php" method="post">
 						<script>
 							$(document).ready(function () {
@@ -153,7 +154,7 @@ require_once "inc/session.php";
 					</form>
 				</div>
 				<div> <!-- showing book feedback -->
-				<p>User Feedback</p>
+				<h1>User Feedback</h1>
 					<?php
 						$query1 = "SELECT member.*,feedback.*,book.* FROM member INNER JOIN feedback ON member.memberId = feedback.memberId INNER JOIN book ON feedback.bookId = book.bookId WHERE book.bookId='".$id."'" ;
 						$result1 = mysqli_query($conn, $query1);
@@ -164,32 +165,9 @@ require_once "inc/session.php";
 							$starRating= $row['bookRating'];
 							echo "<div>";
 							echo "<p>".$row['memberName']."</p>";
+							echo "<p>Rating Score: ";
 							echo $starRating;
-						?>
-						<fieldset id='starRating' class="rating">
-							<input class="stars" type="radio" id="star10" name="rating" value="10" <?php if($starRating == 10) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star10" title="Masterpiece - 10 stars"></label>
-							<input class="stars" type="radio" id="star9" name="rating" value="9" <?php if($starRating == 9) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star9" title="9 stars"></label>
-							<input class="stars" type="radio" id="star8" name="rating" value="8" <?php if($starRating == 8) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star8" title="8 stars"></label>
-							<input class="stars" type="radio" id="star7" name="rating" value="7" <?php if($starRating == 7) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star7" title="7 stars"></label>
-							<input class="stars" type="radio" id="star6" name="rating" value="6" <?php if($starRating == 6) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star6" title="6 stars"></label>
-							<input class="stars" type="radio" id="star5" name="rating" value="5" <?php if($starRating == 5) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star5" title="5 stars"></label>	   
-							<input class="stars" type="radio" id="star4" name="rating" value="4" <?php if($starRating == 4) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star4" title="4 star"></label>
-							<input class="stars" type="radio" id="star3" name="rating" value="3" <?php if($starRating == 3) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star3" title="3 stars"></label>	
-							<input class="stars" type="radio" id="star2" name="rating" value="2" <?php if($starRating == 2) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star2" title="2 stars"></label>
-							<input class="stars" type="radio" id="star1" name="rating" value="1" <?php if($starRating == 1) {echo 'checked="checked"';} ?> />
-							<label class = "full" for="star1" title="Terrible - 1 stars"></label>
-						</fieldset>
-						
-						<?php
+							echo "/10</p>";
 							echo "<p>";
 							echo $row['bookComment'];
 							echo "</p>";
@@ -204,7 +182,7 @@ require_once "inc/session.php";
 							echo "<input type='submit' name='rateComment' value='Rate'>";
 							echo "</form>";
 							echo "</div>";
-							
+							echo "</br>";
 						}
 					
 						}
