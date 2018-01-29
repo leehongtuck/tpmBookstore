@@ -3,7 +3,7 @@ session_start();
 require_once "conn.php";
 
 $member = array();
-$admin = array();
+$manager = array();
 
 /*set member session*/
 if(isset($_SESSION['memberId'],$_SESSION['memberPw'])){
@@ -36,6 +36,17 @@ else{
 if(isset($_SESSION['managerId'], $_SESSION['managerPw'])){
     $sql="SELECT * FROM manager WHERE managerId = '$_SESSION[managerId]'";
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_row($result);
+    $row = mysqli_fetch_array($result);
 
+    if(password_verify($_SESSION['managerPw'], $dbPassword)){
+        $manager['id'] = $row['managerId'];
+    }
+    else{
+        unset($_SESSION['managerId'],$_SESSION['managerPw']);
+        $manager = null;
+    }
+
+}
+else{
+    $manager = null;
 }

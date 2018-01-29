@@ -85,18 +85,18 @@ require_once "inc/session.php";
 					echo '<img src="/tpmBookstore/img/'.$row["bookId"].'.jpg" />'."<br/><br/>";
 				?>
 			</div>
-			<div class="bookDetail">
+			<div class="bookDesc">
 				<h1><?=$row["bookTitle"]; ?></h1>
 				<p>by <?=$row["bookAuthor"]; ?></p>
-				<p>Publisher:<?=$row["bookPublisher"]; ?></p>
-				<p>Publish Date:<?=$row["bookPublishDate"]; ?></p>
-				<p><?=$row["genre"]; ?></p>
+				<p>Publisher: <?=$row["bookPublisher"]; ?></p>
+				<p>Publish Date: <?=$row["bookPublishDate"]; ?></p>
+				<p>Genre: <?=$row["genre"]; ?></p>
 				<p><?=$row["bookDescription"]; ?></p>
-				<p><?=$row["bookPrice"]; ?></p>
+				<p>Price: RM<?=$row["bookPrice"]; ?></p>
 				<form method="POST" action="/tpmBookstore/addToCart.php">
 					<label>Quantity:</label>
 					<input type="number" name="quantity" min="1" max="10" required> 
-					<p>Available Quantity(<?=$row["bookQuantity"]; ?>left)</p>
+					<p>Available Quantity (<?=$row["bookQuantity"]; ?> left)</p>
 					<input type="hidden" name="hiddenId" value="<?=$row["bookId"]; ?>">  
 					<input type="submit"class="btn" value="Add To Cart">
 				</form>
@@ -176,8 +176,8 @@ require_once "inc/session.php";
 							echo "<input type='hidden' name='hiddenMemberId' value='".$row['memberId']."' />";
 							echo "<input type='hidden' name='hiddenFeedbackId' value='".$row['feedbackId']."'/>";
 							echo "<input type='hidden' name='hiddenBookIdRating' value='".$row['bookId']."'/>";
-							echo "<input type='radio' name='feedbackRating' value='1'>Useless<br>";
-							echo "<input type='radio' name='feedbackRating' value='2'>Useful<br>";
+							echo "<br/><input type='radio' name='feedbackRating' value='1'>Useless";
+							echo "<input type='radio' name='feedbackRating' value='2'>Useful";
 							echo "<input type='radio' name='feedbackRating' value='3'>Very Useful<br>";
 							echo "<input type='submit' name='rateComment' value='Rate'>";
 							echo "</form>";
