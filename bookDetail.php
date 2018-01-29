@@ -147,45 +147,47 @@ require_once "inc/session.php";
 							<input class="stars" type="radio" id="star1" name="rating" value="1" />
 							<label class = "full" for="star1" title="Terrible - 1 stars"></label>
 						</fieldset>
-						<div id='feedback'></div>
-						<input type="hidden" name="hiddenBookId" value="<?=$row["bookId"];?>" />
-						<input type="text" name="comment" placeholder="Optional">
-						<input type="submit" name="giveFeedback" value="Rate">
+						<!--<div id='feedback'></div> -->
+							<input type="hidden" name="hiddenBookId" value="<?=$row["bookId"];?>" />
+							<textarea name="comment" rows="2" cols="60" placeholder="Optional"></textarea>
+							<input type="submit" class="btn" name="giveFeedback" value="Rate Book">
 					</form>
 				</div>
 				<div class="viewBookFeedback"> <!-- showing book feedback -->
-				<p>User Feedback</p>
+				<h1>User Feedback</h1>
 					<?php
 						$query1 = "SELECT member.*,feedback.*,book.* FROM member INNER JOIN feedback ON member.memberId = feedback.memberId INNER JOIN book ON feedback.bookId = book.bookId WHERE book.bookId='".$id."'" ;
 						$result1 = mysqli_query($conn, $query1);
-						if(mysqli_num_rows($result1) > 0)  
-						{		  
-						while($row=mysqli_fetch_array($result1))
-						{	
-							$starRating= $row['bookRating'];
-							echo "<div>";
-							echo "<p>".$row['memberName']."</p>";
-							echo "<p>Rating Score: ";
-							echo $starRating;
-							echo "/10</p>";
-							echo "<p>";
-							echo $row['bookComment'];
-							echo "</p>";
-							echo "<form method='post' action='insertRating.php'>";
-							echo "<label>Rate this feedback: </label>";
-							echo "<input type='hidden' name='hiddenMemberId' value='".$row['memberId']."' />";
-							echo "<input type='hidden' name='hiddenFeedbackId' value='".$row['feedbackId']."'/>";
-							echo "<input type='hidden' name='hiddenBookIdRating' value='".$row['bookId']."'/>";
-							echo "<br/><input type='radio' name='feedbackRating' value='1'>Useless";
-							echo "<input type='radio' name='feedbackRating' value='2'>Useful";
-							echo "<input type='radio' name='feedbackRating' value='3'>Very Useful<br>";
-							echo "<input type='submit' name='rateComment' value='Rate'>";
-							echo "</form>";
-							echo "</div>";
-							echo "</br>";
-						}
-					
-						}
+						if(mysqli_num_rows($result1) > 0):	  
+							while($row=mysqli_fetch_array($result1)):
+
+								$starRating= $row['bookRating'];?>
+								<div class="userFeedback">
+									<div class="userPic">
+										<span><i class="fas fa-user-circle"></i><?=$row['memberName']?> (<?=$starRating;?>/10)</span>
+									</div>
+									<div class="userComment">			
+										<?=$row['bookComment'];?>
+									</div>
+									<form method='post' class="insertRating" action='insertRating.php'>
+										<label>Rate this feedback: </label>
+										<input type='hidden' name='hiddenMemberId' value='<?=$row['memberId']?>' />
+										<input type='hidden' name='hiddenFeedbackId' value='<?=$row['feedbackId']?>'/>
+										<input type='hidden' name='hiddenBookIdRating' value='<?=$row['bookId']?>'/>
+										<input type='radio' name='feedbackRating' value='1'>Useless
+										<input type='radio' name='feedbackRating' value='2'>Useful
+										<input type='radio' name='feedbackRating' value='3'>Very Useful
+										<input type='submit' class="btn" name='rateComment' value='Rate'>
+									</form>	
+								</div>
+							<?php
+							endwhile;
+						else:?>
+							<div class="userFeedback">
+								No user feedbacks given yet.
+							</div>
+						<?php
+						endif;
 						mysqli_close($conn); //to close the database connection						
 					?>
 				</div>

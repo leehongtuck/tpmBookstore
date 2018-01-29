@@ -48,6 +48,5 @@ if($_POST['rateComment']==True){
 			}
 	}
 }
-	
->>>>>>> d067ed81835eeb82592e4d8c995a48b46671784f
+}	
 ?>

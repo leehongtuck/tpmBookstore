@@ -353,7 +353,7 @@ font-family: inherit;
   "img info info info"
   "rate rate rate rate"
   "view view view view";
-  grid-row-gap: 10px;
+  grid-row-gap: 50px;
   justify-items: stretch;
 }
 
@@ -385,11 +385,57 @@ font-family: inherit;
 
 }
 
-.viewBookFeedback{
-  grid-area: view;
-
+.bookDetailFeedback textarea{
+  display: inline-block;
+  margin-left: 20px;
+  padding: 5px;
 }
 
+.bookDetailFeedback .btn{
+  display: inline-block;
+  position: relative;
+  bottom: 20px;
+  left: 5px;
+  background-color: green;
+}
+
+.viewBookFeedback{
+  grid-area: view;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 15px;
+}
+
+.viewBookFeedback h1{
+  font-size: 1.3em;
+  border-bottom: 2px solid grey;
+}
+
+.userFeedback {
+  border-bottom: 1px solid black;
+  min-height: 50px;
+}
+.userPic{
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+.userComment{
+  padding: 5px;
+  min-height: 50px;
+}
+
+.insertRating{
+  padding: 5px;
+  font-size: 0.9em;
+}
+
+.insertRating .btn{
+  display: inline-block;
+  height: 25px;
+  width: 60px;
+  margin-left: 10px;
+  background-color: rgb(194, 101, 26);
+}
 /*========================== MEMBER PROFILE ====================*/
 #profileHeader{
   padding: 15px;
