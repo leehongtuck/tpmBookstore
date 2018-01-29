@@ -30,9 +30,9 @@ else{
 				$feedbackId='F001'; 
 			}
 			//INSERT RECORD INTO DATABASE
-			$sql="INSERT INTO feedback (feedbackId,bookRating,bookComment,bookId,memberId,feedbackStatus)
+			$sql="INSERT INTO feedback (feedbackId,bookRating,bookComment,bookId,memberId)
 			VALUES
-			('$feedbackId','$_POST[rating]','$_POST[comment]','$_POST[hiddenBookId]','$member[id]','0')";
+			('$feedbackId','$_POST[rating]','$_POST[comment]','$_POST[hiddenBookId]','$member[id]')";
 			if (mysqli_query($conn,$sql)){ 
 				$lastId = mysqli_insert_id($conn);
 				$lastId = mysqli_real_escape_string($conn,$lastId);

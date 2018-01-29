@@ -37,9 +37,11 @@ if(isset($_SESSION['managerId'], $_SESSION['managerPw'])){
     $sql="SELECT * FROM manager WHERE managerId = '$_SESSION[managerId]'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
+    $dbPassword=$row['managerPw'];
 
     if(password_verify($_SESSION['managerPw'], $dbPassword)){
         $manager['id'] = $row['managerId'];
+        $manager['name'] = $row['managerName'];
     }
     else{
         unset($_SESSION['managerId'],$_SESSION['managerPw']);

@@ -1,0 +1,131 @@
+ body{
+     background-color: #eee;
+ }
+ 
+ /*========================= 1.0 HEADER =========================== */
+ header {
+    height: 120px;
+    background-color:	rgba(255, 255, 255, 0.76);
+  }
+  
+  /* 1.1 Upper Header */
+  #headerUpper, #headerLower {
+    height: 50%;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  #logoContainer {
+    flex-basis: 10%;
+  }
+  
+  #logoContainer a{
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  
+  #logoContainer img {
+    max-width: 100%;
+    height: 100%;
+  }
+
+  
+  #userContainer {
+    flex-basis: 15%;
+    position: relative;
+  }
+  
+  #userContainer a{
+    padding-top: 5px;
+  }
+  
+  #userContainer .btn{
+    width: 50%;
+    font-size: 1.2em;
+  }
+  
+  #userContainer .iconRight{
+    margin-right: 10px;
+  }
+  
+  #userContainer .iconLeft{
+    margin-left: 10px;
+  }
+  
+  #userContainer:hover ul{
+    display: block;
+  }
+  
+  #userContainer ul{
+    display:none;
+    position: absolute;
+    width: 70%;
+    height: auto;
+    top: 85%;
+    left: 25%;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 0.5px 0.5px #888888;
+  }
+  
+  
+  #userContainer ul li{
+    font-size: 0.95em;
+    padding: 10px;
+  }
+  
+  #userContainer ul li:hover{
+    background-color: #888888;
+    cursor: pointer;
+  }
+  
+  /* 1.2 Lower Header */
+  #headerLower {
+    border-bottom: 3px solid #2152bd;
+  }
+  
+  nav {
+    flex-basis: 80%;
+    margin-left: 10px;
+  }
+  
+  nav a {
+    display: inline-block;
+    width: auto;
+    padding: 20px 10px 10px;
+    margin-right: 40px;
+    font-weight: bold;
+    color: #2152bd;
+  }
+  
+  nav a:hover {
+    color: yellow;
+    cursor: pointer;
+  }
+
+/*==================== Login ====================*/
+  #registerContainer, #loginContainer{
+    padding: 10px 20px;
+  }
+  
+  #registerHeader, #loginHeader{
+      padding: 20px;
+      border-bottom: 2px solid black;
+      text-align: center;
+  }
+  
+  #registerHeader h1, #loginHeader h1{
+      font-size: 1.5em;
+  }
+  
+  #registerContainer form, #loginContainer form{
+      padding: 50px 20px;
+      width: 80%;
+      margin: 0 auto;
+  }
+  
+  #registerBtn, #loginBtn{
+      width: 100px;
+      height: 45px;
+      font-size: 1.2em;
