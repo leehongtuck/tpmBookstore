@@ -56,7 +56,7 @@ include("inc/conn.php");
 
 	<body>
 		<?php
-			$query = "SELECT book.*, genre.* FROM book INNER JOIN genre ON book.genreId = genre.genreId ";
+			$query = "SELECT * FROM reward ";
 			$result = mysqli_query($conn, $query);
 			$count=mysqli_num_rows($result);
 			
@@ -66,16 +66,12 @@ include("inc/conn.php");
 
 		<table>
 			<tr>
-			<td>Title</td>
-			<td>Genre</td>
+			<td>Name</td>
 			<td>Description</td>
-			<td>Price</td>
-			<td>Author</td>
-			<td>Publisher</td>
-			<td>Publish Date</td>
+			<td>Point</td>
 			<td>Quantity</td>
 			</tr>
-		<form method="POST" action="updateBooklist.php">
+		<form method="POST" action="updateRewardlist.php">
 		<?php
 			if(mysqli_num_rows($result) > 0)  {				
 			while($row=mysqli_fetch_array($result))
@@ -83,43 +79,19 @@ include("inc/conn.php");
 				
 				echo "<tr>";
 				echo "<td>";
-				echo "<input type='text' name='booktitle[".$row['bookId']."]' value='".$row['bookTitle']."' />";
+				echo "<input type='text' name='rewardname[".$row['rewardId']."]' value='".$row['rewardName']."' />";
 				echo "</td>";
 				
 				echo "<td>";
-				echo "<select name='bookgenre[".$row['bookId']."]'>";
-				echo "<option hidden disabled selected value='".$row['genre']."'>".$row['genre']."</option>";
-				$sql="SELECT * FROM Genre";
-				$results=mysqli_query($conn,$sql);
-				while ($rows=mysqli_fetch_array($results))
-				{
-				echo "<option value='".$rows['genreId']."'>".$rows['genre']."</option>";
-				}
-				echo "</select>";
+				echo "<input type='text' name='rewarddesc[".$row['rewardId']."]' value='".$row['rewardDescription']."' />";
 				echo "</td>";
 
 				echo "<td>";
-				echo "<input type='text' name='bookdesc[".$row['bookId']."]' value='".$row['bookDescription']."' />";
+				echo "<input type='text' name='rewardpoint[".$row['rewardId']."]' value='".$row['rewardPoint']."' />";
 				echo "</td>";
 
 				echo "<td>";
-				echo "<input type='text' name='bookprice[".$row['bookId']."]' value='".$row['bookPrice']."' />";
-				echo "</td>";
-
-				echo "<td>";
-				echo "<input type='text' name='bookauth[".$row['bookId']."]' value='".$row['bookAuthor']."' />";
-				echo "</td>";
-
-				echo "<td>";
-				echo "<input type='text' name='bookpub[".$row['bookId']."]' value='".$row['bookPublisher']."' />";
-				echo "</td>";
-
-				echo "<td>";
-				echo "<input type='text' name='bookpubd[".$row['bookId']."]' value='".$row['bookPublishDate']."' />";
-				echo "</td>";
-
-				echo "<td>";
-				echo "<input type='text' name='bookq[".$row['bookId']."]' value='".$row['bookQuantity']."' />";
+				echo "<input type='text' name='rewardq[".$row['rewardId']."]' value='".$row['rewardQuantity']."' />";
 				echo "</td></tr>";
 				
 
