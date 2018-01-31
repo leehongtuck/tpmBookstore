@@ -15,7 +15,7 @@ require_once "inc/memberHeader.php"?>
 <body class="background">
 <div id="activity"> 
 
-<h1>Purchase History</h1>
+<h1>Feedback History</h1>
 <br>
 <br>
 <form action="" method="post"> 
@@ -24,8 +24,7 @@ require_once "inc/memberHeader.php"?>
 	<table style="width: 100%;text-align:center">
 			<tr>
 				<td class="rightBorder">Date</td>
-				<td class="rightBorder">Type</td>
-				<td class="bottomBorder">Activity Description</td>
+				<td class="bottomBorder">Description</td>
 			</tr>
 			
 		</table>

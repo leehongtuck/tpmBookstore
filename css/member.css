@@ -1,7 +1,7 @@
-  /*========================= 1.0 HEADER =========================== */
+﻿  /*========================= 1.0 HEADER =========================== */
 header {
   height: 120px;
-  background-color: 	rgba(255, 255, 255, 0.5);
+  background-color:	rgba(255, 255, 255, 0.3);
 }
 
 /* 1.1 Upper Header */
@@ -239,59 +239,54 @@ nav a:hover {
 	font-size: 1.2em;
 } 
 
-/*==============Activitylog=================*/ 
-
-#filterBtn{
-border-radius: 1.5em;
-background-color: rosybrown; 
-height:40px;
-width:auto;
-font-family: inherit;
-}
+/*==============History=================*/ 
 
 #activity{
   padding: 30px;
- margin: 30px auto;
-  background-color: salmon;
+  margin: 30px auto;
+  background-color: 	rgba(255, 255, 255, 0.5);
   font-family: inherit; 
   max-height:80%;
   width:80%;
   border-radius:0.7em;
   
-  } 
-
-  #activitySearch{
-    border-radius:2em;
-    background-color: rosybrown;
-    height:40px;
-    width:450px;
-    font-family: inherit; 
-    text-indent:30px;
-  } 
-
-  #activitySearchContainer i{
-    position: absolute;
-    top: 10px;
-    left: 300px;
-    font-size: 1.25em;
-    
   }  
-  #activity i{
-    position:absolute;
-    top:10px;
-    left: 10px;
-    font-size:1.2em
-  } 
+  
+  h1{
+	font-family:inherit;
+	font-size:50px;
+	text-align:center;
+		
+} 
 
- #activitySearchContainer{
-position:relative;
+tr{
+	font-family:inherit;
+	font-size:20px;
+	font-weight:bold;
+	
+	
+}
 
-  } 
+.bottomBorder {
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-style:solid;
+} 
+
+.rightBorder {
+	border-right-style: solid;
+	border-right-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+} 
+
+
+
 
   /*========================= FOOTER =========================== */  
 Footer{
-  height:150px;
-  background-color: rgba(255, 255, 255, 0.5);
+  height:100px;
+  background-color: rgba(255, 255, 255, 0.3);
   position: absolute;
   right: 0;
   bottom: 0;
@@ -308,7 +303,8 @@ Footer{
     height:100px;
     float:right;
     right:200px;
-    font-size: 20px;
+    font-size: 10px;
+    font-family:inherit;
   }
 
 

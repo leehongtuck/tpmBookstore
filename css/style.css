@@ -1,4 +1,4 @@
-/*======================1.0 GENERAL STYLINGS================== */
+﻿/*======================1.0 GENERAL STYLINGS================== */
 * {
   margin: 0;
   padding: 0;
@@ -9,8 +9,9 @@
   list-style-type: none;
 } 
 .background{
-  /*background-image: url("../img/background.jpg");*/
-  background-color: burlywood;
+  background-image: url("../img/background1.jpg");
+  
+  
 }
 
 .grid {
