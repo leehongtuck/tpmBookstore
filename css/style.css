@@ -16,14 +16,9 @@ a {
   height: 100%;
 }
 .background{
-<<<<<<< HEAD
+
   background-image: url("../img/background1.jpg");
   
-  
-=======
-  /*background-image: url("/tpmBookstore/img/background.jpg");*/
-  background-color: burlywood;
->>>>>>> d69950a60df3ef93210bcd26936d477b97a3c287
 }
 
 .grid {

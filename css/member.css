@@ -1,11 +1,10 @@
 ﻿  /*========================= 1.0 HEADER =========================== */
 header {
   height: 120px;
-<<<<<<< HEAD
+
   background-color:	rgba(255, 255, 255, 0.3);
-=======
-  background-color:	rgba(255, 255, 255, 0.5);
->>>>>>> d69950a60df3ef93210bcd26936d477b97a3c287
+
+  
 }
 
 /* 1.1 Upper Header */
@@ -308,13 +307,10 @@ tr{
 } 
 
 
-<<<<<<< HEAD
 
-=======
  #activitySearchContainer{
   position:relative;
   } 
->>>>>>> d69950a60df3ef93210bcd26936d477b97a3c287
 
 /*========================== GENRE ============================*/
 #genreHeader{
