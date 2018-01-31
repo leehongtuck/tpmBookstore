@@ -1,9 +1,9 @@
 <?php
-include("inc/conn.php");
+include("inc/session.php");
 /* Limit User To Give Feedback Only Once */
-$sql1="SELECT * FROM feedback";
+$sql1="SELECT * FROM feedback WHERE memberId = '$member[id]' AND bookId = '$_POST[hiddenBookId]'";
 $result1 = mysqli_query($conn, $sql1);  
-if(mysqli_num_rows($result1) > 1)  
+if(mysqli_num_rows($result1) > 0)  
 	{  
 					echo '<script type="text/javascript">
 					alert("You have already insert a feedback!");
@@ -22,19 +22,17 @@ else{
 		else{
 			//SETTING THE FEEDBACKID VARIABLE
 			$sql="SELECT feedbackId FROM feedback ORDER BY feedbackId DESC LIMIT 1 ";
-			$query=mysqli_query($conn, $sql);
+			$result=mysqli_query($conn, $sql);
 			$feedbackId;
-			if($result=mysqli_fetch_array($query)){
-				echo"what";
-				$feedbackId=(int)substr($result[0], 1, 3)+1;
-				$feedbackId='F'.str_pad("00", 3, $feedbackId);
+			if($row=mysqli_fetch_array($result)){
+				$feedbackId=++$row[0];
 			}else{
 				$feedbackId='F001'; 
 			}
 			//INSERT RECORD INTO DATABASE
-			$sql="INSERT INTO feedback (feedbackId,bookRating,bookComment,bookId,memberId,feedbackStatus)
+			$sql="INSERT INTO feedback (feedbackId,bookRating,bookComment,bookId,memberId)
 			VALUES
-			('$feedbackId','$_POST[rating]','$_POST[comment]','$_POST[hiddenBookId]','$userId','0')";
+			('$feedbackId','$_POST[rating]','$_POST[comment]','$_POST[hiddenBookId]','$member[id]')";
 			if (mysqli_query($conn,$sql)){ 
 				$lastId = mysqli_insert_id($conn);
 				$lastId = mysqli_real_escape_string($conn,$lastId);

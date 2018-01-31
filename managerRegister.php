@@ -1,8 +1,8 @@
 <?php 
-$title="Registration";
-require_once "inc/memberHeader.php";
-if($member != null)
-	header('location:index.php');
+$title="Register New Manager";
+require_once "inc/managerHeader.php";
+/*if($manager == null)
+	header('location:index.php');*/
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	if(!($_POST['password']===$_POST['cfmPassword'])):?>
@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	<?php
 	else:
 		//FINDING ANY EMAIL DUPLICATES
-		$sql="SELECT memberId FROM member WHERE memberEmail='$_POST[email]'";
+		$sql="SELECT managerId FROM manager WHERE managerEmail='$_POST[email]'";
 		$result=mysqli_query($conn,$sql);
 		$numRows=mysqli_num_rows($result);
 		if($numRows==1):?>
@@ -21,25 +21,25 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			</script>
 		<?php
 		else:
-			//SETTING THE MEMBERID VARIABLE
-			$sql="SELECT memberId FROM member ORDER BY memberId DESC LIMIT 1 ";
+			//SETTING THE managerID VARIABLE
+			$sql="SELECT managerId FROM manager ORDER BY managerId DESC LIMIT 1 ";
 			$result=mysqli_query($conn, $sql);
-			$memberId;
+			$managerId;
 			if($row=mysqli_fetch_array($result))
-				$memberId=++$row[0];
+				$managerId=++$row[0];
 			else
-				$memberId='M001'; 
+				$managerId='A001'; 
 
 			//INSERT RECORD INTO DATABASE
 			$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-			$sql="INSERT INTO `member` (`memberId`, `memberEmail`, `memberName`, `memberPw`, `memberAddress`, `memberPhone`, `memberCreditCard`)
+			$sql="INSERT INTO `manager` (`managerId`, `managerEmail`, `managerName`, `managerPw`, `managerAddress`, `managerPhone`)
 			VALUES
-			('$memberId','$_POST[email]','$_POST[memName]', '$password', '$_POST[memAddress]', '$_POST[memPhone]', '$_POST[memCc]')";
+			('$managerId','$_POST[email]','$_POST[memName]', '$password', '$_POST[memAddress]', '$_POST[memPhone]')";
 			if (mysqli_query($conn,$sql)):
 				mysqli_close($conn);?>
 				<script>
-					alert("Registration Successful!");
-					window.location.replace("login.php");
+					alert("Manager Registered!");
+					window.location.replace("dashboard.php");
 				</script>
 			<?php else:
 				die('Error: ' . mysqli_error($conn)); 
@@ -49,9 +49,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	endif;
 }
 ?>
-	<section id="registerContainer" class="background" >
+	<section id="registerContainer" >
 		<div id="registerHeader" >
-			<h1>Registration</h1>
+			<h1>Register New Manager Account</h1>
 		</div>
 		<form method="post">
 			<div class="inputGroup" >
@@ -90,13 +90,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				<span class="inputBar"></span>
 				<label>Phone Number</label>
 			</div>			
-			<div class="inputGroup">
-				<input name="memCc" type="text" required>
-				<span class="inputHighlight"></span>
-				<span class="inputBar"></span>
-				<label>Credit Card Number</label>
-				</div>
-			</div>
+
 			<div>
 				<input class="btn" id="registerBtn" type="submit" value="Register">
 			</div>

@@ -1,7 +1,11 @@
 ﻿  /*========================= 1.0 HEADER =========================== */
 header {
   height: 120px;
+<<<<<<< HEAD
   background-color:	rgba(255, 255, 255, 0.3);
+=======
+  background-color:	rgba(255, 255, 255, 0.5);
+>>>>>>> d69950a60df3ef93210bcd26936d477b97a3c287
 }
 
 /* 1.1 Upper Header */
@@ -15,9 +19,15 @@ header {
   flex-basis: 10%;
 }
 
+#logoContainer a{
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
 #logoContainer img {
   max-width: 100%;
-  max-height: 100%;
+  height: 100%;
 }
 
 #searchContainer {
@@ -29,15 +39,22 @@ header {
 #searchContainer input {
   height: 70%;
   width: 100%;
+  border-radius: 5px;
+  border: 1px solid gray;
   text-indent: 30px;
+}
+
+#searchContainer input:focus {
+  outline: none;
 }
 
 #searchContainer i{
   position: absolute;
-  top: 13px;
+  top: 14px;
   left: 15px;
   font-size: 1.25em;
 }
+
 #searchResults{
   width: 97.5%;
   position: absolute;
@@ -57,16 +74,13 @@ header {
   
 }
 
-#searchResults p a{
-  color: #111;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 #userContainer {
   flex-basis: 15%;
   position: relative;
+}
+
+#userContainer a{
+  padding-top: 5px;
 }
 
 #userContainer .btn{
@@ -121,7 +135,7 @@ nav {
 
 nav a {
   display: inline-block;
-  height: 100%;
+  width: auto;
   padding: 20px 10px 10px;
   margin-right: 40px;
   font-weight: bold;
@@ -172,7 +186,7 @@ nav a:hover {
 }
 
 #cartContent{
-	height: 80%;
+	min-height: 600px;
 }
 
 #cartContent .cartItem{
@@ -212,28 +226,41 @@ nav a:hover {
 }
 
 
-/*======================= x.0 Register ==============================*/
-#registerContainer{
+/*======================= x.0 Register, Login ==============================*/
+#register{
+  text-align: center;
+}
+
+#register a{
+  display: inline;
+  text-decoration: underline;
+}
+
+#register a:hover{
+  color: #2152bd;
+}
+
+#registerContainer, #loginContainer{
   padding: 10px 20px;
 }
 
-#registerHeader{
+#registerHeader, #loginHeader{
 	padding: 20px;
 	border-bottom: 2px solid black;
 	text-align: center;
 }
 
-#registerHeader h1{
+#registerHeader h1, #loginHeader h1{
 	font-size: 1.5em;
 }
 
-#registerContainer form{
+#registerContainer form, #loginContainer form{
 	padding: 50px 20px;
 	width: 80%;
 	margin: 0 auto;
 }
 
-#registerBtn{
+#registerBtn, #loginBtn{
 	width: 100px;
 	height: 45px;
 	font-size: 1.2em;
@@ -281,6 +308,229 @@ tr{
 } 
 
 
+<<<<<<< HEAD
+
+=======
+ #activitySearchContainer{
+  position:relative;
+  } 
+>>>>>>> d69950a60df3ef93210bcd26936d477b97a3c287
+
+/*========================== GENRE ============================*/
+#genreHeader{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid #2152bd;
+  background-color: #EEEEEE;
+}
+
+#genreHeader h1{
+  font-size: 1.5em;
+}
+
+#genreContent{
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  padding:30px;
+}
+
+.bookInfo{
+  height: 400px;
+  background-color: #EEEEEE;
+}
+.bookImage{
+  height: 80%;
+}
+
+.bookImage img{
+  max-width: 100%;
+  height: 100%;
+}
+
+.bookDetail{
+  padding: 5px;
+}
+
+/*========================== BOOK ==============================*/
+#bookContent{
+  padding: 30px;
+  grid-template-areas: 
+  "img info info info" 
+  "img info info info"
+  "rate rate rate rate"
+  "view view view view";
+  grid-row-gap: 50px;
+  justify-items: stretch;
+}
+
+.bookDetailImage{
+  grid-area: img;
+  padding: 10px 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.bookDetailImage img{
+  max-width: 100%;
+  max-height: 100%;
+  
+}
+
+.bookDesc{
+  grid-area: info;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 10px;
+}
+
+.bookDesc .btn{
+  margin: 10px 0;
+}
+
+.bookDetailFeedback{
+  grid-area: rate;
+
+}
+
+.bookDetailFeedback textarea{
+  display: inline-block;
+  margin-left: 20px;
+  padding: 5px;
+}
+
+.bookDetailFeedback .btn{
+  display: inline-block;
+  position: relative;
+  bottom: 20px;
+  left: 5px;
+  background-color: green;
+}
+
+.viewBookFeedback{
+  grid-area: view;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 15px;
+}
+
+.viewBookFeedback h1{
+  font-size: 1.3em;
+  border-bottom: 2px solid grey;
+}
+
+.userFeedback {
+  border-bottom: 1px solid black;
+  min-height: 50px;
+}
+.userPic{
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+.userComment{
+  padding: 5px;
+  min-height: 50px;
+}
+
+.insertRating{
+  padding: 5px;
+  font-size: 0.9em;
+}
+
+.insertRating .btn{
+  display: inline-block;
+  height: 25px;
+  width: 60px;
+  margin-left: 10px;
+  background-color: rgb(194, 101, 26);
+}
+/*========================== MEMBER PROFILE ====================*/
+#profileHeader{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+
+#profileHeader h1{
+  font-size: 1.5em;
+}
+
+#profileContents{
+  padding: 30px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.profileDetail{
+  margin-bottom: 30px;
+}
+
+.profileDetail label{
+  display: inline-block;
+  width: 150px;
+}
+
+.profileDetail input{
+  width: 70%;
+  height: 40px;
+  font-size: 1.2em;
+  text-indent: 5px;
+  border-radius: 4px;
+  border: 1px solid gray;
+}
+#profileContents .btn{
+  display: inline-block;
+  width: 300px;
+}
+
+
+/*========================== CHANGE PW =====================*/
+#pwHeader{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+
+#pwHeader h1{
+  font-size: 1.5em;
+}
+
+#pwContents{
+  padding: 50px 160px;
+}
+
+#pwContents .btn{
+  display: inline-block;
+  width: 200px;
+  margin-right: 20px;
+}
+
+/*========================== REWARDS ====================*/
+#rewardHeader{
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+
+#rewardHeader h1{
+  font-size: 1.5em;
+}
+
+#rewardContents{
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  padding:30px;
+}
+
+.rewardInfo{
+  height: 400px;
+}
+.rewardImage{
+  height: 50%;
+}
+
+.rewardImage img{
+  max-width: 100%;
+  max-height: 100%;
+}
 
 
   /*========================= FOOTER =========================== */  

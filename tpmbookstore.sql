@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2018 at 03:15 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: Jan 29, 2018 at 12:17 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -46,7 +48,7 @@ INSERT INTO `book` (`bookId`, `bookTitle`, `bookDescription`, `bookPrice`, `book
 ('B001', 'Milk and Honey', 'It is about the experience of violence, abuse, love, loss, and femininity.', 20, 'Rupi Kaur', 'Createspace', '4th November 2014 ', 10, 'G001'),
 ('B002', 'Pride and Prejudice', '“It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.” So begins Pride and Prejudice, Jane Austen’s witty comedy of manners', 30, ' Jane Austen', 'Modern Library', '10th October 2000', 13, 'G001'),
 ('B003', 'Memories of Geisha', 'A literary sensation and runaway bestseller, this brilliant debut novel presents with seamless authenticity and exquisite', 15, 'Arthur Golden', 'Random House Large Print Publishing ', '15th November 2005', 9, 'G001'),
-('B004', 'Idiot Genius', '"From its engaging drawings to its powerful message, Idiot Genius will leave readers musing about Willa Snap\'s adventures long after the winding story concludes.', 70, 'Richard Due', 'Gibbering Gnome Press', '22nd December 2017', 20, 'G002'),
+('B004', 'Idiot Genius', '\"From its engaging drawings to its powerful message, Idiot Genius will leave readers musing about Willa Snap\'s adventures long after the winding story concludes.', 70, 'Richard Due', 'Gibbering Gnome Press', '22nd December 2017', 20, 'G002'),
 ('B005', 'The Riddle in Stone Trilogy', 'In the world of fantasy novels, Robert Evert is a supernova talent, and the RIDDLE IN STONE series brings twisting suspense and an unforgettable protagonist into the pantheon of great books.', 67, 'Robert Evert', 'Diversion Books', '7th December 2014', 36, 'G002'),
 ('B006', 'Undone', 'USA Today and New York Times bestselling author, Wendy Higgins, brings you the gripping, sensual conclusion to her apocalyptic trilogy.\r\n', 45, 'Wendy Higgins ', 'A Division of Ingenious Inventions Run Amok, Ink', '5th December 2017', 56, 'G002'),
 ('B007', 'The Hunger Game', 'The nation of Panem, formed from a post-apocalyptic North America, is a country that consists of a wealthy Capitol region surrounded by 12 poorer districts.', 87, 'Suzanne Collins', 'Scholastic Press', '14th September 2008', 70, 'G003'),
@@ -75,7 +77,7 @@ CREATE TABLE `feedback` (
   `feedbackId` varchar(10) NOT NULL,
   `bookRating` int(11) NOT NULL,
   `bookComment` varchar(255) NOT NULL,
-  `feedbackStatus` tinyint(1) NOT NULL,
+  `feedbackStatus` tinyint(1) NOT NULL DEFAULT '1',
   `feedbackDateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `memberId` varchar(10) NOT NULL,
   `bookId` varchar(10) NOT NULL
@@ -122,10 +124,9 @@ INSERT INTO `genre` (`genreId`, `genre`) VALUES
 
 CREATE TABLE `manager` (
   `managerId` varchar(10) NOT NULL,
-  `managerUsername` varchar(25) NOT NULL,
-  `managerPw` varchar(255) NOT NULL,
   `managerEmail` varchar(255) NOT NULL,
   `managerName` varchar(100) NOT NULL,
+  `managerPw` varchar(255) NOT NULL,
   `managerAddress` varchar(255) NOT NULL,
   `managerPhone` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -134,8 +135,8 @@ CREATE TABLE `manager` (
 -- Dumping data for table `manager`
 --
 
-INSERT INTO `manager` (`managerId`, `managerUsername`, `managerPw`, `managerEmail`, `managerName`, `managerAddress`, `managerPhone`) VALUES
-('A001', 'lizwei98', '1998', 'lizwei98@gmail.com', 'Liow Jing Wei', 'Ampang', '012-2276404');
+INSERT INTO `manager` (`managerId`, `managerEmail`, `managerName`, `managerPw`, `managerAddress`, `managerPhone`) VALUES
+('A001', 'admin', 'Admin', '$2y$10$uWiyFxhiY56211TPXyRuIOz8T.F7MVQBnkbN8xVbOfEWcuGUjCOMK', 'Bukit Jalil', '0122231233');
 
 -- --------------------------------------------------------
 
@@ -148,18 +149,12 @@ CREATE TABLE `member` (
   `memberEmail` varchar(255) NOT NULL,
   `memberName` varchar(100) NOT NULL,
   `memberPw` varchar(255) NOT NULL,
-  `memberAddress` varchar(255) DEFAULT NULL,
-  `memberPhone` varchar(15) DEFAULT NULL,
-  `memberCreditCard` varchar(255) DEFAULT NULL,
-  `memberPoint` int(11) DEFAULT NULL
+  `memberAddress` varchar(255) NOT NULL,
+  `memberPhone` varchar(15) NOT NULL,
+  `memberCreditCard` varchar(255) NOT NULL,
+  `memberTrust` tinyint(1) DEFAULT NULL,
+  `memberPoint` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `member`
---
-
-INSERT INTO `member` (`memberId`, `memberEmail`, `memberName`, `memberPw`, `memberAddress`, `memberPhone`, `memberCreditCard`, `memberPoint`) VALUES
-('M001', 'moon_river98@live.cn', 'Ash', '1998', 'KL', '019-8898765', '123456789', NULL);
 
 -- --------------------------------------------------------
 
@@ -406,6 +401,7 @@ ALTER TABLE `stockorder`
 ALTER TABLE `stockorderinfo`
   ADD CONSTRAINT `stockorderinfo_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `stockorder` (`orderId`),
   ADD CONSTRAINT `stockorderinfo_ibfk_2` FOREIGN KEY (`bookId`) REFERENCES `book` (`bookId`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

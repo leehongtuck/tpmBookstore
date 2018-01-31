@@ -1,8 +1,10 @@
 <?php
 $title="Change Password";
 require_once "inc/memberHeader.php";
+if($member == null)
+	header('location:index.php');
 if($_SERVER['REQUEST_METHOD']=='POST'){
-	$query = "SELECT * from member WHERE memberEmail='" . $_SESSION['userId'] . "'";
+	$query = "SELECT * from member WHERE memberEmail='$member[email]'";
 	$result = mysqli_query($conn, $query); 
 	$row = mysqli_fetch_array($result);
 	if(mysqli_num_rows($result) == 1){ 
@@ -13,11 +15,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			$cfmNewPw = mysqli_real_escape_string($conn, $_POST['confirmPassword']);
 			if ($newPw == $cfmNewPw):
 				$newPw = password_hash($newPw, PASSWORD_DEFAULT);
-				$query = "UPDATE member SET memberPw='$password1h' WHERE memberId='$_SESSION[userId]'";
+				$query = "UPDATE member SET memberPw='$newPw' WHERE memberId='$member[id]'";
 				if(mysqli_query($conn, $query)):
 					mysqli_close($conn);?>
 					<script>
-						alert("Password changed.");
+						alert("Password changed. Please log in with your new password.");
 						window.location.replace("index.php");
 					</script>
 				<?php
@@ -38,9 +40,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	mysqli_close($conn);			
 }
 ?>
-		<div>
-			<h1 class="title">Change Password</h1>
-			<form method="post">
+		<section>
+			<div id="pwHeader">
+				<h1>Change Password</h1>
+			</div>
+			
+			<form method="post" id="pwContents">
 				<div class="inputGroup">
 					<input name="currentPassword" type="password" required>
 					<span class="inputHighlight"></span>
@@ -58,10 +63,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 					<span class="inputHighlight"></span>
 					<span class="inputBar"></span>
 					<label for="retypePw">Retype New Password</label>
-				</div>			
+				</div>	
+					<button class="btn" onclick="location.href='memberProfile.php'" type="button">Back</button>		
 					<input class="btn" type="submit" value="Change Password">
-					<button class="btn" onclick="location.href='myProfile.php'" type="button">Back</button>
+					
 			</form>
-		</div>
+		</section>
 	</body>
 </html>

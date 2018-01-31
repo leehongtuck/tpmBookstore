@@ -7,11 +7,23 @@
   font-family: 'Open Sans',arial, sans-serif;
   font-size: 100%;
   list-style-type: none;
-} 
+}
+
+a {
+  color: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .background{
+<<<<<<< HEAD
   background-image: url("../img/background1.jpg");
   
   
+=======
+  /*background-image: url("/tpmBookstore/img/background.jpg");*/
+  background-color: burlywood;
+>>>>>>> d69950a60df3ef93210bcd26936d477b97a3c287
 }
 
 .grid {
@@ -40,7 +52,7 @@
 }
 
 /*2.2 Input Label */
-label {
+.inputGroup label {
   color:#999;
   font-size:1.2em;
   font-weight:normal;
@@ -53,7 +65,7 @@ label {
   -webkit-transition:0.2s ease all;
 }
 /* active state */
-input:focus ~ label, input:valid ~ label {
+.inputGroup input:focus ~ label, .inputGroup input:valid ~ label {
   top:-20px;
   font-size:0.9em;
   color:#5264AE;

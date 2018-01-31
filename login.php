@@ -1,7 +1,9 @@
 <?php
 $title="Login";
 require_once "inc/memberHeader.php";
-
+if($member != null)
+  header('location:index.php');
+  
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   // username and password sent from form 
   $myUsername=mysqli_real_escape_string($conn,$_POST['email']);
@@ -15,11 +17,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   // If result matched $myusername and $mypassword, table row must be 1 row
   if($numRows == 1):
     if(password_verify ($myPassword, $row[1])):
-      //session = userid
-      $_SESSION['userId'] = $row[0];
-      $_SESSION['userPw'] = $mypassword;?>
+      $_SESSION['memberId'] = $row[0];
+      $_SESSION['memberPw'] = $myPassword;?>
       <script>
-        alert("Login successful");
+        alert("Login successful.");
         window.location.replace("index.php");
       </script>
     <?php
@@ -37,21 +38,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   endif; 
   } 
 ?>
-
-<form method="post">
-			<div class="inputGroup" >
-				<input name="email" type="text" required>
-				<span class="inputHighlight"></span>
-				<span class="inputBar"></span>
-				<label for="name">Email</label>	
-			</div>
-			<div class="inputGroup">
-				<input name="password" type="password" required>
-				<span class="inputHighlight"></span>
-				<span class="inputBar"></span>
-				<label>Password</label>	
-      </div>
-      <div>
-				<input class="btn" id="loginBtn" type="submit" value="Login">
-			</div>
-</form>
+<section id="loginContainer">
+  <div id="loginHeader">
+    <h1>Login</h1>
+  </div>
+  <form method="post">
+        <div class="inputGroup" >
+          <input name="email" type="text" required>
+          <span class="inputHighlight"></span>
+          <span class="inputBar"></span>
+          <label for="name">Email</label>	
+        </div>
+        <div class="inputGroup">
+          <input name="password" type="password" required>
+          <span class="inputHighlight"></span>
+          <span class="inputBar"></span>
+          <label>Password</label>	
+        </div>
+        <div>
+          <input class="btn" id="loginBtn" type="submit" value="Login">
+        </div>
+  </form>
+  <div id="register">
+    <p>Not a member yet? <a href="/tpmBookstore/register.php">Register here</a>.</p>
+  </div>
+</section>
