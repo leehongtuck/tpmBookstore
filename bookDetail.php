@@ -172,6 +172,7 @@ require_once "inc/session.php";
 									<form method='post' class="insertRating" action='insertRating.php'>
 										<label>Rate this feedback: </label>
 										<input type='hidden' name='hiddenMemberId' value='<?=$row['memberId']?>' />
+										<input type='hidden' name='hiddenBookId' value='<?=$id?>' />
 										<input type='hidden' name='hiddenFeedbackId' value='<?=$row['feedbackId']?>'/>
 										<input type='hidden' name='hiddenBookIdRating' value='<?=$row['bookId']?>'/>
 										<input type='radio' name='feedbackRating' value='1'>Useless
