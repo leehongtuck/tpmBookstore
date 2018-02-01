@@ -230,7 +230,8 @@ nav a:hover {
 } 
 
 .cartFooter{
-	float:right; 
+	float:right;
+	margin:10px 100px;
 	
 	
 }
