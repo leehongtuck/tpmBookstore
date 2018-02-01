@@ -32,7 +32,8 @@ a {
 /*2.1 Container and input*/
 .inputGroup {
   position:relative;
-  margin-bottom:45px;
+  margin-bottom:45px; 
+ 
 }
 .inputGroup input {
   font-size:0.8em;
@@ -146,17 +147,17 @@ input:focus ~ .inputBar:before, input:focus ~ .inputBar:after {
   height: 40px;
   display: block;
   margin: 10px auto;
-  padding: 0;
+  padding: 0; 
   overflow: hidden;
   border-width: 0;
   outline: none;
-  border-radius: 2px;
+  border-radius: 0.5em;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-  background-color: #2152bd;
-  color: #ecf0f1;
+  background-color: black;
+  color: white;
   }
   
   .btn:hover{
-  background-color: #4c77d4;
+  background-color:rgba(0, 0, 0, 0.6);
   cursor: pointer;
   }

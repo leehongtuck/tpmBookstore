@@ -49,10 +49,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	endif;
 }
 ?>
-	<section id="registerContainer" class="background" >
+	<section id="registerContainer" >
 		<div id="registerHeader" >
 			<h1>Registration</h1>
-		</div>
+		</div> 
+		<div>
 		<form method="post">
 			<div class="inputGroup" >
 				<input name="memName" type="text" required>
@@ -61,7 +62,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				<label for="name">Name</label>	
 			</div>
 			<div class="inputGroup">
-				<input name="email" type="text" required>
+				<input name="email" type="email" required>
 				<span class="inputHighlight"></span>
 				<span class="inputBar"></span>
 				<label>Email</label>	
@@ -96,11 +97,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				<span class="inputBar"></span>
 				<label>Credit Card Number</label>
 				</div>
-			</div>
+		
 			<div>
 				<input class="btn" id="registerBtn" type="submit" value="Register">
-			</div>
-		</form>
+			</div> 
+		
+		</form> 
+		</div>
 	</section>
 
 </body>

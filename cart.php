@@ -3,11 +3,11 @@ $title = "Cart";
 require_once "inc/memberHeader.php";
 ?>
 <div id="cart">
-    <div id="cartHeader">
-        <div id="cartTitle"><h2>Cart</h2></div>
-    </div>
-    
     <div id="cartContent">
+        <div id="cartTitle"><h2>Cart</h2></div>
+    
+    
+    
         <?php
         if(isset($_SESSION['cart'])):
             foreach ($_SESSION['cart'] as $bookId => $quantity) {
@@ -38,12 +38,15 @@ require_once "inc/memberHeader.php";
             endwhile;
             }
         endif;
-        ?>
-    </div>
-
-    <div id="cartFooter">
+        ?> 
+        
+        <div class="cartFooter">
         <button class="btn" onclick="checkout()">Checkout</button>
     </div>
+    
+    </div>
+
+    
 </div>
 <script>
     function changeQuantity(change, quantity, bookId, price) {

@@ -1,6 +1,8 @@
 <?php 
 $title = "Activity_log";
-require_once "inc/memberHeader.php"?> 
+require_once "inc/memberHeader.php" 
+$result=mysqli_query($conn,"SELECT * FROM ");
+?> 
 
 
 <!DOCTYPE html>
@@ -23,7 +25,7 @@ require_once "inc/memberHeader.php"?>
 	<div>
 	<table style="width: 100%;text-align:center">
 			<tr>
-				<td class="rightBorder">Date</td>
+				<td class="rightBorder">Date</td> 
 				<td class="bottomBorder">Description</td>
 			</tr>
 			

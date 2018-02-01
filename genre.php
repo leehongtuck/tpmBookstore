@@ -25,7 +25,7 @@ $result = mysqli_query($conn, $query);  ?>
 					?>
 				</div>
 				<div class="bookDetail">
-					<p><?=$row["bookTitle"]; ?></p>
+					<p style="font-weight:bold"><?=$row["bookTitle"]; ?></p>
 					<p>Author: <?=$row["bookAuthor"]; ?></p>
 					<p>Price: RM<?=$row["bookPrice"]; ?></p>
 				</div>
