@@ -14,8 +14,8 @@
         <button class="btn"><i class="fas fa-user"></i><span class="iconLeft"><?=$member['name']?></span></button>
             <ul>
             <li><a href="/tpmBookstore/memberProfile.php"><i class="fas fa-address-card"></i><span class="iconLeft">Manage Profile</span></a></li>
-            <li><i class="fas fa-history"></i><span class="iconLeft">Transaction History</span> </li>
-            <li><i class="fas fa-comments"></i><span class="iconLeft">Feedback History</span></li>
+            <li><a href="/tpmBookstore/purchaseHistory.php"><i class="fas fa-history"></i><span class="iconLeft">Transaction History</span></a> </li>
+            <li><a href="/tpmBookstore/feedbackHistory.php"><i class="fas fa-comments"></i><span class="iconLeft">Feedback History</span></a></li>
             <li><a href="/tpmBookstore/rewards.php"><i class="fas fa-gift"></i><span class="iconLeft">Claim Rewards</span></a></li>
             <li><a href="/tpmBookstore/logout.php"><i class="fas fa-sign-out-alt"></i><span class="iconLeft">Logout</span></a></li>        
             </ul>

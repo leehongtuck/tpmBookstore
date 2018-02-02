@@ -90,6 +90,9 @@ require_once "inc/memberHeader.php";
             window.location.replace("/tpmBookstore/login.php");
         }else
             window.location.replace("/tpmBookstore/checkout.php");
+        
+            
+        
     }
 </script>
         
