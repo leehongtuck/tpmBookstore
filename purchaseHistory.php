@@ -1,9 +1,9 @@
 <?php 
 $title = "Activity Log";
 require_once "inc/memberHeader.php"; 
-$result=mysqli_query($conn,"SELECT * FROM bookPurchase INNER JOIN book ON bookpurchase.bookId=book.bookId INNER JOIN payment ON bookpurchase.paymentId=payment.paymentId ");
-/*if($member == null)
-	header('location:index.php');*/
+$result=mysqli_query($conn,"SELECT * FROM bookPurchase INNER JOIN book ON bookpurchase.bookId=book.bookId INNER JOIN payment ON bookpurchase.paymentId=payment.paymentId WHERE memberId='$_SESSION[memberId]'");
+if($member == null)
+	header('location:index.php');
 ?> 
 
 
@@ -38,6 +38,7 @@ $result=mysqli_query($conn,"SELECT * FROM bookPurchase INNER JOIN book ON bookpu
 <?php
 while($row=mysqli_fetch_array($result))
 { 
+
 echo"<tr>";
 
 echo"<td>";

@@ -1,7 +1,9 @@
 <?php 
-$title = "Activity_log";
-require_once "inc/memberHeader.php" 
-$result=mysqli_query($conn,"SELECT * FROM ");
+$title = "Activity log";
+require_once "inc/memberHeader.php";
+$result=mysqli_query($conn,"SELECT * FROM member INNER JOIN feedback ON member.memberId=feedback.memberId INNER JOIN book ON feedback.bookId=book.bookId  WHERE feedback.memberId='$_SESSION[memberId]'");
+if($member == null)
+	header('location:index.php');
 ?> 
 
 
@@ -19,21 +21,54 @@ $result=mysqli_query($conn,"SELECT * FROM ");
 
 <h1>Feedback History</h1>
 <br>
-<br>
-<form action="" method="post"> 
+<br> 
 	
 	<div>
-	<table style="width: 100%;text-align:center">
+	<table style="width: 100%;text-align:center;table-layout: fixed;">
 			<tr>
-				<td class="rightBorder">Date</td> 
-				<td class="bottomBorder">Description</td>
-			</tr>
+				<td class="rightBorder">Book</td> 
+				<td class="rightBorder">Rating/Comment</td> 
+				<td class="bottomBorder">Date/Time</td>
+			</tr> 
+			
+<?php
+while($row=mysqli_fetch_array($result))
+{  
+
+echo "<tr>";
+
+echo"<td>";
+echo $row['bookTitle'];
+echo"</td>";  
+
+echo"<td>";
+echo $row['bookRating'];
+echo "/10 ";
+echo $row['bookComment'];
+echo"</td>";  
+
+echo"<td>";
+echo$row['feedbackDateTime'];
+echo"</td>";  
+
+echo"</tr>";
+
+}
+mysqli_close($conn);
+
+?>
+
+
+
+
+
+
+
 			
 		</table>
 	
 	</div>
-</form>
-</div> 
+	</div>
 
 
 </body>
