@@ -6,9 +6,11 @@ require_once "inc/memberHeader.php";
 
 ?>
 
-<section>       
-    <div id="recentlyAdded">
-    Recently Added.
+<section>
+    <div class="indexTitle" style="border-top:none;">
+        <h1>Recently Added Books</h1>
+    </div>       
+    <div id="recentlyAdded" class="flex">
     <?php
     $sql = "SELECT * FROM book ORDER BY bookPublishDate DESC LIMIT 5";
     $result = mysqli_query($conn, $sql);
@@ -32,15 +34,17 @@ require_once "inc/memberHeader.php";
         endwhile;
     else:
     ?>
-        <div class="bookInfo">
+        <div class="bookInfo flex">
             No books to be displayed
         </div>
     <?php
     endif;
     ?>
     </div>
-    <div id="topSeller">
-    Top Seller.
+    <div class="indexTitle">
+        <h1>Top Sellers</h1>
+    </div>  
+    <div id="topSeller" class="flex">
     <?php
     $sql = "SELECT SUM(bp.purchaseQuantity) AS qty, b.bookId, b.bookTitle, b.bookTitle, b.bookAuthor, b.bookPrice FROM 
         payment AS p INNER JOIN bookpurchase AS bp ON p.paymentId = bp.paymentId 

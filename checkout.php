@@ -36,6 +36,12 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             SET bookQuantity = bookQuantity - '$qty[$i]'
             WHERE bookId = '$book[$i]'";
         mysqli_query($conn, $sql);
+        $point = 10* $qty[$i];
+        //add member point
+        $sql = "UPDATE member
+            SET memberPoint = memberPoint + '$point'
+            WHERE member = '$member[id]'";
+        mysqli_query($conn, $sql);
     }
     unset($_SESSION['cart']);
     echo "<script>alert('Purchase Successful!');
