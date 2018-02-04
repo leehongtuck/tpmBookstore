@@ -129,3 +129,38 @@
       width: 100px;
       height: 45px;
       font-size: 1.2em;
+  }
+
+  /*==================== Dashboard ==============*/
+  #pieCharts{
+    height: 400px;
+    padding: 20px;
+    justify-content: space-between;
+  }
+
+  .smallCharts{
+    flex-basis: 30%;
+    border: 2px solid #2152bd;
+  }
+
+  .smallCharts h2{
+    text-align: center;
+    font-size: 1.4em;
+    margin: 15px;
+  }
+
+  #barCharts{
+    padding: 20px;
+    justify-content: space-between;
+  }
+
+  .bigCharts{
+    border: 2px solid #2152bd;
+    margin: 20px 0;
+  }
+
+  .bigCharts h2{
+    text-align: center;
+    font-size: 1.4em;
+    margin: 15px;
+  }
