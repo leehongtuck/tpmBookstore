@@ -1,20 +1,13 @@
 <!DOCTYPE html>
  <?php
 include("inc/conn.php");
+require_once "inc/managerHeader.php";
 ?>
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<style type="text/css">
-			
-		table {
-			margin:0 auto;
-		}
-		
-		
-		</style>
 	</head>
 
 	<body>
@@ -27,7 +20,7 @@ include("inc/conn.php");
 			
 		?>
 		<div class="booklist">
-			<table style="width:80%;">
+			<table style="width:90%;" cellpadding="0" cellspacing="0">
 				<tr bgcolor="#7a818c">
 				<td>Title</td>
 				<td>Genre</td>
@@ -39,6 +32,8 @@ include("inc/conn.php");
 				<td>Quantity</td>
 				</tr>
 			<form method="POST" action="insertRequest.php">
+				<div class="middle">
+					<label>Supplier Name:</label>
 					<select name='supplierName'>
 					<?php 
 						$sql="SELECT * FROM supplier";
@@ -49,12 +44,13 @@ include("inc/conn.php");
 						}
 					?>
 					</select>
+				</div>
 			<?php
 				if(mysqli_num_rows($result) > 0)  {				
 				while($row=mysqli_fetch_array($result))
 				{
 					
-					echo "<tr bgcolor=#bcc8db>";
+					echo "<tr bgcolor=#ecfce5>";
 					echo "<td>";
 					echo $row['bookTitle'];
 					echo "</td>";
@@ -100,7 +96,9 @@ include("inc/conn.php");
 			mysqli_close($conn); //to close the database connection
 			?>
 			</table>
-				<input type="submit" name="Submit" value="Request" />
+				<div class="middle">
+					<input type="submit" name="Submit" value="Request" />
+				</div>	
 			</form>
 		</div>
 	</body>

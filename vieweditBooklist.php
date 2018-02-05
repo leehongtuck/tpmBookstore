@@ -80,7 +80,9 @@ require_once("inc/managerHeader.php");
 		mysqli_close($conn); //to close the database connection
 		?>
 		</table>
-			<input type="submit" name="Submit" value="Update" />
+			<div class="middle">
+				<input type="submit" name="Submit" value="Update" />
+			</div>
 		</form>
 		
 	</body>

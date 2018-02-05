@@ -178,6 +178,7 @@
  table {
      margin:10px auto;
      border-collapse: collapse;
+	 margin-top:3%;
 
  }
 
@@ -192,6 +193,11 @@
      padding: 10px 5px;
  }
 
+ .middle {
+	margin:2%;
+	margin-left:40%;
+	}
+  
  .input {
      margin: 50px 0;
      text-align:center;
