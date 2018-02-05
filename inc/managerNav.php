@@ -13,10 +13,14 @@
     </div>
     <div id="headerLower">
         <nav>
-        <a href="">Test 1</a>
-        <a href="">Test 2</a>
-        <a href="">Test 3</a>
+        <a href="">View System Log</a>
+        <a href="vieweditRewardlist.php">Manage Rewards</a>
+        <a href="vieweditBooklist.php">Manage Inventory</a>
         <a href="managerRegister.php">Register New Manager</a>
+        <a href="">Manage Users and Feedbacks</a>
+        <a href="">Generate Report</a>
+        <a href="">Place Order</a>
+        <a href="">View Orders</a
         </nav>
     </div>
 </header>

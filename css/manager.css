@@ -164,3 +164,70 @@
     font-size: 1.4em;
     margin: 15px;
   }
+
+  /*============vieweditBooklist, vieweditRewardlist ============*/
+ .tableHeader{
+     border-bottom: 2px solid #2152bd;
+     padding: 20px;
+ }
+
+ .tableHeader h1{
+     font-size: 1.4em;
+     text-align: center;
+ }
+ table {
+     margin:10px auto;
+     border-collapse: collapse;
+
+ }
+
+ th{
+     font-size: 1.2em;
+     border-right: 1px solid black;
+     border-left: 1px solid black;
+ }
+
+
+ td{
+     padding: 10px 5px;
+ }
+
+ .input {
+     margin: 50px 0;
+     text-align:center;
+     line-height:1.625;
+ }
+
+ input[type=text], input[type=number], input[type=submit], input[type=date], textarea {
+     padding:10px;
+ }
+
+ input[type=text], input[type=number], input[type=date],input[type=password], textarea, select {
+     border: 1px solid #ccc;
+     background-color: transparent;
+     color: #000;
+     border-radius: 5px;
+     -moz-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+     margin:0 auto;
+ }
+
+ input[type=submit] {
+     background: black;
+     font-family: Roboto,sans-serif;
+     font-weight: 700;
+     color: #fff;
+     -webkit-appearance: none;
+     padding: 0 30px;
+     font-size: 16px;
+     border-radius: 5px;
+     height: 40px;
+     display: inline-block;
+     cursor: pointer;
+     border: none;
+     font-size: 14px;
+     letter-spacing: 0.1em;
+     text-transform: uppercase;
+     margin:25px;
+ }
