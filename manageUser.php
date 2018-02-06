@@ -39,10 +39,9 @@ $count=mysqli_num_rows($result);
                     <td><?=$row['memberPhone']?></td>
                     <td><?=$row['memberPoint']?></td>
                     <td>
-                        <select name='bookgenre["<?=$row['bookId']?>]'>
-                            <option value='0' <?php if($row['memberTrust'] == 0)echo "selected";?>>Neutral</option>
-                            <option value='1' <?php if($row['memberTrust'] == 1)echo "selected";?> >Not Trusted</option>
-                            <option value='2' <?php if($row['memberTrust'] == 2)echo "selected";?>>Trusted</option>
+                        <select name='memberTrust[<?=$row['memberId']?>]'>
+                            <option value='0' <?php if($row['memberTrust'] == 0)echo "selected";?> >Not Trusted</option>
+                            <option value='1' <?php if($row['memberTrust'] == 1)echo "selected";?>>Trusted</option>
                         </select>
                     </td>
                 </tr>
