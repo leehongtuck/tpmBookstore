@@ -17,7 +17,7 @@
         <a href="vieweditRewardlist.php">Manage Rewards</a>
         <a href="vieweditBooklist.php">Manage Inventory</a>
         <a href="managerRegister.php">Register New Manager</a>
-        <a href="">Manage Users and Feedbacks</a>
+        <a href="manageUser.php">Manage Users and Feedbacks</a>
         <a href="">Generate Report</a>
         <a href="">Place Order</a>
         <a href="">View Orders</a

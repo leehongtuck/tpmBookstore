@@ -8,9 +8,9 @@ require_once("inc/managerHeader.php");
 			$query = "SELECT book.*, genre.* FROM book INNER JOIN genre ON book.genreId = genre.genreId ";
 			$result = mysqli_query($conn, $query);
 			$count=mysqli_num_rows($result);
-			
-			
-			
+
+
+
 		?>
 <div class="tableHeader">
     <h1>Manage Booklist</h1>
@@ -28,15 +28,15 @@ require_once("inc/managerHeader.php");
 			</tr>
 		<form method="POST" action="updateBooklist.php">
 		<?php
-			if(mysqli_num_rows($result) > 0)  {				
+			if(mysqli_num_rows($result) > 0)  {
 			while($row=mysqli_fetch_array($result))
 			{
-				
+
 				echo "<tr>";
 				echo "<td>";
 				echo "<input type='text' name='booktitle[".$row['bookId']."]' value='".$row['bookTitle']."' />";
 				echo "</td>";
-				
+
 				echo "<td>";
 				echo "<select name='bookgenre[".$row['bookId']."]'>";
 				echo "<option hidden disabled selected value='".$row['genre']."'>".$row['genre']."</option>";
@@ -62,7 +62,7 @@ require_once("inc/managerHeader.php");
 				echo "</td>";
 
 				echo "<td>";
-				echo "<input type='text' name='bookpubd[".$row['bookId']."]' value='".$row['bookPublishDate']."' />";
+				echo "<input type='date' name='bookpubd[".$row['bookId']."]' value='".$row['bookPublishDate']."' />";
 				echo "</td>";
 
 				echo "<td>";
@@ -74,8 +74,8 @@ require_once("inc/managerHeader.php");
                 echo "</td></tr>";
 
 
-			
-			}		
+
+			}
 			}
 		mysqli_close($conn); //to close the database connection
 		?>
@@ -84,6 +84,6 @@ require_once("inc/managerHeader.php");
 				<input type="submit" name="Submit" value="Update" />
 			</div>
 		</form>
-		
+
 	</body>
 </html>
