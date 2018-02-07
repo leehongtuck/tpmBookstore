@@ -7,6 +7,19 @@ foreach ($_POST['booktitle'] as $id => $value ){
 		echo "you made it 1";
 	}
 }
+/*IMAGE*/
+foreach ($_FILES['bookImage']['tmp_name'] as $id => $value){
+$target_dir="img/";
+$temp = explode(".", $_FILES["bookImage"]["name"][$id]);
+$newfilename = "$id".".". end($temp);
+$target_file= $target_dir . $newfilename;
+if(move_uploaded_file($_FILES["bookImage"]['tmp_name'][$id],$target_file)){
+	echo "you made it";
+}
+else{
+	echo "no image updated";
+}
+}
 /*GENRE*/
 if (isset($_POST['bookgenre'])) { 
 foreach ($_POST['bookgenre'] as $id => $value6 ){
@@ -61,7 +74,7 @@ foreach ($_POST['bookq'] as $id => $value6 ){
 }
 echo '<script type="text/javascript">
 		alert("Book Updated!");
-		window.location.replace("vieweditBooklist.php"); 					
+		window.location.replace("vieweditBooklist.php"); 		
 	  </script>';	
 	
 ?>

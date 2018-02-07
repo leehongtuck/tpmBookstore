@@ -18,6 +18,7 @@ require_once("inc/managerHeader.php");
 		<table>
 			<tr>
 			<th>Title</th>
+			<th>Image</th>
 			<th>Genre</th>
 			<th>Price</th>
 			<th>Author</th>
@@ -26,7 +27,7 @@ require_once("inc/managerHeader.php");
 			<th>Quantity</th>
             <th>Description</th>
 			</tr>
-		<form method="POST" action="updateBooklist.php">
+		<form method="POST" enctype='multipart/form-data' action="updateBooklist.php">
 		<?php
 			if(mysqli_num_rows($result) > 0)  {
 			while($row=mysqli_fetch_array($result))
@@ -35,6 +36,10 @@ require_once("inc/managerHeader.php");
 				echo "<tr>";
 				echo "<td>";
 				echo "<input type='text' name='booktitle[".$row['bookId']."]' value='".$row['bookTitle']."' />";
+				echo "</td>";
+				
+				echo "<td>";
+				echo "<input type='file' name='bookImage[".$row['bookId']."]'/>";
 				echo "</td>";
 
 				echo "<td>";
