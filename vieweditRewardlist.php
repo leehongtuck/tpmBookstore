@@ -7,7 +7,7 @@ $count = mysqli_num_rows($result);
 ?>
 
 <div class="tableHeader">
-    <h1>Manage Booklist</h1>
+    <h1>Manage Rewards</h1>
 </div>
 <table>
     <tr>
