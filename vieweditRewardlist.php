@@ -9,14 +9,14 @@ $count = mysqli_num_rows($result);
 <div class="tableHeader">
     <h1>Manage Rewards</h1>
 </div>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Point</th>
-        <th>Quantity</th>
-        <th>Description</th>
-    </tr>
-    <form method="POST" action="updateRewardlist.php">
+<form method="POST" action="updateRewardlist.php">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Point</th>
+            <th>Quantity</th>
+            <th>Description</th>
+        </tr>
         <?php
         if(mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_array($result)) {
@@ -40,10 +40,10 @@ $count = mysqli_num_rows($result);
         }
         mysqli_close($conn); //to close the database connection
         ?>
-</table>
-<div class="middle">
-    <input type="submit" name="Submit" value="Update"/>
-</div>
+    </table>
+    <div class="middle">
+        <input type="submit" name="Submit" value="Update"/>
+    </div>
 </form>
 
 </body>

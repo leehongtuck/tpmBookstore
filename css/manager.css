@@ -191,6 +191,13 @@ td {
     text-align: center;
 }
 
+td a{
+    text-decoration: underline;
+}
+
+td a:hover{
+    color: #2152bd;
+}
 .middle {
     margin: 2%;
     margin-left: 40%;

@@ -24,6 +24,8 @@
             <a href="addGenre.php">Add New Genre</a>
             <a href="addReward.php">Add New Reward</a>
             <a href="bookRequest.php">Place Order</a>
+            <a href="manageOrder.php">Manage Orders</a>
+            <a href="viewArrivedOrders.php">Arrived Orders</a>
         </nav>
     </div>
 </header>
