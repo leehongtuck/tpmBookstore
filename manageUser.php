@@ -1,5 +1,5 @@
 
-<?php
+ <?php
 $title = "Manage User";
 require_once("inc/managerHeader.php");
 ?>

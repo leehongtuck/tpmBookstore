@@ -1,4 +1,4 @@
-body {
+﻿body {
     background-color: #eee;
 }
 
@@ -241,4 +241,48 @@ input[type=submit] {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin: 25px;
+} 
+
+/*=======================systemLog===================*/ 
+
+#log{
+  padding: 30px;
+  margin: 60px auto;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: inherit; 
+  max-height:80%;
+  width:80%;
+  border-radius:0.7em;
+  
+  }  
+  
+  h1{
+	font-family:inherit;
+	font-size:50px;
+	text-align:center;
+		
+} 
+
+tr{
+	font-family:inherit;
+	font-size:17px;
+	font-weight:bold;
+	
+	
 }
+
+.bottomBorder {
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-style:solid;
+} 
+
+.rightBorder {
+	border-right-style: solid;
+	border-right-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+} 
+
+ 
+
