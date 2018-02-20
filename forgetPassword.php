@@ -42,16 +42,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 }
 ?>
+<section id="loginContainer">
+    <div id="loginHeader">
+        <h1>Forget Password</h1>
+    </div>
+    <form method="post">
+        <div class="inputGroup" >
+            <input name="email" type="text" required>
+            <span class="inputHighlight"></span>
+            <span class="inputBar"></span>
+            <label for="name">Email</label>
+        </div>
 
-<form method="post">
-	<div class="inputGroup" >
-		<input name="email" type="text" required>
-		<span class="inputHighlight"></span>
-		<span class="inputBar"></span>
-		<label for="name">Email</label>	
-	</div>
-
-	<div>
-		<input class="btn" id="loginBtn" type="submit" value="Submit">
-	</div>
-</form>
+        <div>
+            <input class="btn" id="loginBtn" type="submit" value="Submit">
+        </div>
+    </form>
+</section>

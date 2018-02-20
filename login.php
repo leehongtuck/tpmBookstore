@@ -62,6 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
     <div id="register">
+        <p><a href="/tpmBookstore/forgetPassword.php">Forget Password?</a></p>
         <p>Not a member yet? <a href="/tpmBookstore/register.php">Register here</a>.</p>
     </div>
 </section>
