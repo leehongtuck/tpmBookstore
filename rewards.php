@@ -28,7 +28,7 @@ if($member == null)
 				<label id="quantity">Quantity: </label><input type="number" name="quantity" min="1" <?php if ($row["rewardQuantity"]==0){ echo "disabled";} ?>><p>Available Quantity (<?php echo $row["rewardQuantity"]; ?> left)</p>
 				<input type="hidden" name="hiddenId" value="<?php echo $row["rewardId"]; ?>" /> 
 				<input type="hidden" name="hiddenPoint" value="<?php echo $row["rewardPoint"];?>" />
-				<input name="claimReward" type="submit" class="btn" value="Claim" <?php if($member['point']<$row['rewardPoint'])echo "disabled";?>>
+				<input name="claimReward" type="submit" class="btn" value="Claim">
 			</form>
 		</div>
 	</div>

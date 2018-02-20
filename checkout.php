@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         //add member point
         $sql = "UPDATE member
             SET memberPoint = memberPoint + '$point'
-            WHERE member = '$member[id]'";
+            WHERE memberId = '$member[id]'";
         mysqli_query($conn, $sql);
     }
     unset($_SESSION['cart']);
