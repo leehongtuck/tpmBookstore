@@ -617,27 +617,23 @@ tr{
 
   /*========================= FOOTER =========================== */  
 Footer{
-  height:100px;
+  height:30px;
   background-color: rgba(255, 255, 255, 0.3);
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
 }  
-#fLogo{
-  height:auto;
-  width:auto;
-  float: left;
-  left:300px;
-  } 
 
-  #fAdd{
-    height:100px;
-    float:right;
-    right:200px;
-    font-size: 10px;
+  
+footer p{
+	height:30px;
+	text-align:center;
+	font-size: 13px;
     font-family:inherit;
-  }
+    padding:10px;
+    font-weight:bold;
+    
+   
+} 
 
-
- 
