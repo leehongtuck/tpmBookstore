@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 21, 2018 at 02:16 PM
+-- Generation Time: Feb 21, 2018 at 02:33 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `book` (
   `bookAuthor` varchar(50) NOT NULL,
   `bookPublisher` varchar(50) NOT NULL,
   `bookPublishDate` varchar(50) NOT NULL,
-  `bookQuantity` int(11) NOT NULL,
+  `bookQuantity` int(11) DEFAULT NULL,
   `genreId` varchar(4) NOT NULL,
   PRIMARY KEY (`bookId`),
   KEY `book_ibfk_1` (`genreId`)
