@@ -93,3 +93,8 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         <input class="btn" type="submit" value="Purchase Items">
     </div>
 </form>
+
+<?php
+include_once("inc/memberFooter.php");
+?>
+

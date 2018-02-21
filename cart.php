@@ -95,4 +95,9 @@ require_once "inc/memberHeader.php";
         
     }
 </script>
+
+<?php
+include_once("inc/memberFooter.php");
+?>
+
         

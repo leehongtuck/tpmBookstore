@@ -71,3 +71,8 @@ mysqli_close($conn);
 </body>
 
 </html>
+
+<?php
+include_once("inc/memberFooter.php");
+?>
+

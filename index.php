@@ -81,3 +81,7 @@ require_once "inc/memberHeader.php";
 </section>
 </body>
 </html>
+
+<?php
+include_once("inc/memberFooter.php");
+?>

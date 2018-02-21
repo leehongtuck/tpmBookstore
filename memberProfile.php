@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 }
 	
 ?>
-		<section>
+		<section id="profile">
 			<div id="profileHeader">
 				<h1>Manage Profile</h1>	
 			</div>
@@ -59,3 +59,8 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 		</section>
 	</body>
 </html>
+
+<?php
+include_once("inc/memberFooter.php");
+?>
+
