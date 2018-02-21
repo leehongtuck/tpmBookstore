@@ -1,5 +1,5 @@
 <?php 
-$title = "Feedback Rating Log";
+$title = "User Feedback Ratings";
 require_once "inc/managerHeader.php";
 $result=mysqli_query($conn, "SELECT * FROM feedbackrating AS fr INNER JOIN member AS m ON fr.memberId = m.memberId INNER JOIN feedback AS f on fr.feedbackId = f.feedbackId");
 ?>
@@ -16,7 +16,7 @@ $result=mysqli_query($conn, "SELECT * FROM feedbackrating AS fr INNER JOIN membe
 <body>
 <div id="log"> 
 
-<h1>Member Transaction Log</h1>
+<h1>User Feedback Ratings</h1>
 <br>
 <br> 
 	

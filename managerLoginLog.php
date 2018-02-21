@@ -1,5 +1,5 @@
 <?php 
-$title = "Member Login Log";
+$title = "Users Login Log";
 require_once "inc/managerHeader.php";
 $result=mysqli_query($conn, "SELECT * FROM memberlogin INNER JOIN member ON memberlogin.memberId=member.memberId ");
 ?>
@@ -9,14 +9,13 @@ $result=mysqli_query($conn, "SELECT * FROM memberlogin INNER JOIN member ON memb
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>Member Login Log </title>
 
 </head>
 
 <body>
 <div id="log"> 
 
-<h1>Member Transaction Log</h1>
+<h1>Users Login Log</h1>
 <br>
 <br> 
 	

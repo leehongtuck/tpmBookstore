@@ -1,5 +1,5 @@
 <?php 
-$title = "System log";
+$title = "User Feedbacks";
 require_once "inc/managerHeader.php";
 $result=mysqli_query($conn, "SELECT * FROM member INNER JOIN feedback ON member.memberId=feedback.memberId INNER JOIN book ON feedback.bookId=book.bookId");
 ?>
@@ -9,14 +9,13 @@ $result=mysqli_query($conn, "SELECT * FROM member INNER JOIN feedback ON member.
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>Member Feedback Log</title>
 
 </head>
 
 <body>
 <div id="log"> 
 
-<h1>Member Feedback Log</h1>
+<h1>User Feedbacks</h1>
 <br>
 <br> 
 	

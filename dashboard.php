@@ -33,7 +33,7 @@ require_once "inc/session.php";
             <canvas id="barChart1"></canvas>
         </div>
         <div class="bigCharts">
-            <h2>User Trustworthiness</h2>
+            <h2>Trusted and Non-Trusted Users</h2>
             <canvas id="barChart2"></canvas>
         </div>
     </section>
@@ -170,15 +170,11 @@ require_once "inc/session.php";
             let salesChart5 = new Chart(barChart2, {
                 type: 'bar',
                 data: {
-                    labels: ['Not-rated', 'Trustworthy', 'Untrustworthy'],
+                    labels: ['Untrustworthy', 'Trustworthy'],
                     datasets: [{
-                        label: 'Trustworthiness',
+                        label: 'Number of Users',
                         data: [
                             <?php
-                            $sql = "SELECT COUNT(memberId) AS num FROM member WHERE memberTrust IS NULL";
-                            $result = mysqli_query($conn, $sql);
-                            $row = mysqli_fetch_array($result);
-                            echo $row['num'].",";
                             $sql = "SELECT COUNT(memberId) AS num FROM member WHERE memberTrust = 0";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_array($result);
@@ -186,7 +182,8 @@ require_once "inc/session.php";
                             $sql = "SELECT COUNT(memberId) AS num FROM member WHERE memberTrust = 1";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_array($result);
-                            echo $row['num'].","; ?>
+                            echo $row['num'].",";
+                             ?>
                         ],
                         borderWidth: 4,
                         borderColor: '#777'

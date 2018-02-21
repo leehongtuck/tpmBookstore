@@ -1,5 +1,5 @@
 <?php 
-$title = "Reward redeemed Log";
+$title = "Users Claimed Rewards";
 require_once "inc/managerHeader.php";
 $result=mysqli_query($conn, "SELECT * FROM member INNER JOIN memberreward ON member.memberId=memberreward.memberId INNER JOIN reward ON memberreward.rewardId=reward.rewardId ");
 ?>
@@ -9,14 +9,13 @@ $result=mysqli_query($conn, "SELECT * FROM member INNER JOIN memberreward ON mem
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>Member Reward Redeemed Log</title>
 
 </head>
 
 <body>
 <div id="log"> 
 
-<h1>Member Transaction Log</h1>
+<h1>Users Claimed Rewards</h1>
 <br>
 <br> 
 	
@@ -40,7 +39,7 @@ echo"</td>";
 echo"<td>";
 echo $row['memberName'];
 echo " has claimed ";
-echo $row['claimQuantity'];
+echo $row['claimQuantity']. " ";
 echo $row['rewardName'];
 echo"</td>";  
 

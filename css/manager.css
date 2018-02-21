@@ -88,20 +88,46 @@ nav {
     margin-left: 10px;
 }
 
-nav a {
+nav div {
     display: inline-block;
     width: auto;
-    padding: 20px 10px 10px;
-    margin-right: 40px;
+    padding: 20px 30px 10px;
     font-weight: bold;
     color: #2152bd;
+    position: relative;
 }
 
-nav a:hover {
-    color: yellow;
+nav div:hover {
+    cursor: pointer;
+    background-color: #cccccc;
+}
+
+.dropdown:hover .dropdownContent{
+    display: block;
+}
+
+ul.dropdownContent{
+    display: none;
+    position: absolute;
+    max-width: 150%;
+    height: auto;
+    top: 50px;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 0.5px 0.5px #888888;
+}
+
+.dropdownContent li{
+    padding: 10px;
+    font-weight: normal;
+    font-size: 0.95em;
+    color: #000;
+}
+
+.dropdownContent li:hover{
+    background-color: #888888;
     cursor: pointer;
 }
-
 /*==================== Login ====================*/
 #registerContainer, #loginContainer {
     padding: 10px 20px;
@@ -124,9 +150,9 @@ nav a:hover {
 }
 
 #registerBtn, #loginBtn {
-    width: 100px;
+    width: 200px;
     height: 45px;
-    font-size: 1.2em;
+    font-size: 1.0em;
 }
 
 /*==================== Dashboard ==============*/

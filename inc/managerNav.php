@@ -15,17 +15,40 @@
     </div>
     <div id="headerLower">
         <nav>
-            <a href="">View System Log</a>
-            <a href="vieweditRewardlist.php">Manage Rewards</a>
-            <a href="vieweditBooklist.php">Manage Inventory</a>
-            <a href="managerRegister.php">Register New Manager</a>
-            <a href="manageUser.php">Manage Users and Feedbacks</a>
-            <a href="addBook.php">Add New Book</a>
-            <a href="addGenre.php">Add New Genre</a>
-            <a href="addReward.php">Add New Reward</a>
-            <a href="bookRequest.php">Place Order</a>
-            <a href="manageOrder.php">Manage Orders</a>
-            <a href="viewArrivedOrders.php">Arrived Orders</a>
+            <div class="dropdown"><a href="">View System Log</a>
+            <ul class="dropdownContent">
+               <li><a href="managerLoginLog.php">Users Login Log</a></li>
+                <li><a href="managerRewardRedeemLog.php">Users Claimed Rewards</a></li>
+                <li><a href="managerTransactionLog.php">Users Transactions</a></li>
+                <li><a href="managerFeedbackLog.php">User Feedbacks</a></li>
+                <li><a href="managerFeedbackRating.php">User Feedback Ratings</a></li>
+            </ul>
+            </div>
+
+            <div class="dropdown">Manage Inventory
+                <ul class="dropdownContent">
+                    <li><a href="vieweditBooklist.php">Manage Books</a></li>
+                    <li><a href="vieweditRewardlist.php">Manage Rewards</a></li>
+                    <li><a href="addBook.php">Add New Book</a></li>
+                    <li><a href="addGenre.php">Add New Genre</a></li>
+                    <li><a href="addReward.php">Add New Reward</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                Orders
+                <ul class="dropdownContent">
+                    <li><a href="bookRequest.php">Place Order</a></li>
+                    <li><a href="manageOrder.php">Manage Orders</a></li>
+                    <li><a href="viewArrivedOrders.php">Arrived Orders</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <a href="managerRegister.php">Register New Manager</a>
+            </div>
+            <div>
+                <a href="manageUser.php">Manage Users</a>
+            </div>
+
         </nav>
     </div>
 </header>

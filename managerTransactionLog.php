@@ -1,5 +1,5 @@
 <?php 
-$title = "Transaction Log";
+$title = "Users Transactions";
 require_once "inc/managerHeader.php";
 $result=mysqli_query($conn, "SELECT * FROM member INNER JOIN payment ON member.memberId=payment.memberId INNER JOIN bookpurchase ON payment.paymentId=bookpurchase.paymentId INNER JOIN book ON bookpurchase.bookId=book.bookId");
 ?>
@@ -9,14 +9,13 @@ $result=mysqli_query($conn, "SELECT * FROM member INNER JOIN payment ON member.m
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>Member Transaction Log</title>
 
 </head>
 
 <body>
 <div id="log"> 
 
-<h1>Member Transaction Log</h1>
+<h1>Users Transactions</h1>
 <br>
 <br> 
 	
@@ -40,7 +39,7 @@ echo"</td>";
 echo"<td>";
 echo $row['memberName'];
 echo " has bought ";
-echo $row['purchaseQuantity'];
+echo $row['purchaseQuantity'] . " ";
 echo $row['bookTitle'];
 echo"</td>";  
 
