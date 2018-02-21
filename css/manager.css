@@ -84,17 +84,17 @@ header {
 }
 
 nav {
-    flex-basis: 80%;
     margin-left: 10px;
 }
 
-nav div {
+nav .dropdown{
     display: inline-block;
-    width: auto;
-    padding: 20px 30px 10px;
+    flex-basis: 10%;
+    padding: 20px 10px 10px;
     font-weight: bold;
     color: #2152bd;
     position: relative;
+    text-align: center;
 }
 
 nav div:hover {
@@ -109,8 +109,10 @@ nav div:hover {
 ul.dropdownContent{
     display: none;
     position: absolute;
+    min-width: 100%;
     max-width: 150%;
     height: auto;
+    left:0px;
     top: 50px;
     background-color: #fff;
     z-index: 1;

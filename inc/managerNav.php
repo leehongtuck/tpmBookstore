@@ -14,8 +14,8 @@
         </div>
     </div>
     <div id="headerLower">
-        <nav>
-            <div class="dropdown"><a href="">View System Log</a>
+        <nav class="flex">
+            <div class="dropdown">View System Log
             <ul class="dropdownContent">
                <li><a href="managerLoginLog.php">Users Login Log</a></li>
                 <li><a href="managerRewardRedeemLog.php">Users Claimed Rewards</a></li>
@@ -45,7 +45,7 @@
             <div class="dropdown">
                 <a href="managerRegister.php">Register New Manager</a>
             </div>
-            <div>
+            <div class="dropdown">
                 <a href="manageUser.php">Manage Users</a>
             </div>
 
