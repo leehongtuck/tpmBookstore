@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Generation Time: Feb 07, 2018 at 01:21 AM
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 21, 2018 at 02:33 PM
 -- Server version: 5.7.19
--- PHP Version: 7.1.9
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `tpmbookstore`
 --
+CREATE DATABASE IF NOT EXISTS `tpmbookstore` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tpmbookstore`;
 
 -- --------------------------------------------------------
 
@@ -37,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `book` (
   `bookAuthor` varchar(50) NOT NULL,
   `bookPublisher` varchar(50) NOT NULL,
   `bookPublishDate` varchar(50) NOT NULL,
-  `bookQuantity` int(11) NOT NULL,
+  `bookQuantity` int(11) DEFAULT NULL,
   `genreId` varchar(4) NOT NULL,
   PRIMARY KEY (`bookId`),
   KEY `book_ibfk_1` (`genreId`)
@@ -50,12 +52,12 @@ CREATE TABLE IF NOT EXISTS `book` (
 INSERT INTO `book` (`bookId`, `bookTitle`, `bookDescription`, `bookPrice`, `bookAuthor`, `bookPublisher`, `bookPublishDate`, `bookQuantity`, `genreId`) VALUES
 ('B001', 'Milk and Honey', 'It is about the experience of violence, abuse, love, loss, and femininity.', 20, 'Rupi Kaur', 'Createspace', '4th November 2014 ', 10, 'G001'),
 ('B002', 'Pride and Prejudice', '“It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.” So begins Pride and Prejudice, Jane Austen’s witty comedy of manners', 30, ' Jane Austen', 'Modern Library', '10th October 2000', 13, 'G001'),
-('B003', 'Memories of Geisha', 'A literary sensation and runaway bestseller, this brilliant debut novel presents with seamless authenticity and exquisite', 15, 'Arthur Golden', 'Random House Large Print Publishing ', '15th November 2005', 9, 'G001'),
+('B003', 'Memories of Geisha', 'A literary sensation and runaway bestseller, this brilliant debut novel presents with seamless authenticity and exquisite', 15, 'Arthur Golden', 'Random House Large Print Publishing ', '15th November 2005', 8, 'G001'),
 ('B004', 'Idiot Genius', '\"From its engaging drawings to its powerful message, Idiot Genius will leave readers musing about Willa Snap\'s adventures long after the winding story concludes.', 70, 'Richard Due', 'Gibbering Gnome Press', '22nd December 2017', 20, 'G002'),
-('B005', 'The Riddle in Stone Trilogy', 'In the world of fantasy novels, Robert Evert is a supernova talent, and the RIDDLE IN STONE series brings twisting suspense and an unforgettable protagonist into the pantheon of great books.', 67, 'Robert Evert', 'Diversion Books', '7th December 2014', 36, 'G002'),
-('B006', 'Undone', 'USA Today and New York Times bestselling author, Wendy Higgins, brings you the gripping, sensual conclusion to her apocalyptic trilogy.\r\n', 45, 'Wendy Higgins ', 'A Division of Ingenious Inventions Run Amok, Ink', '5th December 2017', 56, 'G002'),
+('B005', 'The Riddle in Stone Trilogy', 'In the world of fantasy novels, Robert Evert is a supernova talent, and the RIDDLE IN STONE series brings twisting suspense and an unforgettable protagonist into the pantheon of great books.', 67, 'Robert Evert', 'Diversion Books', '7th December 2014', 27, 'G002'),
+('B006', 'Undone', 'USA Today and New York Times bestselling author, Wendy Higgins, brings you the gripping, sensual conclusion to her apocalyptic trilogy.\r\n', 45, 'Wendy Higgins ', 'A Division of Ingenious Inventions Run Amok, Ink', '5th December 2017', 42, 'G002'),
 ('B007', 'The Hunger Game', 'The nation of Panem, formed from a post-apocalyptic North America, is a country that consists of a wealthy Capitol region surrounded by 12 poorer districts.', 87, 'Suzanne Collins', 'Scholastic Press', '14th September 2008', 70, 'G003'),
-('B008', 'The Maze Runner', 'When Thomas wakes up in the lift, the only thing he can remember is his name. ', 67, ' James Dashner', 'Delacorte Press', '6th October 2009', 40, 'G003'),
+('B008', 'The Maze Runner', 'When Thomas wakes up in the lift, the only thing he can remember is his name. ', 67, ' James Dashner', 'Delacorte Press', '6th October 2009', 10, 'G003'),
 ('B009', 'The Lightning Thief ', 'Percy Jackson is a good kid, but he can\'t seem to focus on his schoolwork or control his temper.', 56, ' Rick Riordan', 'Disney Hyperion Books', '1st March 2006', 36, 'G003');
 
 -- --------------------------------------------------------
@@ -241,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `reward` (
 
 INSERT INTO `reward` (`rewardId`, `rewardName`, `rewardDescription`, `rewardPoint`, `rewardQuantity`) VALUES
 ('R001', 'RM10 Book Voucher', 'RM10 discount of books purchase ', 250, 10),
-('R002', 'RM20 Book Voucher', 'RM20 discount of books purchase', 400, 5);
+('R002', 'RM20 Book Voucher', 'RM20 discount of books purchase', 400, 4);
 
 -- --------------------------------------------------------
 
@@ -252,9 +254,9 @@ INSERT INTO `reward` (`rewardId`, `rewardName`, `rewardDescription`, `rewardPoin
 DROP TABLE IF EXISTS `stockorder`;
 CREATE TABLE IF NOT EXISTS `stockorder` (
   `orderId` varchar(10) NOT NULL,
-  `orderDate` date NOT NULL,
-  `orderStatus` varchar(20) NOT NULL,
-  `arrivalDate` date NOT NULL,
+  `orderDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `orderStatus` varchar(20) DEFAULT NULL,
+  `arrivalDate` date DEFAULT NULL,
   `managerId` varchar(10) NOT NULL,
   `supplierId` varchar(10) NOT NULL,
   PRIMARY KEY (`orderId`),
