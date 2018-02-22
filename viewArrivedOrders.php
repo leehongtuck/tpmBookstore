@@ -25,7 +25,7 @@ $result = mysqli_query($conn, $query);
                     </td>
 
                     <td>
-                        <?= $row['orderDateTime'] ?>
+                        <?= $row['orderDate'] ?>
                     </td>
                     <td>
                         <?= $row['managerId'] ?>
@@ -36,7 +36,7 @@ $result = mysqli_query($conn, $query);
                     </td>
 
                     <td>
-                        <?= $row['arrivalDateTime'] ?>
+                        <?= $row['arrivalDate'] ?>
                     </td>
                 </tr>
 
