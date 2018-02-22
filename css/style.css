@@ -16,9 +16,7 @@ a {
   height: 100%;
 }
 .background{
-
-  background-image: url("../img/background1.jpg");
-  
+  background-color: #988F6E;
 }
 
 .grid {
