@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 21, 2018 at 02:33 PM
+-- Generation Time: Feb 22, 2018 at 07:48 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -255,8 +255,8 @@ DROP TABLE IF EXISTS `stockorder`;
 CREATE TABLE IF NOT EXISTS `stockorder` (
   `orderId` varchar(10) NOT NULL,
   `orderDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `orderStatus` varchar(20) DEFAULT NULL,
-  `arrivalDate` date DEFAULT NULL,
+  `orderStatus` varchar(20) DEFAULT '0',
+  `arrivalDate` timestamp NULL DEFAULT NULL,
   `managerId` varchar(10) NOT NULL,
   `supplierId` varchar(10) NOT NULL,
   PRIMARY KEY (`orderId`),
