@@ -1,5 +1,7 @@
 <?php
 require_once("inc/session.php");
+if($member == null)
+    header('location:index.php');
 /*check reward quantity*/
 $sql1 = "SELECT * FROM reward WHERE rewardId='" . $_POST['hiddenId'] . "'";
 $result1 = mysqli_query($conn, $sql1);

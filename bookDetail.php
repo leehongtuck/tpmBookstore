@@ -1,6 +1,9 @@
 <?php
 $title = "Book Detail";
 require_once "inc/session.php";
+if ($member == null){
+    header("location: index.php");
+}
  ?>
 <!DOCTYPE html>
 <html>
@@ -164,7 +167,7 @@ require_once "inc/session.php";
 								$starRating= $row['bookRating'];?>
 								<div class="userFeedback">
 									<div class="userPic">
-										<span><i class="fas fa-user-circle"></i><?=$row['memberName']?> (<?=$starRating;?>/10)</span>
+										<span><i class="fas fa-user-circle"></i><?=$row['memberName']?> (<?php if($row['memberTrust']==0) echo "Not Trusted"; else echo "Trusted";?>) Rated: <?=$starRating;?>/10</span>
 									</div>
 									<div class="userComment">			
 										<?=$row['bookComment'];?>
