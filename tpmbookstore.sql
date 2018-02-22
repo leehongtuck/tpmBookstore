@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 22, 2018 at 07:48 AM
+-- Generation Time: Feb 22, 2018 at 12:34 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -86,7 +86,6 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   `feedbackId` varchar(10) NOT NULL,
   `bookRating` int(11) NOT NULL,
   `bookComment` varchar(255) NOT NULL,
-  `feedbackStatus` tinyint(1) NOT NULL DEFAULT '1',
   `feedbackDateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `memberId` varchar(10) NOT NULL,
   `bookId` varchar(10) NOT NULL,
