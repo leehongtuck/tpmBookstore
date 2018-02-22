@@ -199,3 +199,7 @@ require_once "inc/session.php";
 	</body>
 
 </html>
+<?php
+include_once("inc/memberFooter.php");
+?>
+

@@ -35,5 +35,9 @@ $result = mysqli_query($conn, $query);  ?>
 		?>
 		</div>
 	</body>
-</html>
+</html> 
+
+<?php
+include_once("inc/memberFooter.php");
+?>
 

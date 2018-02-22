@@ -240,7 +240,7 @@ nav a:hover {
 }
 
 .indexTitle{
-  background-color: antiquewhite;
+  background-color: rgba(255, 255, 255, 0.5);
   border-top: 2px solid black;
   border-bottom: 2px solid black;
 }
@@ -562,6 +562,15 @@ tr{
   width: 300px;
 }
 
+#profile{
+	
+	background-color: rgba(255, 255, 255, 0.5);
+	padding:15px;
+	margin:100px ;
+	border-radius:1.5em;
+	
+}
+
 
 /*========================== CHANGE PW =====================*/
 #pwHeader{
@@ -586,14 +595,15 @@ tr{
 
 /*========================== REWARDS ====================*/
 #rewardHeader{
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   border-bottom: 3px solid black;
+  background-color:rgba(255, 255, 255, 0.6);
 }
 
 #rewardHeader h1{
   font-size: 1.5em;
-}
+ }
 
 #rewardContents{
   grid-template-columns: 1fr 1fr 1fr;
@@ -602,7 +612,11 @@ tr{
 }
 
 .rewardInfo{
-  height: 400px;
+  height: 600px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding:10px;
+  margin:10px;
+  border-radius:1.5em;
 }
 .rewardImage{
   height: 50%;
@@ -617,27 +631,23 @@ tr{
 
   /*========================= FOOTER =========================== */  
 Footer{
-  height:100px;
+  height:30px;
   background-color: rgba(255, 255, 255, 0.3);
-  position: absolute;
+  position:fixed;
   right: 0;
   bottom: 0;
   left: 0;
 }  
-#fLogo{
-  height:auto;
-  width:auto;
-  float: left;
-  left:300px;
-  } 
 
-  #fAdd{
-    height:100px;
-    float:right;
-    right:200px;
-    font-size: 10px;
+  
+footer p{
+	height:30px;
+	text-align:center;
+	font-size: 13px;
     font-family:inherit;
-  }
+    padding:10px;
+    font-weight:bold;
+    
+   
+} 
 
-
- 

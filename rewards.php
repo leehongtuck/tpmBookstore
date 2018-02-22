@@ -38,3 +38,8 @@ if($member == null)
 </div>
 </body>
 </html>
+
+<?php
+include_once("inc/memberFooter.php");
+?>
+

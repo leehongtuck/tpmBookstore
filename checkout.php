@@ -89,7 +89,12 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     <input type="hidden" name="numBook" value="<?=$numBook?>">
     </table>
     <div id="checkoutFooter">
-        <button class="btn"><a href="cart.php">Back To Cart</a></button>
+        <button onclick="location.href='cart.php'" type="button" class="btn">Back To Cart</button>
         <input class="btn" type="submit" value="Purchase Items">
     </div>
 </form>
+
+<?php
+include_once("inc/memberFooter.php");
+?>
+
