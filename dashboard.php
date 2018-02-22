@@ -1,6 +1,9 @@
 <?php
 $title = "Dashboard";
 require_once "inc/session.php";
+if($manager == null)
+    header('location:managerLogin.php');
+?>
 ?>
 
 <!DOCTYPE html>
