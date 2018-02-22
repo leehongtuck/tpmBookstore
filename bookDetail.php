@@ -1,9 +1,7 @@
 <?php
 $title = "Book Detail";
 require_once "inc/session.php";
-if ($member == null){
-    header("location: index.php");
-}
+
  ?>
 <!DOCTYPE html>
 <html>
