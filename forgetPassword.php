@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		// Create the unique user password reset key 
 		$password = hash('sha512', $salt.$myUsername); 
 		// Create a url which we will direct them to reset their password 
-		$pwrurl = "localhost:8080/tpmBookstore/resetPassword.php?q=".$password;
+		$pwrurl = "localhost/tpmBookstore/resetPassword.php?q=".$password;
 
     // Mail them their key
 	$r = mysqli_fetch_assoc($result);
